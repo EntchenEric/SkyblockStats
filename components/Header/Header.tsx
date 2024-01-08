@@ -1,6 +1,6 @@
 'use client';
 
-import { Paper, Text, Input, Title } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import styled from '@emotion/styled';
 
