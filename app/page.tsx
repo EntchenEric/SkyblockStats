@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-"use client"
+'use client';
 import { PlayerCardGrid } from '@/components/PlayerCardGrid/PlayerCardGrid';
 import { Welcome } from '../components/Welcome/Welcome';
 import { PlayerCard } from '@/components/PlayerCard/PlayerCard';
@@ -8,19 +7,18 @@ import { Container } from '@mantine/core';
 export default function HomePage() {
   const players = [
     {
-      name: "Elwood24",
-      badge: "Developer",
+      name: 'Elwood24',
+      badge: 'Developer',
     },
     {
-      name: "EntchenEric",
-      badge: "Developer",
-    }
-  ]
+      name: 'EntchenEric',
+      badge: 'Developer',
+    },
+  ];
   return (
     <>
       <Welcome />
-      <PlayerCardGrid players={players}/>
-      <PlayerCard name="name" badge="badge" />
+      <PlayerCardGrid players={players} />
       <Container size="lg">
         <SearchBar />
       </Container>
