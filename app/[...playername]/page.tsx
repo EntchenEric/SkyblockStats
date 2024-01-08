@@ -44,13 +44,21 @@ export default function player({ params }: any) {
                 </SimpleGrid>
             </Container>
 
-            <Container size={"lg"}>
-                {
-                    uuid && selectedProfile
-                        ? <PlayerInventory profileData={selectedProfile} uuid={uuid} />
-                        : "Loading..."
-                }
-            </Container>
-        </>
-    )
+      <Container size={'lg'}>
+        {uuid && selectedProfile ? (
+          <PlayerInventory profileData={selectedProfile} uuid={uuid} />
+        ) : (
+          'Loading...'
+        )}
+      </Container>
+
+      <Container size={'lg'}>
+        {uuid && selectedProfile ? (
+          <PlayerPets profileData={selectedProfile} uuid={uuid} />
+        ) : (
+          'Loading...'
+        )}
+      </Container>
+    </>
+  );
 }
