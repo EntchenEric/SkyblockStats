@@ -1,8 +1,14 @@
 import { TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { getUUIDFromName } from '../../api/getUUIDFromName';
+import { useRouter } from 'next/navigation';
 
 export function SearchBar() {
+  const router = useRouter();
+
+  const handleRedirect = (name: string) => {
+    router.push(`/${name}`);
+  };
   const form = useForm({
     initialValues: {
       playername: '',
@@ -20,7 +26,7 @@ export function SearchBar() {
   });
 
   return (
-    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+    <form onSubmit={form.onSubmit((values) => handleRedirect(values.playername))}>
       <TextInput placeholder="Enter Playername" {...form.getInputProps('playername')} />
     </form>
   );
