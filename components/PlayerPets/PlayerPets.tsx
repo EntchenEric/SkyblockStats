@@ -19,7 +19,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
   );
 
   const petDatas = petData.map((pet) => {
-    return <Container mt={15}>{pet.type}</Container>;
+    return <Container mt={15}>{pet.type.replaceAll('_', ' ')}</Container>;
   });
 
   return (
