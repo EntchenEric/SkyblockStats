@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Container, SimpleGrid } from "@mantine/core"
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { getSkyblockProfileData } from "../../api/getSkyblockProfileData";
 import { getUUIDFromName } from "../../api/getUUIDFromName";
 import { PlayerInventory } from "../../components/PlayerInventory/PlayerInventory";
@@ -10,11 +10,17 @@ import { PlayerInventory } from "../../components/PlayerInventory/PlayerInventor
 export default function player({ params }: any) {
     const [uuid, setUUID] = useState();
     const [profileData, setProfileData] = useState();
+    const [selectedProfile, setSelectedProfile] = useState();
     const fetchData = async () => {
         const uuid = await getUUIDFromName(params.playername);
         setUUID(uuid);
-        const profileData = await getSkyblockProfileData(uuid);
+        const profileData = (await getSkyblockProfileData(uuid)).profiles;
         setProfileData(profileData);
+        profileData.forEach((profile: any) => {
+            if (profile && profile.selected) {
+                setSelectedProfile(profile);
+            }
+        });
     }
 
     useEffect(() => {
@@ -59,7 +65,7 @@ export default function player({ params }: any) {
             </Container>
 
             <Container size={"lg"}>
-                <PlayerInventory profileData={profileData} />
+                <PlayerInventory profileData={selectedProfile} />
             </Container>
         </>
     )
