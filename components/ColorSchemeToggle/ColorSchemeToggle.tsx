@@ -35,15 +35,11 @@ export function ColorSchemeToggle() {
         }
         setColorScheme(theme.colorScheme as MantineColorScheme)
       }
-      console.log(getNextColorSchemeFromType("light"))
-      console.log(getNextColorSchemeFromType("dark"))
     }
 
   }, [])
 
   const toggleTheme = (th: string) => {
-    console.log("Current Theme " + theme.colorScheme)
-    console.log("Theme Changed to " + th)
     const nextTheme = getNextColorSchemeFromType(th)
     setColorScheme(nextTheme.colorScheme as MantineColorScheme)
     setTheme(nextTheme)

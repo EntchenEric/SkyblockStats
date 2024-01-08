@@ -1,10 +1,11 @@
+"use client"
 import { Welcome } from '../components/Welcome/Welcome';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import {Header} from '../components/Header/Header';
+import { PlayerCard } from '@/components/PlayerCard/PlayerCard';
 export default function HomePage() {
   return (
     <>
       <Welcome />
+      <PlayerCard name="name" badge="badge" />
     </>
   );
 }

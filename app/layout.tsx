@@ -14,6 +14,8 @@ const getRandomFunnyDescription = () => {
     "Maybe you should get a life",
     "Lowballing 10 Coins! /visit me",
   ]
+
+  return descriptions[Math.floor(Math.random() * descriptions.length)];
 };
 
 export const metadata = {
