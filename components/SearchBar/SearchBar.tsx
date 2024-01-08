@@ -1,3 +1,9 @@
-import { Input } from '@mantine/core';
+import { Input, InputWrapper } from '@mantine/core';
 
-export function searchBar() {}
+export function SearchBar() {
+  return (
+    <InputWrapper>
+      <Input placeholder="Enter Playername" />
+    </InputWrapper>
+  );
+}
