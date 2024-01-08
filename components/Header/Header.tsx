@@ -1,19 +1,37 @@
-import { Paper, Text } from "@mantine/core";
-import { ColorSchemeToggle } from "../ColorSchemeToggle/ColorSchemeToggle";
+'use client';
 
+import { Paper, Text, Input, Title } from '@mantine/core';
+import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import styled from '@emotion/styled';
+
+const ParentDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (min-width: 600px) {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+`;
 
 export function Header() {
-
-    return (
-        <div className="">
-            <div className = "">
-                <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
-                    Skyblock Stats
-                </Text>
-            </div>
-            <div className = "">
-                <ColorSchemeToggle />
-            </div>
-        </div>
-    )
+  return (
+    <ParentDiv>
+      <div>
+        <Title>
+          <Text
+            fw={1000}
+            size="xl"
+            variant="gradient"
+            component="span"
+            gradient={{ from: 'pink', to: 'yellow' }}
+          >
+            Skyblock Stats
+          </Text>
+        </Title>
+      </div>
+      <div>
+        <ColorSchemeToggle />
+      </div>
+    </ParentDiv>
+  );
 }
