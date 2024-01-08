@@ -1,26 +1,35 @@
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Container } from '@mantine/core';
+import styled from '@emotion/styled';
 
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;  // Aligns items vertically in the center
+`;
+
+const StyledTextContainer = styled.div`
+  margin-left: 16px;  // Adds some space between the image and the text
+`;
 
 export function PlayerCard({ name, badge }: { name: string, badge: string }) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Card.Section component="a" href="https://mantine.dev/">
+    <Container>
+      <StyledDiv>
         <Image
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-          height={160}
-          alt="Norway"
+          src={`https://mc-heads.net/avatar/${name}`}
+          height={100}
+          alt="Player Avatar"
         />
-      </Card.Section>
-
-      <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={500}>{name}</Text>
-      </Group>
-      {
-        badge
-          ? <Group><Badge color="pink">{badge}</Badge></Group>
-          : <></>
-      }
-
-    </Card>
+        <StyledTextContainer>
+          <Group>
+            <Text fw={500}>{name}</Text>
+          </Group>
+          {
+            badge
+              ? <Group><Badge color="pink">{badge}</Badge></Group>
+              : null  // Using null is cleaner than <></>
+          }
+        </StyledTextContainer>
+      </StyledDiv>
+    </Container>
   );
 }
