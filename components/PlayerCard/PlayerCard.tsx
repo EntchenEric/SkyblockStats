@@ -1,26 +1,25 @@
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Container } from '@mantine/core';
 
 
 export function PlayerCard({ name, badge }: { name: string, badge: string }) {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Card.Section component="a" href="https://mantine.dev/">
+    <Container>
+      <div>
+
         <Image
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+          src={`https://mc-heads.net/avatar/${name}`}
           height={160}
           alt="Norway"
         />
-      </Card.Section>
-
-      <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={500}>{name}</Text>
-      </Group>
-      {
-        badge
-          ? <Group><Badge color="pink">{badge}</Badge></Group>
-          : <></>
-      }
-
-    </Card>
+        <Group justify="space-between" mt="md" mb="xs">
+          <Text fw={500}>{name}</Text>
+        </Group>
+        {
+          badge
+            ? <Group><Badge color="pink">{badge}</Badge></Group>
+            : <></>
+        }
+      </div>
+    </Container>
   );
 }
