@@ -22,6 +22,7 @@
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",
     "@mantine/core": "7.4.0",
+    "@mantine/form": "^7.4.0",
     "@mantine/hooks": "7.4.0",
     "@next/bundle-analyzer": "^14.0.1",
     "@tabler/icons-react": "^2.40.0",

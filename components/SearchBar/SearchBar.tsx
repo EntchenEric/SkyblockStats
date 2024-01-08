@@ -1,9 +1,16 @@
-import { Input, InputWrapper } from '@mantine/core';
+import { Input } from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 export function SearchBar() {
+  const form = useForm({
+    initialValues: {
+      playername: '',
+    },
+  });
+
   return (
-    <InputWrapper>
-      <Input placeholder="Enter Playername" />
-    </InputWrapper>
+    <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <Input placeholder="Enter Playername" {...form.getInputProps('playername')} />
+    </form>
   );
 }
