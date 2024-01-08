@@ -7,7 +7,7 @@ import { Container } from '@mantine/core';
 export default function HomePage() {
   const players = [
     {
-      name: 'Elwood24',
+      name: 'elwood24',
       badge: 'Developer',
     },
     {
@@ -17,10 +17,14 @@ export default function HomePage() {
   ];
   return (
     <>
-      <Welcome />
-      <PlayerCardGrid players={players} />
       <Container size="lg">
+        <Welcome />
+      </Container>
+      <Container mt={10} size="lg">
         <SearchBar />
+      </Container>
+      <Container mt={20} size="lg">
+        <PlayerCardGrid players={players} />
       </Container>
     </>
   );
