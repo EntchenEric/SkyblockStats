@@ -10,7 +10,7 @@ export function PlayerCardGrid({ players }: { players: Array<{ name: string, bad
 
     return (
         <Container>
-            <SimpleGrid cols={{ base: 3, sm: 5, lg: 5 }}>
+            <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }}>
                 {PlayerList}
             </SimpleGrid>
         </Container>
