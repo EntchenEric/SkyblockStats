@@ -2,10 +2,23 @@ import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../theme';
+import {Header} from '../components/Header/Header';
+
+const getRandomFunnyDescription = () => {
+  const descriptions = [
+    "You are a bit smelly rn ngl :/",
+    "I think you should go outside and touch some grass",
+    "You should probably get some sleep",
+    "I love Femboys",
+    "You look cute today",
+    "Maybe you should get a life",
+    "Lowballing 10 Coins! /visit me",
+  ]
+};
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Skyblock Stats',
+  description: getRandomFunnyDescription(),
 };
 
 export default function RootLayout({ children }: { children: any }) {
@@ -20,7 +33,10 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <Header />
+          {children}
+          </MantineProvider>
       </body>
     </html>
   );
