@@ -51,4 +51,5 @@ export interface PetDataInterface {
   heldItem: string;
   skin: string | null;
   tier: 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
+  uuid: string;
 }

@@ -1,6 +1,7 @@
 import { Container, SimpleGrid } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { PetDataInterface } from '@/types/skyblockItem';
+import { format } from 'path';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -11,26 +12,40 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     petContent();
   }, []);
 
+  function formatPetData(string: string) {
+    if (!string) return '';
+    let formatted = string.replaceAll('_', ' ');
+    formatted = formatted
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+      .join(' ');
+    return formatted;
+  }
+
   const petContent = () => {
     const parsedPets: Array<PetDataInterface> = [];
     // const xpToLevelCom = {"1":0, "2":100, "3":210, "4":}
+    // console.log(petData);
     for (const key in petData) {
       const pet = petData[key];
       const parsedPet: any = {
         active: pet.active,
         candyUsed: pet.candyUsed,
         exp: pet.exp,
-        heldItem: pet.heldItem,
-        tier: pet.tier,
+        tier: formatPetData(pet.tier),
+        uuid: pet.uuid,
       };
+
+      console.log(pet.heldItem);
       switch (pet.type) {
         default:
-          console.log(pet.type);
           parsedPet['name'] = 'Pet not found!';
           break;
 
         case 'GHOUL':
           parsedPet['name'] = `Ghoul`;
+          parsedPet['skin'];
           parsedPets.push(parsedPet);
           break;
 
@@ -368,6 +383,124 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           parsedPets.push(parsedPet);
           break;
       }
+
+      switch (pet.heldItem) {
+        default:
+          parsedPet['heldItem'] = 'None';
+          break;
+
+        case 'DWARF_TURTLE_SHELMET':
+          parsedPet['heldItem'] = 'Dwarf Turtle Shelmet';
+          break;
+
+        case 'MINOS_RELIC':
+          parsedPet['heldItem'] = 'Minos Relic';
+          break;
+
+        case 'CROCHET_TIGER_PLUSHIE':
+          parsedPet['heldItem'] = 'Crochet Tiger Plushie';
+          break;
+
+        case 'ANTIQUE_REMEDIES':
+          parsedPet['heldItem'] = 'Antique Remedies';
+          break;
+
+        case 'WASHED_UP_SOUVENIR':
+          parsedPet['heldItem'] = 'Washed-up Souvenir';
+          break;
+
+        case 'YELLOW_BANDANA':
+          parsedPet['heldItem'] = 'Yellow Bandana';
+          break;
+
+        case 'GREEN_BANDANA':
+          parsedPet['heldItem'] = 'Green Bandana';
+          break;
+
+        case 'QUICK_CLAW':
+          parsedPet['heldItem'] = 'Quick Claw';
+          break;
+
+        case 'BEJEWELED COLLAR':
+          parsedPet['heldItem'] = 'Bejeweled Collar';
+          break;
+
+        case 'TEXTBOOK':
+          parsedPet['heldItem'] = 'Textbook';
+          break;
+
+        case 'SPOOKY_CUPCAKE':
+          parsedPet['heldItem'] = 'Spooky Cupcake';
+          break;
+
+        case 'REAPER_GEM':
+          parsedPet['heldItem'] = 'Reaper Gem';
+          break;
+
+        case 'LUCKY_CLOVER':
+          parsedPet['heldItem'] = 'Lucky Clover';
+          break;
+
+        case 'SERRATED_CLAWS':
+          parsedPet['heldItem'] = 'Serrated Claws';
+          break;
+
+        case 'SHARPENED_CLAWS':
+          parsedPet['heldItem'] = 'Sharpened Claws';
+          break;
+
+        case 'REINFORCED_SCALES':
+          parsedPet['heldItem'] = 'Reinforced Scales';
+          break;
+
+        case 'HARDENED_SCALES':
+          parsedPet['heldItem'] = 'Hardened Scales';
+          break;
+
+        case 'GOLD_CLAWS':
+          parsedPet['heldItem'] = 'Gold Claws';
+          break;
+
+        case 'IRON_CLAWS':
+          parsedPet['heldItem'] = 'Iron Claws';
+          break;
+
+        case 'BIGGER_TEETH':
+          parsedPet['heldItem'] = 'Bigger Teeth';
+          break;
+
+        case 'BIG_TEETH':
+          parsedPet['heldItem'] = 'Big Teeth';
+          break;
+
+        case 'BUBBLEGUM':
+          parsedPet['heldItem'] = 'Bubblegum';
+          break;
+
+        case 'EXP_SHARE':
+          parsedPet['heldItem'] = 'Exp Share';
+          break;
+
+        case 'SADDLE':
+          parsedPet['heldItem'] = 'Saddle';
+          break;
+
+        case 'FLYING_PIG':
+          parsedPet['heldItem'] = 'Flying Pig';
+          break;
+
+        case 'FOUR_EYED_FISH':
+          parsedPet['heldItem'] = 'Four Eyed Fish';
+          break;
+
+        case 'DEAD_CAT_FOOD':
+          parsedPet['heldItem'] = 'Dead Cat Food';
+          break;
+
+        case 'UNCOMMON_PARTY_HAT':
+          parsedPet['heldItem'] = 'Uncommon Party Hat';
+          break;
+      }
     }
     setPets(parsedPets);
   };
@@ -379,7 +512,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       ) : (
         <SimpleGrid cols={{ base: 1, sm: 4, lg: 7 }}>
           {pets.map((pet) => (
-            <div>{pet.name}</div>
+            <div key={pet.uuid}>{pet.name}</div>
           ))}
         </SimpleGrid>
       )}
