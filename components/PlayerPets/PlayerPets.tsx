@@ -1,7 +1,7 @@
 import { Container, SimpleGrid } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { PetDataInterface } from '@/types/skyblockItem';
-import { format } from 'path';
+import { HoverCard, Paper, Group, Text } from '@mantine/core';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -382,7 +382,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
           break;
       }
-      parsedPets.push(parsedPet);
 
       switch (pet.heldItem) {
         default:
@@ -613,7 +612,29 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       ) : (
         <SimpleGrid cols={{ base: 1, sm: 4, lg: 7 }}>
           {pets.map((pet) => (
-            <div key={pet.uuid}>{pet.name}</div>
+            <HoverCard
+              width={320}
+              shadow="md"
+              withArrow
+              openDelay={200}
+              closeDelay={400}
+              key={pet.uuid}
+            >
+              <HoverCard.Target>
+                <Paper
+                  w={{ base: 50, lg: 100, sm: 75 }}
+                  h={{ base: 50, lg: 100, sm: 75 }}
+                  shadow="xs"
+                  radius="md"
+                  withBorder
+                >
+                  {pet.name}
+                </Paper>
+              </HoverCard.Target>
+              <HoverCard.Dropdown>
+                <Group>{}</Group>
+              </HoverCard.Dropdown>
+            </HoverCard>
           ))}
         </SimpleGrid>
       )}
