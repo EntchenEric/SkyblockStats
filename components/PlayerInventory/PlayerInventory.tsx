@@ -37,7 +37,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                             itemLore = item.tag.value.display.value.Lore.value.value
                             console.log(itemLore)
                         }
-                        if (itemName === "") return (<></>)
+                        if (itemName === "") return (<div></div>)
                         return (
                             <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                                 <HoverCard.Target>
