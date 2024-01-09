@@ -48,6 +48,7 @@ export interface PetDataInterface {
   active: boolean;
   candyUsed: number;
   exp: number;
+  level: number;
   heldItem: string;
   skin: string | null;
   tier: 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
