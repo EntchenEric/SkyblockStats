@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { decodeSkyblockData } from "../../api/decodeSkyblockData";
 import { Group, HoverCard, SimpleGrid, Text, Paper  } from "@mantine/core";
 import { SkyblockItem } from "@/types/skyblockItem";
-import { getSkyblockItemData } from "@/api/getSkyblockItemData";
 import styled from '@emotion/styled';
 
 
@@ -31,7 +30,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
             const item = parsedInv[i];
             if(item.tag){
                 const itemID = item.tag.value.ExtraAttributes.value.id.value;
-                const skyblockItem = await getSkyblockItemData(itemID)
+                const skyblockItem = await fetch("api/getSkyblockItemData/" + itemID);
                 console.log(skyblockItem)
             }
         }
