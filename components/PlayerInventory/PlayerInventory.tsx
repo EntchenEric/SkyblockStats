@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { decodeSkyblockData } from "../../api/decodeSkyblockData";
 import { Group, HoverCard, SimpleGrid, Text, Paper  } from "@mantine/core";
 import { SkyblockItem } from "@/types/skyblockItem";
+import { getSkyblockItemData } from "@/api/getSkyblockItemData";
 import styled from '@emotion/styled';
 
 
@@ -26,6 +27,15 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
         const inventoryItems: Array<SkyblockItem> = [];
 
+        for (let i = 0; i < parsedInv.length; i++) {
+            const item = parsedInv[i];
+            if(item.tag){
+                const itemID = item.tag.value.ExtraAttributes.value.id.value;
+                const skyblockItem = await getSkyblockItemData(itemID)
+                console.log(skyblockItem)
+            }
+        }
+
         setInventory(parsedInv)
     }
 
@@ -43,7 +53,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         }
                         if (itemName === "") return (<div></div>)
                         return (
-                            <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                            <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400} key = {item.tag.value.ExtraAttributes.value.uuid}>
                                 <HoverCard.Target>
                                     <Paper w={{base: 50, lg: 100, sm: 75}} h={{base: 50, lg: 100, sm: 75}} shadow="xs" radius="md" withBorder>
                                         {itemName}
