@@ -500,6 +500,18 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         case 'UNCOMMON_PARTY_HAT':
           parsedPet['heldItem'] = 'Uncommon Party Hat';
           break;
+
+        case 'PET_ITEM_MINING_SKILL_BOOST_COMMON':
+          parsedPet['heldItem'] = '20% Mining Skill Boost';
+          break;
+
+        case 'PET_ITEM_MINING_SKILL_BOOST_RARE':
+          parsedPet['heldItem'] = '40% Mining Skill Boost';
+          break;
+
+        case 'PET_ITEM_FARMING_SKILL_BOOST_COMMON':
+          parsedPet['heldItem'] = '20% Farming Skill Boost';
+          break;
       }
     }
     setPets(parsedPets);
