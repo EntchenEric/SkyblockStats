@@ -6,18 +6,24 @@ generator client {
 }
 
 datasource db {
-    provider = "mongodb"
-    url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model skyblockItem {
-    id             String         @id @default(cuid()) @map("_id")
-    itemID         String         @unique
-    name           String
-    category       String
-    material       String
-    tier           String?
-    skin           String?
-    npc_sell_price Int?
-    wiki_link      String?
+  id             String  @id @default(cuid()) @map("_id")
+  itemID         String  @unique
+  name           String
+  category       String
+  material       String
+  tier           String?
+  skin           String?
+  npc_sell_price Int?
+  wiki_link      String?
+}
+
+model VanillaTextures {
+  id       String @id @default(cuid()) @map("_id")
+  material String
+  url      String
 }
