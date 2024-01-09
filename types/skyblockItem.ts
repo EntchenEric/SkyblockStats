@@ -1,12 +1,8 @@
 export interface SkyblockItem{
     material: string;
     name: string;
-    category: string;
     tier: "COMMON" | "UNCOMMON" | "RARE" | "EPIC" | "LEGENDARY" | "MYTHIC"  | "SPECIAL" | "VERY_SPECIAL";
     requirements: SkyblockItemRequirement | undefined;
-    id: string;
-    durability: number | undefined;
-    unstackable: boolean | undefined;
     skin: string | undefined;
     generator: string | undefined;
     generator_tier: string | undefined;
