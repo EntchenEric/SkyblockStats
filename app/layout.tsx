@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../theme';
-import {Header} from '../components/Header/Header';
+import { Header } from '../components/Header/Header';
 
 const getRandomFunnyDescription = () => {
   const descriptions = [
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: any }) {
         <MantineProvider theme={theme}>
           <Header />
           {children}
-          </MantineProvider>
+        </MantineProvider>
       </body>
     </html>
   );

@@ -31,10 +31,10 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
             if (item.tag) {
                 const itemID = item.tag.value.ExtraAttributes.value.id.value;
 
-                const skyblockItem = await fetch("api/getSkyblockItemData",
-                    {method: "POST",
-                body: JSON.stringify({id: itemID}),});
-                console.log(skyblockItem)
+                // const skyblockItem = await fetch("api/getSkyblockItemData",
+                //     {method: "POST",
+                // body: JSON.stringify({id: itemID}),});
+                // console.log(skyblockItem)
             }
         }
 

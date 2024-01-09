@@ -24,7 +24,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     return formatted;
   }
 
-  const petContent = () => {
+  const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
     // const xpToLevelCom = {"1":0, "2":100, "3":210, "4":}
     for (const key in petData) {
@@ -37,8 +37,12 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         uuid: pet.uuid,
       };
 
-
-      // console.log(pet.heldItem);
+      // const skyblockItem = await fetch("api/getSkyblockItemData",
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify({ id: pet.type }),
+      //   });
+      // console.log(skyblockItem);
       switch (pet.type) {
         default:
           parsedPet['name'] = 'Pet not found!';
@@ -627,7 +631,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     });
 
     setPets(parsedPets);
-    console.log(parsedPets[0].exp);
+    //console.log(parsedPets[0].exp);
   };
 
   return (
