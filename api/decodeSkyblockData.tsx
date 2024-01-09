@@ -1,28 +1,37 @@
 const pako = require('pako');
-const { NBTReader } = require('nbt-js');
+const nbt = require('prismarine-nbt');
 
 export function decodeSkyblockData(encodedString: string) {
   try {
     // Decode the Base64 string
     const decodedString = atob(encodedString);
 
-    // Convert the decoded string to a Uint8Array
-    const decodedData = new Uint8Array(decodedString.length);
-    for (let i = 0; i < decodedString.length; ++i) {
-      decodedData[i] = decodedString.charCodeAt(i);
+    let dataString = decodedString;
+    let buffer = new Buffer(dataString, 'binary');
+
+    // Create a new inflator
+    const inflator = new pako.Inflate();
+
+    // Feed the inflator with the data
+    inflator.push(buffer, false);
+
+    // Get the inflated data
+    let inflatedData = inflator.result;
+
+    // Check if the inflated data is valid
+    if (!inflatedData || inflatedData.length === 0) {
+      throw new Error('Inflated data is empty');
     }
 
-    // Unzip the data using pako
-    const inflatedData = pako.inflate(decodedData, { to: 'string' });
+    // Convert the inflated data to a Buffer
+    const nbtBuffer = Buffer.from(inflatedData, 'binary');
 
-    // Parse the inflated NBT string using nbt-js
-    const reader = new NBTReader(inflatedData);
-    const parsedObject = reader.read();
+    // Parse the NBT data synchronously
+    const nbtData = nbt.parse(nbtBuffer);
 
-    return parsedObject;
+    return nbtData;
   } catch (error) {
     console.error("Error decoding, inflating, or parsing:", error);
     return null;
   }
-
 }
