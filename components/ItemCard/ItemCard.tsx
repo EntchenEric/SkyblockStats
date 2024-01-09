@@ -1,40 +1,45 @@
-import { Group, HoverCard, Text } from '@mantine/core';
+import { Group, HoverCard, Paper, Text } from '@mantine/core';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
 const HoverCardCommon = styled(HoverCard)`
-  bg-color: #aaaaaa;
+  background-color: #aaaaaa;
 `;
 const HoverCardUncommon = styled(HoverCard)`
-  bg-color: #00aa00;
+  background-color: #00aa00;
 `;
 const HoverCardRare = styled(HoverCard)`
-  bg-color: #5555ff;
+  background-color: #5555ff;
 `;
 const HoverCardEpic = styled(HoverCard)`
-  bg-color: #aa00aa;
+  background-color: #aa00aa;
 `;
 const HoverCardLegendary = styled(HoverCard)`
-  bg-color: #ffaa00;
+  background-color: #ffaa00;
 `;
 const HoverCardMythic = styled(HoverCard)`
-  bg-color: #aa00aa;
+  background-color: #aa00aa;
 `;
 const HoverCardDivine = styled(HoverCard)`
-  bg-color: #00aaaa;
+  background-color: #00aaaa;
 `;
 const HoverCardSpecial = styled(HoverCard)`
-  bg-color: #ff5555;
+  background-color: #ff5555;
 `;
 const HoverCardVerySpecial = styled(HoverCard)`
-  bg-color: #aa0000;
+  background-color: #aa0000;
 `;
 
-export function ItemCard(
-  name: string,
-  imageurl: string,
-  description: any,
-  rarity:
+export function ItemCard({
+    name,
+    imageurl,
+    description,
+    rarity,
+}: {
+    name: string;
+    imageurl: string;
+    description: any;
+    rarity:
     | 'COMMON'
     | 'UNCOMMON'
     | 'RARE'
@@ -43,16 +48,202 @@ export function ItemCard(
     | 'MYTHIC'
     | 'DIVINE'
     | 'SPECIAL'
-    | 'VERY_SPECIAL'
-) {
-  return (
-    <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-      <HoverCard.Target>
-        <Image src={imageurl} alt={name} />
-      </HoverCard.Target>
-      <HoverCard.Dropdown>
-        <Group>{description}</Group>
-      </HoverCard.Dropdown>
-    </HoverCard>
-  );
+    | 'VERY_SPECIAL';
+}) {
+    switch (rarity.toUpperCase()) {
+        case 'COMMON':
+            return (
+                <HoverCardCommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardCommon>
+            );
+
+        case 'UNCOMMON':
+            return (
+                <HoverCardUncommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardUncommon>
+            );
+
+        case 'RARE':
+            return (
+                <HoverCardRare width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardRare>
+            );
+
+        case 'EPIC':
+            return (
+                <HoverCardEpic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardEpic>
+            );
+
+        case 'LEGENDARY':
+            return (
+                <HoverCardLegendary width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardLegendary>
+            );
+
+        case 'MYTHIC':
+            return (
+                <HoverCardMythic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardMythic>
+            );
+
+        case 'DIVINE':
+            return (
+                <HoverCardDivine width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardDivine>
+            );
+
+        case 'SPECIAL':
+            return (
+                <HoverCardSpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardSpecial>
+            );
+
+        case 'VERY_SPECIAL':
+            return (
+                <HoverCardVerySpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        <Paper
+                            w={{ base: 50, lg: 100, sm: 75 }}
+                            h={{ base: 50, lg: 100, sm: 75 }}
+                            shadow="xs"
+                            radius="md"
+                            withBorder
+                        >
+                            <Image src={imageurl} alt={name} />
+                        </Paper>
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCardVerySpecial>
+            );
+
+        default:
+            console.log(`Item Rarity ${rarity} not found`);
+            return (
+                <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+                    <HoverCard.Target>
+                        {/* <Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder> */}
+                        <Image src={imageurl} alt={name} />
+                        {/* </Paper> */}
+                    </HoverCard.Target>
+                    <HoverCard.Dropdown>
+                        <Group>{description}</Group>
+                    </HoverCard.Dropdown>
+                </HoverCard>
+            );
+    }
 }
