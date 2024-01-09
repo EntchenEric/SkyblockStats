@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button, Group, MantineColorScheme, useMantineColorScheme } from '@mantine/core';
+import { Button, MantineColorScheme, useMantineColorScheme } from '@mantine/core';
 import { getCookie, setCookie } from 'cookies-next';
 
 const colorSchemes = [
@@ -24,29 +24,22 @@ export function ColorSchemeToggle() {
   const [theme, setTheme] = useState(colorSchemes[1]);
 
   useEffect(() => {
-    console.log('Page Rendered !!');
-    const cookiesAllowed = getCookie('cookiesAllowed');
-    if (cookiesAllowed === undefined) {
-      const storedTheme = getCookie('theme');
-      if (storedTheme != undefined) {
-        const colorScheme = getColorSchemeByType(storedTheme.toString());
-        if (colorScheme != undefined) {
-          setTheme(colorScheme);
-        }
-        setColorScheme(theme.colorScheme as MantineColorScheme);
+    const storedTheme = getCookie('theme');
+    if (storedTheme !== undefined) {
+      const colorScheme = getColorSchemeByType(storedTheme.toString());
+      if (colorScheme !== undefined) {
+        setTheme(colorScheme);
+        setColorScheme(colorScheme.colorScheme as MantineColorScheme);
       }
     }
   }, []);
 
   const toggleTheme = (th: string) => {
-    console.log('Current Theme ' + theme.colorScheme);
-    console.log('Theme Changed to ' + th);
     const nextTheme = getNextColorSchemeFromType(th);
     setColorScheme(nextTheme.colorScheme as MantineColorScheme);
     setTheme(nextTheme);
     setCookie('theme', nextTheme.colorScheme, {
-      maxAge: 60 * 60 * 24 * 365.25, //Stored 1 year
-      path: '/',
+      maxAge: 60 * 60 * 24 * 365.25, // Stored for 1 year
     });
   };
 
