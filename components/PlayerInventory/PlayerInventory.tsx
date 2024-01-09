@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { decodeSkyblockData } from "../../api/decodeSkyblockData";
 import { Group, HoverCard, SimpleGrid, Text } from "@mantine/core";
+import styled from '@emotion/styled';
+
+const InventorySlot = styled(Group)`
+    width: 7rem;
+    height: 7rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+`;
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
     const [inventoryData, setInventoryData] = useState(
@@ -20,7 +29,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         parsedInv = parsedInv.slice(9);
 
         parsedInv = parsedInv.concat(firstNineSlots);
-        console.log(parsedInv)
         setInventory(parsedInv)
     }
 
@@ -41,9 +49,9 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         return (
                             <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                                 <HoverCard.Target>
-                                    <Group>
+                                    <InventorySlot>
                                         {itemName}
-                                    </Group>
+                                    </InventorySlot>
                                 </HoverCard.Target>
                                 <HoverCard.Dropdown>
                                     <Group>
