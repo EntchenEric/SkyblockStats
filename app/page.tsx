@@ -3,10 +3,8 @@ import { PlayerCardGrid } from '@/components/PlayerCardGrid/PlayerCardGrid';
 import { Welcome } from '../components/Welcome/Welcome';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { Container } from '@mantine/core';
-import { getUUIDFromName } from '../api/getUUIDFromName';
 
 export default function HomePage() {
-
   const players = [
     {
       name: 'elwood24',
