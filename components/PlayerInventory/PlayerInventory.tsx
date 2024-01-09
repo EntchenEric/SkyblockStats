@@ -43,7 +43,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         if (item.id != undefined) {
                             itemName = item.tag.value.display.value.Name.value
                             itemLore = item.tag.value.display.value.Lore.value.value
-                            console.log(itemLore)
                         }
                         if (itemName === "") return (<div></div>)
                         return (
