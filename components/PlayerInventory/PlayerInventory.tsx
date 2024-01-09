@@ -4,10 +4,6 @@ import { Group, HoverCard, SimpleGrid, Text, Paper  } from "@mantine/core";
 import { SkyblockItem } from "@/types/skyblockItem";
 import styled from '@emotion/styled';
 
-const StyledPaper = styled(Paper)`
-    width: 7rem;
-    height: 7rem;
-`
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
     const [inventoryData, setInventoryData] = useState(
