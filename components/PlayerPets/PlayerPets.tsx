@@ -659,7 +659,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       // If rarity is the same, sort by exp
       return b.exp - a.exp;
     });
-    console.log(parsedPets)
     setPets(parsedPets);
   };
 
