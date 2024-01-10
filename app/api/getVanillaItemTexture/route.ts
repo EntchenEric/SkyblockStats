@@ -22,6 +22,7 @@ export const POST = async (request: Request) => {
         material: itemMaterial.toLowerCase(),
       }
     })
+    console.log("I found this in vanilla:", item, "for material:", itemMaterial.toLowerCase())
     if(item){
       foundItemTextures.push(item)
     } else {
@@ -36,7 +37,7 @@ export const POST = async (request: Request) => {
       else {
         await prisma.missingItems.create({
           data: {
-            material: itemMaterial,
+            material: itemMaterial.toLowerCase(),
             pack: "Furfsky",
           }
         })
