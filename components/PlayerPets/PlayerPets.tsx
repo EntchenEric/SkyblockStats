@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { PetDataInterface } from '@/types/skyblockItem';
 import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
+import { xpData } from '@/components/PlayerPets/RequiredPetExp';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -39,9 +40,17 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     return formatted;
   }
 
-  function calcPetLevel(exp: number, rarity: string, lvl200: boolean) {
+  function calcPetLevel(exp: number, rarity: string, mythic: boolean = false, lvl200: boolean = false) {
     let level = 1;
-    let maxlevel = lvl200 ? 200 : 100;
+    let maxLevel = lvl200 ? 200 : 100;
+    let tempRarity = mythic ? 'Legendary' : rarity;
+
+    // Assuming xpData is an object with levels as keys and rarity experience as values
+    while (xpData[level] && exp >= xpData[level][tempRarity] && level < maxLevel) {
+      level++;
+    }
+
+    return level; // Return the current level
   }
 
 
@@ -75,6 +84,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         exp: pet.exp,
         tier: formatPetData(pet.tier),
         tier_upgraded: false,
+        lvl_200: false,
         uuid: pet.uuid,
       };
       const itemID = pet.type;
@@ -377,6 +387,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'GOLDEN_DRAGON':
           parsedPet['name'] = 'Golden Dragon';
+          parsedPet['lvl_200'] = true;
 
           break;
 
@@ -664,7 +675,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           {pets.map((pet) => (
             <ItemCard
               name={pet.name}
-              description={pet.tier}
+              description={calcPetLevel(pet.exp, pet.tier, pet.tier_upgraded, pet.lvl_200)}
               imageurl=""
               rarity={pet.tier}
               rarityUpgraded={pet.tier_upgraded}
