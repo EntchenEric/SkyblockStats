@@ -42,6 +42,5 @@ model HypixelPlusTextures {
 
 model missingItems {
   material String @id @unique
-  url      String @db.LongText
   pack     String
 }

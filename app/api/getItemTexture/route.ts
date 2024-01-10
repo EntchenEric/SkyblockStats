@@ -10,7 +10,7 @@ export const POST = async (request: Request) => {
     return NextResponse.json({ error: 'Missing id' });
   }
 
-  if(materials.length === 0){
+  if (materials.length === 0) {
     materials.push(material)
   }
 
@@ -23,7 +23,7 @@ export const POST = async (request: Request) => {
         material: itemMaterial.toLowerCase(),
       }
     })
-    if(item){
+    if (item) {
       foundItemTextures.push(item)
     } else {
       const item2 = await prisma.vanillaTextures.findUnique({
@@ -31,23 +31,29 @@ export const POST = async (request: Request) => {
           material: itemMaterial.toLowerCase(),
         }
       })
-      if(item2){
+      if (item2) {
         foundItemTextures.push(item2)
       }
       else {
-        await prisma.missingItems.create({
-          data: {
-            material: itemMaterial.toLowerCase(),
-            pack: "Furfsky",
+        const missingItem = await prisma.missingItems.findUnique({
+          where: {
+            material: itemMaterial.toLowerCase()
           }
         })
+        if (!missingItem) {
+          await prisma.missingItems.create({
+            data: {
+              material: itemMaterial.toLowerCase(),
+              pack: "Furfsky",
+            }
+          })
+        }
       }
     }
   }
-  if(materials.length === 1){
+  if (materials.length === 1) {
     return NextResponse.json(foundItemTextures[0]);
   } else {
     return NextResponse.json(foundItemTextures);
   }
-
 }

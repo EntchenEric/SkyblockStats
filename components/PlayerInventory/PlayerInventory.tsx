@@ -88,7 +88,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
             }
         } else{
-            const response = await fetch("api/getVanillaItemTexture", {
+            const response = await fetch("api/getItemTexture", {
                 method: "POST",
                 body: JSON.stringify({ material: item.itemID }),
             });
