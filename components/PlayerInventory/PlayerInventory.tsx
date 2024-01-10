@@ -57,20 +57,21 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
         const itemData = await skyblockItems.json();
 
-        const newInventory:any = [];
+        const newInventory: any = [];
 
         for (let i = 0; i < parsedInv.length; i++) {
             const element = parsedInv[i];
-            if(!element.tag) newInventory.push({})
+            if (!element.tag) newInventory.push({})
             else {
                 const itemID = element.tag.value.ExtraAttributes.value.id.value;
                 const correspondingItem = itemData.find((item: { itemID: any; }) => item.itemID === itemID);
                 if (correspondingItem) {
                     correspondingItem["lore"] = element.tag.value.display.value.Lore.value.value;
-                    if(!correspondingItem["lore"][correspondingItem["lore"].length - 1].includes(correspondingItem.tier)){
+                    if (!correspondingItem["lore"][correspondingItem["lore"].length - 1].includes(correspondingItem.tier)) {
                         const rarityIndex = raritys.indexOf(correspondingItem.tier);
                         correspondingItem.tier = raritys[rarityIndex + 1];
                     }
+                    correspondingItem["texture"] = await getItemTexture(correspondingItem.itemID)
                     newInventory.push(correspondingItem);
                 }
             }
@@ -80,6 +81,23 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         setInventory(newInventory)
     }
 
+    const getItemTexture = async (item: any) => {
+        if (item.skin){
+            if (item.skin != "idk"){
+                return getSkullFromSkin(getUUIDFromBase64String(item.skin))
+            } else {
+                return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
+            }
+        } else{
+            const response = await fetch("api/getVanillaItemTexture", {
+                method: "POST",
+                body: JSON.stringify({ material: item }),
+            });
+            const data = await response.json();
+            console.log("data: ", data)
+            return data.url;
+        }
+    }
 
     return (
         <>
@@ -94,12 +112,12 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         }
                         if (itemName === "") return (<Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder></Paper>)
                         return (
-                            <ItemCard 
-                            name={itemName}
-                            description={itemLore}
-                            imageurl={item.skin && item.skin != "idk"? getSkullFromSkin(getUUIDFromBase64String(item.skin)): ""}
-                            rarity={item.tier}
-                            rarityUpgraded={false}
+                            <ItemCard
+                                name={itemName}
+                                description={itemLore}
+                                imageurl={item.texture}
+                                rarity={item.tier}
+                                rarityUpgraded={false}
                             />
                         )
                     })

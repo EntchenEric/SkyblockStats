@@ -22,6 +22,30 @@ model skyblockItem {
 
 model VanillaTextures {
   id       String @id @default(cuid()) @map("_id")
-  material String
+  material String @unique
   url      String
+}
+
+model FurfSkyRebornTextures {
+  id       String @id @default(cuid()) @map("_id")
+  material String @unique
+  url      String
+}
+
+model PacksHQTextures {
+  id       String @id @default(cuid()) @map("_id")
+  material String @unique
+  url      String
+}
+
+model HypixelPlusTextures {
+  id       String @id @default(cuid()) @map("_id")
+  material String @unique
+  url      String
+}
+
+model missingItems{
+  id       String @id @default(cuid()) @map("_id")
+  material String @unique
+  pack      String
 }
