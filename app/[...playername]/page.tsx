@@ -44,7 +44,7 @@ export default function player({ params }: any) {
         </SimpleGrid>
       </Container>
 
-      <Container size={'lg'}>
+      <Container size={'lg'} bg={'grey'}>
         {uuid && selectedProfile ? (
           <PlayerInventory profileData={selectedProfile} uuid={uuid} />
         ) : (
@@ -52,7 +52,7 @@ export default function player({ params }: any) {
         )}
       </Container>
 
-      <Container size={'lg'} mt={20}>
+      <Container size={'lg'} mt={20} bg={'grey'}>
         {uuid && selectedProfile ? (
           <PlayerPets profileData={selectedProfile} uuid={uuid} />
         ) : (

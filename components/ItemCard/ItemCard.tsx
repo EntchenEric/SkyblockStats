@@ -18,7 +18,7 @@ const HoverCardLegendary = styled(HoverCard)`
   background-color: #ffaa00;
 `;
 const HoverCardMythic = styled(HoverCard)`
-  background-color: #aa00aa;
+  background-color: #ff55ff;
 `;
 const HoverCardDivine = styled(HoverCard)`
   background-color: #00aaaa;
@@ -35,6 +35,7 @@ export function ItemCard({
     imageurl,
     description,
     rarity,
+    rarityUpgraded,
 }: {
     name: string;
     imageurl: string;
@@ -49,7 +50,20 @@ export function ItemCard({
     | 'DIVINE'
     | 'SPECIAL'
     | 'VERY_SPECIAL';
+    rarityUpgraded: boolean;
 }) {
+    const rarityValues = {
+        'Common': '#aaaaaa',
+        'Uncommon': '#00aa00',
+        'Rare': '#5555ff',
+        'Epic': '#aa00aa',
+        'Legendary': '#ffaa00',
+        'Mythic': '#ff55ff',
+        'Divine': '#00aaaa',
+        'Special': '#ff5555',
+        'Very Special': '#aa0000',
+    };
+
     switch (rarity.toUpperCase()) {
         case 'COMMON':
             return (
@@ -81,6 +95,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -101,6 +116,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Uncommon'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -121,6 +137,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Rare'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -141,6 +158,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Epic'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -161,6 +179,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Legendary'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -181,6 +200,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Mythic'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -201,6 +221,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Divine'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>
@@ -221,6 +242,7 @@ export function ItemCard({
                             shadow="xs"
                             radius="md"
                             withBorder
+                            style={{ borderColor: rarityUpgraded ? rarityValues['Special'] : 'grey' }}
                         >
                             <Image src={imageurl} alt={name} />
                         </Paper>

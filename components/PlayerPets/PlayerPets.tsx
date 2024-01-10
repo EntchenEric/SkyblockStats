@@ -13,20 +13,41 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     if (pets.length === 0) petContent();
   }, []);
 
-  function formatPetData(string: string) {
+  const rarityValues: any = {
+    'Common': 1,
+    'Uncommon': 2,
+    'Rare': 3,
+    'Epic': 4,
+    'Legendary': 5,
+    'Mythic': 6
+  };
+
+  function formatPetData(string: string, tierboost: boolean = false) {
     if (!string) return '';
-    let formatted = string.replaceAll('_', ' ');
-    formatted = formatted
-      .toLowerCase()
-      .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
-      .join(' ');
+    let formatted: string =
+      string.
+        replaceAll('_', ' ')
+        .toLowerCase()
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+        .join(' ');
+    if (tierboost) {
+      const newValue = rarityValues[formatted] + 1;
+      formatted = Object.keys(rarityValues).find(key => rarityValues[key] === newValue) as string;
+      console.log(formatted);
+    }
     return formatted;
   }
 
+  function calcPetLevel(exp: number, rarity: string, lvl200: boolean) {
+    let level = 1;
+    let maxlevel = lvl200 ? 200 : 100;
+  }
+
+
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
-    // const xpToLevelCom = {"1":0, "2":100, "3":210, "4":}
+    let rarityUpgraded = false;
     for (const key in petData) {
       const pet = petData[key];
       const parsedPet: any = {
@@ -34,6 +55,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         candyUsed: pet.candyUsed,
         exp: pet.exp,
         tier: formatPetData(pet.tier),
+        tier_upgraded: false,
         uuid: pet.uuid,
       };
 
@@ -43,6 +65,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       //     body: JSON.stringify({ id: pet.type }),
       //   });
       // console.log(skyblockItem);
+      rarityUpgraded = false;
       switch (pet.type) {
         default:
           parsedPet['name'] = 'Pet not found!';
@@ -395,117 +418,96 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'PET_ITEM_TIER_BOOST':
           parsedPet['heldItem'] = 'Tier Boost';
-
+          parsedPet['tier_upgraded'] = true;
+          rarityUpgraded = true;
           break;
 
         case 'DWARF_TURTLE_SHELMET':
           parsedPet['heldItem'] = 'Dwarf Turtle Shelmet';
-
           break;
 
         case 'MINOS_RELIC':
           parsedPet['heldItem'] = 'Minos Relic';
-
           break;
 
         case 'CROCHET_TIGER_PLUSHIE':
           parsedPet['heldItem'] = 'Crochet Tiger Plushie';
-
           break;
 
         case 'ANTIQUE_REMEDIES':
           parsedPet['heldItem'] = 'Antique Remedies';
-
           break;
 
         case 'WASHED_UP_SOUVENIR':
           parsedPet['heldItem'] = 'Washed-up Souvenir';
-
           break;
 
         case 'YELLOW_BANDANA':
           parsedPet['heldItem'] = 'Yellow Bandana';
-
           break;
 
         case 'GREEN_BANDANA':
           parsedPet['heldItem'] = 'Green Bandana';
-
           break;
 
         case 'PET_ITEM_QUICK_CLAW':
           parsedPet['heldItem'] = 'Quick Claw';
-
           break;
 
         case 'BEJEWELED COLLAR':
           parsedPet['heldItem'] = 'Bejeweled Collar';
-
           break;
 
         case 'PET_ITEM_TEXTBOOK':
           parsedPet['heldItem'] = 'Textbook';
-
           break;
 
         case 'PET_ITEM_SPOOKY_CUPCAKE':
           parsedPet['heldItem'] = 'Spooky Cupcake';
-
           break;
 
         case 'REAPER_GEM':
           parsedPet['heldItem'] = 'Reaper Gem';
-
           break;
 
         case 'PET_ITEM_LUCKY_CLOVER':
           parsedPet['heldItem'] = 'Lucky Clover';
-
           break;
 
         case 'SERRATED_CLAWS':
           parsedPet['heldItem'] = 'Serrated Claws';
-
           break;
 
         case 'SHARPENED_CLAWS':
           parsedPet['heldItem'] = 'Sharpened Claws';
-
           break;
 
         case 'REINFORCED_SCALES':
           parsedPet['heldItem'] = 'Reinforced Scales';
-
           break;
 
         case 'HARDENED_SCALES':
           parsedPet['heldItem'] = 'Hardened Scales';
-
           break;
 
         case 'GOLD_CLAWS':
           parsedPet['heldItem'] = 'Gold Claws';
-
           break;
 
         case 'IRON_CLAWS':
           parsedPet['heldItem'] = 'Iron Claws';
-
           break;
 
         case 'BIGGER_TEETH':
           parsedPet['heldItem'] = 'Bigger Teeth';
-
           break;
 
         case 'BIG_TEETH':
           parsedPet['heldItem'] = 'Big Teeth';
-
           break;
 
         case 'BUBBLEGUM':
           parsedPet['heldItem'] = 'Bubblegum';
-
           break;
 
         case 'PET_ITEM_EXP_SHARE':
@@ -604,6 +606,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           parsedPet['heldItem'] = '50% Foraging Skill Boost';
           break;
       }
+      parsedPet['tier'] = formatPetData(pet.tier, rarityUpgraded);
       parsedPets.push(parsedPet);
     }
 
@@ -625,13 +628,11 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       if (rarityValues[a.tier.toUpperCase()] < rarityValues[b.tier.toUpperCase()]) {
         return 1;
       }
-
       // If rarity is the same, sort by exp
       return b.exp - a.exp;
     });
 
     setPets(parsedPets);
-    //console.log(parsedPets[0].exp);
   };
 
   return (
@@ -643,9 +644,10 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           {pets.map((pet) => (
             <ItemCard
               name={pet.name}
-              description={'SOME EPIC DESCRIPTION'}
+              description={pet.tier}
               imageurl=""
               rarity={pet.tier}
+              rarityUpgraded={pet.tier_upgraded}
               key={pet.uuid}
             />
           ))}
@@ -654,3 +656,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     </>
   );
 }
+function petContent() {
+  throw new Error('Function not implemented.');
+}
+
