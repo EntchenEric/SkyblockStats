@@ -76,7 +76,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 }
             }
         }
-        console.log(newInventory)
 
         setInventory(newInventory)
     }
@@ -94,7 +93,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 body: JSON.stringify({ material: item.itemID }),
             });
             const data = await response.json();
-            console.log("data: ", data)
             return data.url;
         }
     }

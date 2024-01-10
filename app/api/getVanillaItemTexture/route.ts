@@ -22,7 +22,6 @@ export const POST = async (request: Request) => {
         material: itemMaterial.toLowerCase(),
       }
     })
-    console.log("I found this in vanilla:", item, "for material:", itemMaterial.toLowerCase())
     if(item){
       foundItemTextures.push(item)
     } else {
@@ -44,7 +43,6 @@ export const POST = async (request: Request) => {
       }
     }
   }
-  console.log(foundItemTextures)
   if(materials.length === 1){
     return NextResponse.json(foundItemTextures[0]);
   } else {
