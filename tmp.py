@@ -9,7 +9,7 @@ import apng
 # Connect to MongoDB
 client = pymongo.MongoClient("mongodb+srv://SkyStats:X664N&r!YB@skyblockstats.dlrcuwn.mongodb.net?retryWrites=true&w=majority")
 db = client["SkyblockStats"]
-collection = db["HypixelPlusTextures"]
+collection = db["FurfSkyRebornTextures"]
 
 def create_apng(frames, output_path, frametime):
     try:
