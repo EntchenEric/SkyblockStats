@@ -3,6 +3,9 @@ import { decodeSkyblockData } from "../../api/decodeSkyblockData";
 import { Group, HoverCard, SimpleGrid, Text, Paper } from "@mantine/core";
 import { SkyblockItem } from "@/types/skyblockItem";
 import styled from '@emotion/styled';
+import { ItemCard } from "../ItemCard/ItemCard";
+import { getSkullFromSkin } from "@/helper/getSkullFromSkin";
+import { getUUIDFromBase64String } from "@/helper/getUUIDFromBase64String";
 
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
@@ -15,6 +18,18 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         inventoryContents()
     }, []);
 
+    const raritys = [
+        "COMMON",
+        "UNCOMMON",
+        "RARE",
+        "EPIC",
+        "LEGENDARY",
+        "MYTHIC",
+        "DIVINE",
+        "SPECIAL",
+        "VERY SPECIAL"
+    ]
+
     const inventoryContents = async () => {
         const inv = await inventoryData;
         let parsedInv = inv.parsed.value.i.value.value
@@ -26,19 +41,43 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
         const inventoryItems: Array<SkyblockItem> = [];
 
-        for (let i = 0; i < parsedInv.length; i++) {
-            const item = parsedInv[i];
+        const itemIDs = parsedInv.map((item: any) => {
             if (item.tag) {
                 const itemID = item.tag.value.ExtraAttributes.value.id.value;
+                inventoryItems.push(itemID);
+                return itemID;
+            }
+        });
 
-                // const skyblockItem = await fetch("api/getSkyblockItemData",
-                //     {method: "POST",
-                // body: JSON.stringify({id: itemID}),});
-                // console.log(skyblockItem)
+        const skyblockItems = await fetch("api/bulkGetSkyblockItemData",
+            {
+                method: "POST",
+                body: JSON.stringify({ ids: itemIDs }),
+            });
+
+        const itemData = await skyblockItems.json();
+
+        const newInventory:any = [];
+
+        for (let i = 0; i < parsedInv.length; i++) {
+            const element = parsedInv[i];
+            if(!element.tag) newInventory.push({})
+            else {
+                const itemID = element.tag.value.ExtraAttributes.value.id.value;
+                const correspondingItem = itemData.find((item: { itemID: any; }) => item.itemID === itemID);
+                if (correspondingItem) {
+                    correspondingItem["lore"] = element.tag.value.display.value.Lore.value.value;
+                    if(!correspondingItem["lore"][correspondingItem["lore"].length - 1].includes(correspondingItem.tier)){
+                        const rarityIndex = raritys.indexOf(correspondingItem.tier);
+                        correspondingItem.tier = raritys[rarityIndex + 1];
+                    }
+                    newInventory.push(correspondingItem);
+                }
             }
         }
+        console.log(newInventory)
 
-        setInventory(parsedInv)
+        setInventory(newInventory)
     }
 
 
@@ -49,32 +88,19 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                     inventory.map((item: any) => {
                         let itemName = ""
                         let itemLore = []
-                        if (item.id != undefined) {
-                            itemName = item.tag.value.display.value.Name.value
-                            itemLore = item.tag.value.display.value.Lore.value.value
+                        if (item && item.itemID != undefined) {
+                            itemName = item.name
+                            itemLore = item.lore
                         }
-                        if (itemName === "") return (<div></div>)
+                        if (itemName === "") return (<Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder></Paper>)
                         return (
-                            <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400} key={item.tag.value.ExtraAttributes.value.uuid}>
-                                <HoverCard.Target>
-                                    <Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder>
-                                        {itemName}
-                                    </Paper>
-                                </HoverCard.Target>
-                                <HoverCard.Dropdown>
-                                    <Group>
-                                        {
-                                            itemLore.map((lore: string) => {
-                                                return (
-                                                    <Text>
-                                                        {lore}
-                                                    </Text>
-                                                )
-                                            })
-                                        }
-                                    </Group>
-                                </HoverCard.Dropdown>
-                            </HoverCard>
+                            <ItemCard 
+                            name={itemName}
+                            description={itemLore}
+                            imageurl={item.skin && item.skin != "idk"? getSkullFromSkin(getUUIDFromBase64String(item.skin)): ""}
+                            rarity={item.tier}
+                            rarityUpgraded={false}
+                            />
                         )
                     })
                 }

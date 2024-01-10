@@ -3,15 +3,16 @@ import { NextResponse } from "next/server";
 
 
 export const POST = async (request: Request) => {
-  const body: { id: string } = await request.json();
-  const id = body.id
-  if (!id) {
-    return NextResponse.json({ error: 'Missing id' });
-  }
+  const body: { ids: Array<string> } = await request.json();
+  const ids = body.ids
 
-  console.log("Now fetching item:", id)
+  const foundItems = []
 
-  try {
+  for (let i = 0; i < ids.length; i++) {
+    const id = ids[i];
+    if (!id) {
+      continue
+    }
 
     const item = await prisma.skyblockItem.findUnique({
       where: {
@@ -20,14 +21,17 @@ export const POST = async (request: Request) => {
     });
 
     if (item) {
-      return NextResponse.json(item);
+      foundItems.push(item);
     } else {
       const allItems = await fetch(`https://api.hypixel.net/v2/resources/skyblock/items`);
       const data = await allItems.json();
       const items = data.items;
+      console.log(id)
       const item = items.find((item: any) => item.id === id);
 
-      return NextResponse.json(await prisma.skyblockItem.create({
+
+
+      foundItems.push(await prisma.skyblockItem.create({
         data: {
           itemID: item.id,
           name: item.name,
@@ -39,9 +43,8 @@ export const POST = async (request: Request) => {
         },
       }));
     }
-
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Failed to fetch posts' });
   }
+
+  return Response.json(foundItems)
+
 }

@@ -1,6 +1,11 @@
-import { Group, HoverCard, Paper, Text } from '@mantine/core';
-import Image from 'next/image';
+import { Group, HoverCard, Paper, Text, Image } from '@mantine/core';
 import styled from '@emotion/styled';
+
+const StyledPaper = styled(Paper)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
 const HoverCardCommon = styled(HoverCard)`
   background-color: #aaaaaa;
@@ -69,15 +74,16 @@ export function ItemCard({
             return (
                 <HoverCardCommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
                             radius="md"
                             withBorder
+                            display="flex"
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -89,7 +95,7 @@ export function ItemCard({
             return (
                 <HoverCardUncommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -97,8 +103,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -110,7 +116,7 @@ export function ItemCard({
             return (
                 <HoverCardRare width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -118,8 +124,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Uncommon'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -131,7 +137,7 @@ export function ItemCard({
             return (
                 <HoverCardEpic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -139,8 +145,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Rare'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -152,7 +158,7 @@ export function ItemCard({
             return (
                 <HoverCardLegendary width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -160,8 +166,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Epic'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -173,7 +179,7 @@ export function ItemCard({
             return (
                 <HoverCardMythic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -181,8 +187,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Legendary'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -194,7 +200,7 @@ export function ItemCard({
             return (
                 <HoverCardDivine width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -202,8 +208,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Mythic'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -215,7 +221,7 @@ export function ItemCard({
             return (
                 <HoverCardSpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -223,8 +229,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Divine'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -236,7 +242,7 @@ export function ItemCard({
             return (
                 <HoverCardVerySpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        <Paper
+                        <StyledPaper
                             w={{ base: 50, lg: 100, sm: 75 }}
                             h={{ base: 50, lg: 100, sm: 75 }}
                             shadow="xs"
@@ -244,8 +250,8 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Special'] : 'grey' }}
                         >
-                            <Image src={imageurl} alt={name} />
-                        </Paper>
+                            <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>
@@ -258,9 +264,9 @@ export function ItemCard({
             return (
                 <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
-                        {/* <Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder> */}
-                        <Image src={imageurl} alt={name} />
-                        {/* </Paper> */}
+                        {/* <StyledPaper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder> */}
+                        <Image radius="md" h={95} w="auto" fit="contain" src={imageurl} alt={name} />
+                        {/* </StyledPaper> */}
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
                         <Group>{description}</Group>

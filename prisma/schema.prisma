@@ -11,10 +11,8 @@ datasource db {
 }
 
 model skyblockItem {
-  id             String  @id @default(cuid()) @map("_id")
-  itemID         String  @unique
+  itemID         String  @id @map("_id")
   name           String
-  category       String
   material       String
   tier           String?
   skin           String?

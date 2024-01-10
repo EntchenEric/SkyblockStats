@@ -48,8 +48,27 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
     let rarityUpgraded = false;
+    const itemIds = [];
+
+    for (let i = 0; i < petData.length; i++) {
+      const pet = petData[i];
+      itemIds.push(pet.type)
+    }
+
+    console.log(itemIds)
+
+    const response =await fetch('api/bulkGetSkyblockItemData', {
+      method: 'POST',
+      body: JSON.stringify({ ids: itemIds }),
+    }); 
+
+    console.log(response)
+
+    const SkyblockItemPets = await response.json()
+
     for (const key in petData) {
       const pet = petData[key];
+      console.log(pet)
       const parsedPet: any = {
         active: pet.active,
         candyUsed: pet.candyUsed,
@@ -58,13 +77,14 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         tier_upgraded: false,
         uuid: pet.uuid,
       };
+      const itemID = pet.type;
+      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID === itemID);
+      if (correspondingItem) {
+        console.log(correspondingItem)
+        parsedPet['skin'] = correspondingItem['texture_path'];
+      }
 
-      // const skyblockItem = await fetch("api/getSkyblockItemData",
-      //   {
-      //     method: "POST",
-      //     body: JSON.stringify({ id: pet.type }),
-      //   });
-      // console.log(skyblockItem);
+
       rarityUpgraded = false;
       switch (pet.type) {
         default:
@@ -631,7 +651,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       // If rarity is the same, sort by exp
       return b.exp - a.exp;
     });
-
+    console.log(parsedPets)
     setPets(parsedPets);
   };
 
