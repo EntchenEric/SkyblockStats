@@ -22,7 +22,7 @@ model skyblockItem {
 
 model vanillaTextures {
   id       String @id @default(cuid()) @map("_id")
-  material String
+  material String @unique
   url      String
 }
 
