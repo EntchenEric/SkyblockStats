@@ -1,4 +1,4 @@
-import { Container, SimpleGrid } from '@mantine/core';
+import { Container, Flex, SimpleGrid } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { PetDataInterface } from '@/types/skyblockItem';
 import { Paper, Group, Text } from '@mantine/core';
@@ -40,10 +40,10 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     return formatted;
   }
 
-  function calcPetLevel(exp: number, rarity: string, mythic: boolean = false, lvl200: boolean = false) {
+  function calcPetLevel(exp: number, rarity: string, lvl200: boolean = false) {
     let level = 1;
     let maxLevel = lvl200 ? 200 : 100;
-    let tempRarity = mythic ? 'Legendary' : rarity;
+    let tempRarity = rarity === 'Mythic' ? 'Legendary' : rarity;
 
     // Assuming xpData is an object with levels as keys and rarity experience as values
     while (xpData[level] && exp >= xpData[level][tempRarity] && level < maxLevel) {
@@ -675,7 +675,16 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           {pets.map((pet) => (
             <ItemCard
               name={pet.name}
-              description={calcPetLevel(pet.exp, pet.tier, pet.tier_upgraded, pet.lvl_200)}
+              description={
+                <Group display={Flex} align='center' justify='space-between'>
+
+                  <Text>Level: {calcPetLevel(pet.exp, pet.tier, pet.lvl_200)}</Text>
+
+                  <Text>Exp: {Math.floor(pet.exp).toLocaleString('en-US')}</Text>
+
+                  <Text>Held Item: {pet.heldItem}</Text>
+
+                </Group>}
               imageurl=""
               rarity={pet.tier}
               rarityUpgraded={pet.tier_upgraded}
