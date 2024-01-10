@@ -6,46 +6,42 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model skyblockItem {
-  itemID         String  @id @map("_id")
+  itemID         String  @id @unique
   name           String
   material       String
   tier           String?
-  skin           String?
+  skin           String? @db.LongText
   npc_sell_price Int?
   wiki_link      String?
 }
 
 model vanillaTextures {
-  id       String @id @default(cuid()) @map("_id")
-  material String @unique
-  url      String
+  material String @id @unique
+  url      String @db.LongText
 }
 
 model FurfSkyRebornTextures {
-  id       String @id @default(cuid()) @map("_id")
-  material String @unique
-  url      String
+  material String @id @unique
+  url      String @db.LongText
 }
 
 model PacksHQTextures {
-  id       String @id @default(cuid()) @map("_id")
-  material String @unique
-  url      String
+  material String @id @unique
+  url      String @db.LongText
 }
 
 model HypixelPlusTextures {
-  id       String @id @default(cuid()) @map("_id")
-  material String @unique
-  url      String
+  material String @id @unique
+  url      String @db.LongText
 }
 
-model missingItems{
-  id       String @id @default(cuid()) @map("_id")
-  material String @unique
-  pack      String
+model missingItems {
+  material String @id @unique
+  url      String @db.LongText
+  pack     String
 }

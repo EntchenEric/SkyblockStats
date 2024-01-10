@@ -17,7 +17,7 @@ export const POST = async (request: Request) => {
 
   for (let i = 0; i < materials.length; i++) {
     const itemMaterial = materials[i];
-    const item = await prisma.vanillaTextures.findUnique({
+    const item = await prisma.furfSkyRebornTextures.findUnique({
       where: {
         material: itemMaterial.toLowerCase(),
       }
@@ -25,7 +25,7 @@ export const POST = async (request: Request) => {
     if(item){
       foundItemTextures.push(item)
     } else {
-      const item2 = await prisma.furfSkyRebornTextures.findUnique({
+      const item2 = await prisma.vanillaTextures.findUnique({
         where: {
           material: itemMaterial.toLowerCase(),
         }

@@ -54,7 +54,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 method: "POST",
                 body: JSON.stringify({ ids: itemIDs }),
             });
-
+        console.log(skyblockItems)
         const itemData = await skyblockItems.json();
 
         const newInventory: any = [];
