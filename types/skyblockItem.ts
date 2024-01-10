@@ -53,5 +53,6 @@ export interface PetDataInterface {
   skin: string | null;
   tier: 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
   tier_upgraded: boolean;
+  lvl_200: boolean;
   uuid: string;
 }
