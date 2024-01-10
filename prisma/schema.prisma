@@ -20,7 +20,7 @@ model skyblockItem {
   wiki_link      String?
 }
 
-model VanillaTextures {
+model vanillaTextures {
   id       String @id @default(cuid()) @map("_id")
   material String @unique
   url      String

@@ -36,14 +36,13 @@ export const POST = async (request: Request) => {
       else {
         await prisma.missingItems.create({
           data: {
-            material: itemMaterial,
+            material: itemMaterial.toLowerCase(),
             pack: "Furfsky",
           }
         })
       }
     }
   }
-  console.log(foundItemTextures)
   if(materials.length === 1){
     return NextResponse.json(foundItemTextures[0]);
   } else {

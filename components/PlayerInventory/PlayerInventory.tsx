@@ -71,12 +71,11 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         const rarityIndex = raritys.indexOf(correspondingItem.tier);
                         correspondingItem.tier = raritys[rarityIndex + 1];
                     }
-                    correspondingItem["texture"] = await getItemTexture(correspondingItem.itemID)
+                    if(correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem)
                     newInventory.push(correspondingItem);
                 }
             }
         }
-        console.log(newInventory)
 
         setInventory(newInventory)
     }
@@ -91,10 +90,9 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         } else{
             const response = await fetch("api/getVanillaItemTexture", {
                 method: "POST",
-                body: JSON.stringify({ material: item }),
+                body: JSON.stringify({ material: item.itemID }),
             });
             const data = await response.json();
-            console.log("data: ", data)
             return data.url;
         }
     }
