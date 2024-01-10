@@ -64,8 +64,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       itemIds.push(pet.type)
     }
 
-    console.log(itemIds)
-
     // const response =await fetch('api/bulkGetSkyblockItemData', {
     //   method: 'POST',
     //   body: JSON.stringify({ ids: itemIds }),
@@ -77,7 +75,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
     for (const key in petData) {
       const pet = petData[key];
-      console.log(pet)
       const parsedPet: any = {
         active: pet.active,
         candyUsed: pet.candyUsed,
