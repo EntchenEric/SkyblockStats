@@ -54,7 +54,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 method: "POST",
                 body: JSON.stringify({ ids: itemIDs }),
             });
-        console.log(skyblockItems)
         const itemData = await skyblockItems.json();
 
         const newInventory: any = [];
@@ -71,7 +70,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         const rarityIndex = raritys.indexOf(correspondingItem.tier);
                         correspondingItem.tier = raritys[rarityIndex + 1];
                     }
-                    if(correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem)
+                    if (correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem)
                     newInventory.push(correspondingItem);
                 }
             }
@@ -81,13 +80,13 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
     }
 
     const getItemTexture = async (item: any) => {
-        if (item.skin){
-            if (item.skin != "idk"){
+        if (item.skin) {
+            if (item.skin != "idk") {
                 return getSkullFromSkin(getUUIDFromBase64String(item.skin))
             } else {
                 return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
             }
-        } else{
+        } else {
             const response = await fetch("api/getItemTexture", {
                 method: "POST",
                 body: JSON.stringify({ material: item.itemID }),
