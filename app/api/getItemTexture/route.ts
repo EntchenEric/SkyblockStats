@@ -17,7 +17,7 @@ export const POST = async (request: Request) => {
   try {
     for (let i = 0; i < materials.length; i++) {
       const itemMaterial = materials[i];
-      console.log(itemMaterial);
+      //console.log(itemMaterial);
       // make every material lowercase except the first letter and the letter after an underscore
       const materiaonCased = itemMaterial.toLowerCase().replace(/(^|_)(\w)/g, function (x) {
         return x.toUpperCase();

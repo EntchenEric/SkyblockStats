@@ -55,7 +55,7 @@ export const POST = async (request: Request) => {
             },
           });
         } catch (e){
-          console.log("the missing item ", id , "is still Missing. Please add it to the skyblockItem Table.")
+          //console.log("the missing item ", id , "is still Missing. Please add it to the skyblockItem Table.")
         }
       }
     }
