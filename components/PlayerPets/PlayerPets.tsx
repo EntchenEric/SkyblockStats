@@ -112,11 +112,12 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       };
       const itemID = pet.type;
       // console.log(itemID)
-      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID.slice(0, -4) === itemID);
-      // console.log(correspondingItem)
+      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID.substring(0, item.itemID.indexOf('PET') - 1) === itemID);
+      console.log(correspondingItem)
       if (correspondingItem) {
-        console.log(correspondingItem['skin'])
+        // console.log(correspondingItem['skin'])
         parsedPet['skin'] = await getPetTexture(correspondingItem)
+        console.log(parsedPet['skin'])
       }
 
 
