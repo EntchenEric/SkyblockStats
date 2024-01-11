@@ -5,6 +5,8 @@ import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { xpData } from '@/components/PlayerPets/RequiredPetExp';
 import { getSkyblockItemData } from '@/api/getSkyblockItemData';
+import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
+import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -36,7 +38,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     if (tierboost) {
       const newValue = rarityValues[formatted] + 1;
       formatted = Object.keys(rarityValues).find(key => rarityValues[key] === newValue) as string;
-      console.log(formatted);
+      // console.log(formatted);
     }
     return formatted;
   }
@@ -55,14 +57,36 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
   }
 
 
+  const getPetTexture = async (item: any) => {
+    if (item.skin) {
+      if (item.skin != "idk") {
+        return getSkullFromSkin(getUUIDFromBase64String(item.skin))
+      } else {
+        return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
+      }
+    } else {
+      const response = await fetch("api/getItemTexture", {
+        method: "POST",
+        body: JSON.stringify({ material: item.itemID }),
+      });
+      const data = await response.json();
+      return data.url;
+    }
+  }
+
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
     let rarityUpgraded = false;
     const itemIds = [];
-
+    const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
-      itemIds.push(pet.type + "_PET")
+      if (pet.tier === 'MYTHIC' && mythicPets.includes(pet.type)) {
+        // console.log(pet.type + "_PET_1")
+        itemIds.push(pet.type + "_PET_1");
+        continue;
+      }
+      itemIds.push(pet.type + "_PET");
     }
 
     const response = await fetch('api/bulkGetSkyblockItemData', {
@@ -73,7 +97,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     console.log(response)
 
     const SkyblockItemPets = await response.json()
-    console.log(SkyblockItemPets)
+    // console.log(SkyblockItemPets)
 
     for (const key in petData) {
       const pet = petData[key];
@@ -87,10 +111,12 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         uuid: pet.uuid,
       };
       const itemID = pet.type;
-      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID === itemID);
+      // console.log(itemID)
+      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID.slice(0, -4) === itemID);
+      // console.log(correspondingItem)
       if (correspondingItem) {
-        console.log(correspondingItem)
-        parsedPet['skin'] = correspondingItem['texture_path'];
+        console.log(correspondingItem['skin'])
+        parsedPet['skin'] = await getPetTexture(correspondingItem)
       }
 
 
@@ -102,7 +128,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'GHOUL':
           parsedPet['name'] = `Ghoul`;
-          // parsedPet['skin'];
           break;
 
         case 'WITHER_SKELETON':
@@ -685,7 +710,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                   <div><Text>Held Item: {pet.heldItem}</Text></div>
 
                 </Group>}
-              imageurl=""
+              imageurl={pet.skin ?? ''}
               rarity={pet.tier}
               rarityUpgraded={pet.tier_upgraded}
               key={pet.uuid}

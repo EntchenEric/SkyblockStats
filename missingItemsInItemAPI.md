@@ -2,3 +2,6 @@
 
 - All Pets
 - Golden Dragon Egg (Head)
+- Snowman Pet Mythic
+- Flying Fish Legy
+- Rat Legy
