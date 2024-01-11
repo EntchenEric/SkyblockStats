@@ -25,19 +25,10 @@ model vanillaTextures {
   url      String @db.LongText
 }
 
-model FurfSkyRebornTextures {
+model CustomSkyblockTextures {
   material String @id @unique
   url      String @db.LongText
-}
-
-model PacksHQTextures {
-  material String @id @unique
-  url      String @db.LongText
-}
-
-model HypixelPlusTextures {
-  material String @id @unique
-  url      String @db.LongText
+  pack     String @default("SkyfurfReborn")
 }
 
 model missingItems {
