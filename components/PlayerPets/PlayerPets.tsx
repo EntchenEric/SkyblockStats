@@ -4,6 +4,7 @@ import { PetDataInterface } from '@/types/skyblockItem';
 import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { xpData } from '@/components/PlayerPets/RequiredPetExp';
+import { getSkyblockItemData } from '@/api/getSkyblockItemData';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -73,6 +74,8 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
     // const SkyblockItemPets = await response.json()
     // console.log(SkyblockItemPets)
+
+    console.log(getSkyblockItemData("AATROX_BATPHONE"))
 
     for (const key in petData) {
       const pet = petData[key];
