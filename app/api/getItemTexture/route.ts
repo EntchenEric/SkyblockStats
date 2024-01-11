@@ -35,6 +35,17 @@ export const POST = async (request: Request) => {
         foundItemTextures.push(item2)
       }
       else {
+        // make every material lowercase except the first letter and the letter after an underscore
+        const materiaonCased = itemMaterial.toLowerCase().replace(/(^|_)(\w)/g, function (x) {
+          return x.toUpperCase();
+        });
+        const item3 = await prisma.vanillaTextures.create({
+          data: {
+            material: itemMaterial.toLowerCase(),
+            url: "https://minecraft.wiki/images/Invicon_" + materiaonCased + ".png"
+          }
+        })
+        foundItemTextures.push(item3)
         const missingItem = await prisma.missingItems.findUnique({
           where: {
             material: itemMaterial.toLowerCase()
@@ -44,7 +55,7 @@ export const POST = async (request: Request) => {
           await prisma.missingItems.create({
             data: {
               material: itemMaterial.toLowerCase(),
-              pack: "Furfsky",
+              pack: "Vanilla",
             }
           })
         }
