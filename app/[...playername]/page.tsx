@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Container, SimpleGrid } from '@mantine/core';
+import { Button, Container, SimpleGrid, Text, Group } from '@mantine/core';
 import { useState, useEffect, SetStateAction } from 'react';
 import { getSkyblockProfileData } from '../../api/getSkyblockProfileData';
 import { getUUIDFromName } from '../../api/getUUIDFromName';
@@ -44,6 +44,8 @@ export default function player({ params }: any) {
           <Button p={0}>Misc</Button>
         </SimpleGrid>
       </Container>
+
+      <Container display="flex"><Text c="grape" p={0} m={0}>h</Text><Text c="cyan" p={0} m={0}>ello </Text><Text c="orange" p={0} m={0}>Wor</Text><Text c="red" p={0} m={0}>rld!</Text></Container>
 
       <Container size={'lg'} bg={'grey'}>
         {uuid && selectedProfile ? (

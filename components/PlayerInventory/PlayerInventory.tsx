@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { decodeSkyblockData } from "../../api/decodeSkyblockData";
-import { Group, HoverCard, SimpleGrid, Text, Paper } from "@mantine/core";
+import { Group, HoverCard, SimpleGrid, Text, Paper, Divider, Container } from "@mantine/core";
 import { SkyblockItem } from "@/types/skyblockItem";
 import styled from '@emotion/styled';
 import { ItemCard } from "../ItemCard/ItemCard";
@@ -103,16 +103,30 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 {
                     inventory.map((item: any) => {
                         let itemName = ""
-                        let itemLore = ""
+                        let itemLore: any
                         if (item && item.itemID != undefined) {
+
+                            console.log(item.lore)
                             itemName = item.name
-                            itemLore += item.lore
+                             itemLore = <Group>
+                                {
+                                    item.lore.map((lore: string) => {
+                                        return <Container display="flex">
+                                            {
+                                                lore != ""?<Text>{minecraftColoredStringToText(lore)}</Text>
+                                                : <Divider />
+
+                                            }
+                                        </Container>
+                                    })
+                                }
+                             </Group>
                         }
                         if (itemName === "") return (<Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder></Paper>)
                         return (
                             <ItemCard
                                 name={itemName}
-                                description={minecraftColoredStringToText(itemLore)}
+                                description={itemLore}
                                 imageurl={item.texture}
                                 rarity={item.tier}
                                 rarityUpgraded={false}
