@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { ItemCard } from "../ItemCard/ItemCard";
 import { getSkullFromSkin } from "@/helper/getSkullFromSkin";
 import { getUUIDFromBase64String } from "@/helper/getUUIDFromBase64String";
+import { minecraftColoredStringToText } from "./minecraftColoredStringToText";
 
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
@@ -103,16 +104,16 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 {
                     inventory.map((item: any) => {
                         let itemName = ""
-                        let itemLore = []
+                        let itemLore = ""
                         if (item && item.itemID != undefined) {
                             itemName = item.name
-                            itemLore = item.lore
+                            itemLore += item.lore
                         }
                         if (itemName === "") return (<Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder></Paper>)
                         return (
                             <ItemCard
                                 name={itemName}
-                                description={itemLore}
+                                description={minecraftColoredStringToText(itemLore)}
                                 imageurl={item.texture}
                                 rarity={item.tier}
                                 rarityUpgraded={false}
