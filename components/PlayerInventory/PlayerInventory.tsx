@@ -84,7 +84,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 }
             }
         }
-
+        console.log(newInventory)
         setInventory(newInventory)
     }
 

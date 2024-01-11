@@ -12,6 +12,7 @@ CORS(app)  # Enable CORS for all routes
 def colorizeItem():
     codedTexture = request.json.get("texture")
     color = request.json.get("color")
+    
     if not codedTexture:
         return jsonify({"success": False, "message": "Missing Texture", "data": None, "error": "MISSING_TEXTURE",
                         "extra": "Please specify a texture"})
@@ -21,7 +22,7 @@ def colorizeItem():
     if not color.startswith("#"):
         return jsonify({"success": False, "message": "Bad Color", "data": None, "error": "BAD_COLOR",
                         "extra": "Make sure you are sending a hex color string starting with a #."})
-
+    print(color)
     if len(codedTexture) > 10000:
         return jsonify({"success": False, "message": "Texture too large", "data": None, "error": "TEXTURE_TOO_LARGE",
                         "extra": "Your base64 Texture String may only be up to 10.000 Characters long."})
