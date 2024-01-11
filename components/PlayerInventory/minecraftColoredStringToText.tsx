@@ -6,7 +6,7 @@ import { Text } from "@mantine/core";
 //Output: <Text bold color="purple">Hello<Text bold color="orange">World!</Text></Text>
 //Input: §l§2Hello §r§eWorld!
 //Output: <Text bold color="green">Hello <Text color="yellow">World!</Text></Text>
-export function minecraftColoredStringToText(text: string){
+export function minecraftColoredStringToText(text: string) {
     const colorCodes = {
         "§0": "black",
         "§1": "darkBlue",

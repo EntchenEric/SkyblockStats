@@ -7,6 +7,7 @@ import { ItemCard } from "../ItemCard/ItemCard";
 import { getSkullFromSkin } from "@/helper/getSkullFromSkin";
 import { getUUIDFromBase64String } from "@/helper/getUUIDFromBase64String";
 import { minecraftColoredStringToText } from "./minecraftColoredStringToText";
+import { getItemTexture } from "@/helper/getItemTexture";
 
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
@@ -55,7 +56,9 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 method: "POST",
                 body: JSON.stringify({ ids: itemIDs }),
             });
+        console.log(skyblockItems)
         const itemData = await skyblockItems.json();
+
 
         const newInventory: any = [];
 
@@ -71,7 +74,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         const rarityIndex = raritys.indexOf(correspondingItem.tier);
                         correspondingItem.tier = raritys[rarityIndex + 1];
                     }
-                    if (correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem)
+                    if (correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem.itemID, correspondingItem.skin)
                     newInventory.push(correspondingItem);
                 }
             }
@@ -80,7 +83,7 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         setInventory(newInventory)
     }
 
-    const getItemTexture = async (item: any) => {
+    const getItemTexture123 = async (item: any) => {
         if (item.skin) {
             if (item.skin != "idk") {
                 return getSkullFromSkin(getUUIDFromBase64String(item.skin))
