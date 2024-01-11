@@ -38,7 +38,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     if (tierboost) {
       const newValue = rarityValues[formatted] + 1;
       formatted = Object.keys(rarityValues).find(key => rarityValues[key] === newValue) as string;
-      // console.log(formatted);
     }
     return formatted;
   }
@@ -82,7 +81,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
       if (pet.tier === 'MYTHIC' && mythicPets.includes(pet.type)) {
-        // console.log(pet.type + "_PET_1")
         itemIds.push(pet.type + "_PET_1");
         continue;
       }
@@ -94,10 +92,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       body: JSON.stringify({ ids: itemIds }),
     });
 
-    console.log(response)
-
     const SkyblockItemPets = await response.json()
-    // console.log(SkyblockItemPets)
 
     for (const key in petData) {
       const pet = petData[key];
@@ -111,13 +106,9 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         uuid: pet.uuid,
       };
       const itemID = pet.type;
-      // console.log(itemID)
       const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID.substring(0, item.itemID.indexOf('PET') - 1) === itemID);
-      console.log(correspondingItem)
       if (correspondingItem) {
-        // console.log(correspondingItem['skin'])
         parsedPet['skin'] = await getPetTexture(correspondingItem)
-        console.log(parsedPet['skin'])
       }
 
 
