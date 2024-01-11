@@ -1,5 +1,4 @@
 export function getUUIDFromBase64String(base64String: string) {
-  console.log(base64String);
   const decodedString = atob(base64String);
   const json = JSON.parse(decodedString);
   const stringUrl = json.textures.SKIN.url;
