@@ -50,7 +50,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       level++;
     }
 
-    return level; // Return the current level
+    return level;
   }
 
 
@@ -675,11 +675,13 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
               description={
                 <Group display={Flex} align='center' justify='space-between'>
 
-                  <Text>Level: {calcPetLevel(pet.exp, pet.tier, pet.lvl_200)}</Text>
+                  <div><Text>Name: {pet.name}</Text></div>
+                  <br />
+                  <div><Text>Level: {calcPetLevel(pet.exp, pet.tier, pet.lvl_200)}</Text></div>
 
-                  <Text>Exp: {Math.floor(pet.exp).toLocaleString('en-US')}</Text>
-
-                  <Text>Held Item: {pet.heldItem}</Text>
+                  <div><Text>Exp: {Math.floor(pet.exp).toLocaleString('en-US')}</Text></div>
+                  <br />
+                  <div><Text>Held Item: {pet.heldItem}</Text></div>
 
                 </Group>}
               imageurl=""
