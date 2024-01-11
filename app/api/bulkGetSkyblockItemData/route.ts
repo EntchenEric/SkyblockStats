@@ -26,22 +26,38 @@ export const POST = async (request: Request) => {
       const allItems = await fetch(`https://api.hypixel.net/v2/resources/skyblock/items`);
       const data = await allItems.json();
       const items = data.items;
-      console.log(id)
-      const item = items.find((item: any) => item.id === id);
+      let item = undefined
+      for (let i = 0; i < items.length; i++) {
+        const it = items[i];
+        if (it.id === id) {
+          item = it
+        }
+      }
+      if (item) {
 
-
-
-      foundItems.push(await prisma.skyblockItem.create({
-        data: {
-          itemID: item.id,
-          name: item.name,
-          material: item.material,
-          tier: item.tier,
-          skin: item.skin ? item.skin : null,
-          npc_sell_price: item.npc_sell_price,
-          wiki_link: `https://wiki.hypixel.net/${item.id}`,
-        },
-      }));
+        foundItems.push(await prisma.skyblockItem.create({
+          data: {
+            itemID: item.id,
+            name: item.name,
+            material: item.material,
+            tier: item.tier,
+            skin: item.skin ? item.skin : null,
+            npc_sell_price: item.npc_sell_price,
+            wiki_link: `https://wiki.hypixel.net/${item.id}`,
+          },
+        }));
+      } else {
+        try{
+          await prisma.missingItems.create({
+            data: {
+              material: id,
+              pack: "SkyblockItemAPI"
+            },
+          });
+        } catch (e){
+          console.log("the missing item ", id , "is still Missing. Please add it to the skyblockItem Table.")
+        }
+      }
     }
   }
 

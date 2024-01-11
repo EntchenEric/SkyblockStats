@@ -62,20 +62,18 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
-      itemIds.push(pet.type)
+      itemIds.push(pet.type + "_PET")
     }
 
-    // const response = await fetch('api/bulkGetSkyblockItemData', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ ids: itemIds }),
-    // });
+    const response = await fetch('api/bulkGetSkyblockItemData', {
+      method: 'POST',
+      body: JSON.stringify({ ids: itemIds }),
+    });
 
-    // console.log(response)
+    console.log(response)
 
-    // const SkyblockItemPets = await response.json()
-    // console.log(SkyblockItemPets)
-
-    console.log(getSkyblockItemData("AATROX_BATPHONE"))
+    const SkyblockItemPets = await response.json()
+    console.log(SkyblockItemPets)
 
     for (const key in petData) {
       const pet = petData[key];
@@ -89,11 +87,11 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         uuid: pet.uuid,
       };
       const itemID = pet.type;
-      // const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID === itemID);
-      // if (correspondingItem) {
-      //   console.log(correspondingItem)
-      //   parsedPet['skin'] = correspondingItem['texture_path'];
-      // }
+      const correspondingItem = SkyblockItemPets.find((item: { itemID: any; }) => item.itemID === itemID);
+      if (correspondingItem) {
+        console.log(correspondingItem)
+        parsedPet['skin'] = correspondingItem['texture_path'];
+      }
 
 
       rarityUpgraded = false;
