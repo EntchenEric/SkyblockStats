@@ -23,8 +23,6 @@ export function getItemTexture(id: string, skin: string, color: string) {
       });
   } else {
     // Save the item ids that need to be implemented here
-
-    const seymourArmor = ['velvet_top_hat', 'cashmere_jacket', 'satin_trousers', 'oxford_shoes'];
     const itemIDs: { [key: string]: string[] } = {
       velvet_top_hat: ['velvet_top_hat', 'velvet_top_hat_2'],
       cashmere_jacket: ['cashmere_jacket', 'cashmere_jacket_2'],
