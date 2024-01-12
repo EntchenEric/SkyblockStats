@@ -35,7 +35,7 @@ export function getItemTexture(id: string, skin: string, color: string) {
       // console.log(itemIDs[idlower][0]);
       return fetch('api/getItemTexture', {
         method: 'POST',
-        body: JSON.stringify({ materials: itemIDs[idlower][0] }),
+        body: JSON.stringify({ material: itemIDs[idlower][0] }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -45,7 +45,7 @@ export function getItemTexture(id: string, skin: string, color: string) {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              texture: data[0].url,
+              texture: data.url,
               color: color ? color : '#ff0000',
             }),
           });
