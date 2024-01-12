@@ -4,8 +4,6 @@ import { Group, HoverCard, SimpleGrid, Text, Paper, Divider, Container } from "@
 import { SkyblockItem } from "@/types/skyblockItem";
 import styled from '@emotion/styled';
 import { ItemCard } from "../ItemCard/ItemCard";
-import { getSkullFromSkin } from "@/helper/getSkullFromSkin";
-import { getUUIDFromBase64String } from "@/helper/getUUIDFromBase64String";
 import { minecraftColoredStringToText } from "../../helper/minecraftColoredStringToText";
 import { getItemTexture } from "@/helper/getItemTexture";
 import { getRGBtoHex } from "@/helper/getRGBtoHex";

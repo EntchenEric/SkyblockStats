@@ -4,7 +4,6 @@ import { PetDataInterface } from '@/types/skyblockItem';
 import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { xpData } from '@/components/PlayerPets/RequiredPetExp';
-import { getSkyblockItemData } from '@/api/getSkyblockItemData';
 import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
 
