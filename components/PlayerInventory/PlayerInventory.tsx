@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { ItemCard } from "../ItemCard/ItemCard";
 import { getSkullFromSkin } from "@/helper/getSkullFromSkin";
 import { getUUIDFromBase64String } from "@/helper/getUUIDFromBase64String";
-import { minecraftColoredStringToText } from "./minecraftColoredStringToText";
+import { minecraftColoredStringToText } from "../../helper/minecraftColoredStringToText";
 import { getItemTexture } from "@/helper/getItemTexture";
 import { getRGBtoHex } from "@/helper/getRGBtoHex";
 
@@ -103,23 +103,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         setInventory(newInventory)
     }
 
-    // const getItemTexture123 = async (item: any) => {
-    //     if (item.skin) {
-    //         if (item.skin != "idk") {
-    //             return getSkullFromSkin(getUUIDFromBase64String(item.skin))
-    //         } else {
-    //             return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
-    //         }
-    //     } else {
-    //         const response = await fetch("api/getItemTexture", {
-    //             method: "POST",
-    //             body: JSON.stringify({ material: item.itemID }),
-    //         });
-    //         const data = await response.json();
-    //         return data.url;
-    //     }
-    // }
-
     return (
         <>
             <SimpleGrid cols={9}>
@@ -130,19 +113,19 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         if (item && item.itemID != undefined) {
 
                             itemName = item.name
-                            itemLore = <Group>
+                            itemLore = <div>
                                 {
                                     item.lore.map((lore: string) => {
-                                        return <Container display="flex">
+                                        return <Container>
                                             {
-                                                lore != "" ? <Text>{minecraftColoredStringToText(lore)}</Text>
+                                                lore != "" ? <Container p={0} m={0}>{minecraftColoredStringToText(lore)}</Container>
                                                     : <Divider />
 
                                             }
                                         </Container>
                                     })
                                 }
-                            </Group>
+                            </div>
                         }
                         if (itemName === "") return (<Paper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder></Paper>)
                         return (

@@ -6,7 +6,7 @@ import { getSkyblockProfileData } from '../../api/getSkyblockProfileData';
 import { getUUIDFromName } from '../../api/getUUIDFromName';
 import { PlayerInventory } from '../../components/PlayerInventory/PlayerInventory';
 import { PlayerPets } from '../../components/PlayerPets/PlayerPets';
-import { minecraftColoredStringToText } from '@/components/PlayerInventory/minecraftColoredStringToText';
+import { minecraftColoredStringToText } from '@/helper/minecraftColoredStringToText';
 
 export default function player({ params }: any) {
   const [uuid, setUUID] = useState();

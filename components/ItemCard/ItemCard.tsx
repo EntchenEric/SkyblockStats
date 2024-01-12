@@ -93,7 +93,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardCommon>
             );
@@ -114,7 +114,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardUncommon>
             );
@@ -135,7 +135,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardRare>
             );
@@ -156,7 +156,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardEpic>
             );
@@ -177,7 +177,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardLegendary>
             );
@@ -198,7 +198,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardMythic>
             );
@@ -219,7 +219,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardDivine>
             );
@@ -240,7 +240,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardSpecial>
             );
@@ -261,7 +261,7 @@ export function ItemCard({
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCardVerySpecial>
             );
@@ -276,7 +276,7 @@ export function ItemCard({
                         {/* </StyledPaper> */}
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
-                        <Container>{description}</Container>
+                        <Container p={0}>{description}</Container>
                     </HoverCard.Dropdown>
                 </HoverCard>
             );
