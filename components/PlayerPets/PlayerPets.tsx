@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { PetDataInterface } from '@/types/skyblockItem';
 import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
-import { xpData } from '@/components/PlayerPets/RequiredPetExp';
 import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
+import { xpData } from '@/helper/RequiredPetExp';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -47,7 +47,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     let tempRarity = rarity === 'Mythic' ? 'Legendary' : rarity;
 
     // Assuming xpData is an object with levels as keys and rarity experience as values
-    while (xpData[level] && exp >= xpData[level][tempRarity] && level < maxLevel) {
+    while (xpData[level] && exp > xpData[level + 1][tempRarity] && level < maxLevel) {
       level++;
     }
 
@@ -92,6 +92,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     });
 
     const SkyblockItemPets = await response.json()
+
 
     for (const key in petData) {
       const pet = petData[key];
