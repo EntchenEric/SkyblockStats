@@ -57,8 +57,14 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 method: "POST",
                 body: JSON.stringify({ ids: itemIDs }),
             });
-
-        const itemData = await skyblockItems.json();
+        let itemData;
+        try {
+            itemData = await skyblockItems.json();
+        } catch (error) {
+            console.error('Error parsing JSON response:', error);
+            return;
+        }
+        // const itemData = await skyblockItems.json();
 
 
         const newInventory: any = [];
