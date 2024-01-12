@@ -114,12 +114,14 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
                             itemName = item.name
                             itemLore = <div>
+                                <Text fw={700} size="xl">{item.name}</Text>
+                                <Divider my={15} />
                                 {
                                     item.lore.map((lore: string) => {
-                                        return <Container>
+                                        return <Container p={0}>
                                             {
                                                 lore != "" ? <Container p={0} m={0}>{minecraftColoredStringToText(lore)}</Container>
-                                                    : <Divider />
+                                                    : <Divider my={10}/>
 
                                             }
                                         </Container>
