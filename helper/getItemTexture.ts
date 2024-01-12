@@ -22,16 +22,24 @@ export function getItemTexture(id: string, skin: string, color: string) {
         }
       });
   } else {
-    if (id.toLowerCase() === 'velvet_top_hat') {
-      console.log('I FOUND A VELVET TOP HAT with color: ', color);
-      const itemIDs = ['velvet_top_hat', 'velvet_top_hat_2'];
+    // Save the item ids that need to be implemented here
+    const itemIDs: { [key: string]: string[] } = {
+      velvet_top_hat: ['velvet_top_hat', 'velvet_top_hat_2'],
+      cashmere_jacket: ['cashmere_jacket', 'cashmere_jacket_2'],
+      satin_trousers: ['satin_trousers', 'satin_trousers_2'],
+      oxford_shoes: ['oxford_shoes', 'oxford_shoes_2'],
+    };
+    let idlower = id.toLowerCase();
+    if (itemIDs.hasOwnProperty(idlower)) {
+      console.log(`I FOUND A ${idlower} with color: ${color}`);
+      // console.log(itemIDs[idlower][0]);
       return fetch('api/getItemTexture', {
         method: 'POST',
-        body: JSON.stringify({ materials: itemIDs }),
+        body: JSON.stringify({ materials: itemIDs[idlower][0] }),
       })
         .then((response) => response.json())
         .then((data) => {
-          const coloredTopHat = fetch('http://localhost:5005/colorizeItem', {
+          const coloredSeymourArmorPiece = fetch('http://localhost:5005/colorizeItem', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -41,28 +49,28 @@ export function getItemTexture(id: string, skin: string, color: string) {
               color: color ? color : '#ff0000',
             }),
           });
-          return coloredTopHat;
+          return coloredSeymourArmorPiece;
         })
-        .then((coloredTopHat) => coloredTopHat.json())
-        .then(async (coloredTopHatData) => {
+        .then((coloredSeymourArmorPiece) => coloredSeymourArmorPiece.json())
+        .then(async (coloredSeymourArmorPiece) => {
           const layer2 = await fetch('/api/getItemTexture', {
             method: 'POST',
-            body: JSON.stringify({ material: 'velvet_top_hat_2' }),
+            body: JSON.stringify({ material: itemIDs[idlower][1] }),
           });
           const data = await layer2.json();
-          const topHatImages = [coloredTopHatData.data, data.url];
+          const armorImages = [coloredSeymourArmorPiece.data, data.url];
           return fetch('http://localhost:5005/combineImages', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              Images: topHatImages,
+              Images: armorImages,
             }),
           });
         })
-        .then((combinedTopHat) => combinedTopHat.json())
-        .then((combinedTopHatData) => 'data:image/png;base64,' + combinedTopHatData.data);
+        .then((combinedSeymourArmor) => combinedSeymourArmor.json())
+        .then((combinedSeymourArmor) => 'data:image/png;base64,' + combinedSeymourArmor.data);
     }
 
     return fetch('api/getItemTexture', {
