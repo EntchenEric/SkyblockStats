@@ -85,22 +85,22 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         setInventory(newInventory)
     }
 
-    const getItemTexture123 = async (item: any) => {
-        if (item.skin) {
-            if (item.skin != "idk") {
-                return getSkullFromSkin(getUUIDFromBase64String(item.skin))
-            } else {
-                return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
-            }
-        } else {
-            const response = await fetch("api/getItemTexture", {
-                method: "POST",
-                body: JSON.stringify({ material: item.itemID }),
-            });
-            const data = await response.json();
-            return data.url;
-        }
-    }
+    // const getItemTexture123 = async (item: any) => {
+    //     if (item.skin) {
+    //         if (item.skin != "idk") {
+    //             return getSkullFromSkin(getUUIDFromBase64String(item.skin))
+    //         } else {
+    //             return "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4a/Barrier_JE2_BE2.png/revision/latest/scale-to-width-down/150?cb=20200329164158"
+    //         }
+    //     } else {
+    //         const response = await fetch("api/getItemTexture", {
+    //             method: "POST",
+    //             body: JSON.stringify({ material: item.itemID }),
+    //         });
+    //         const data = await response.json();
+    //         return data.url;
+    //     }
+    // }
 
     return (
         <>
