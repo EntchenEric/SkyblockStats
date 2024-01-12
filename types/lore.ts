@@ -1,0 +1,20 @@
+export interface petStats {
+  bonusAttackSpeed: number | undefined;
+  magicFind: number | undefined;
+  speed: number | undefined;
+  intelligence: number | undefined;
+  defense: number | undefined;
+  trueDefense: number | undefined;
+  health: number | undefined;
+  strength: number | undefined;
+  critChance: number | undefined;
+  critDamage: number | undefined;
+  seaCreatureChance: number | undefined;
+  miningSpeed: number | undefined;
+  miningFortune: number | undefined;
+  farmingFortune: number | undefined;
+  foragingFortune: number | undefined;
+  abilityDamage: number | undefined;
+  petLuck: number | undefined;
+  ferocity: number | undefined;
+}

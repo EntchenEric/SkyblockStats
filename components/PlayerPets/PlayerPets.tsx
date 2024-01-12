@@ -6,6 +6,7 @@ import { ItemCard } from '../ItemCard/ItemCard';
 import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
 import { xpData } from '@/helper/RequiredPetExp';
+import { petStats } from '@/types/lore';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -74,11 +75,13 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
+    const petStats: Array<petStats> = [];
     let rarityUpgraded = false;
     const itemIds = [];
     const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
+      console.log(pet)
       if (pet.tier === 'MYTHIC' && mythicPets.includes(pet.type)) {
         itemIds.push(pet.type + "_PET_1");
         continue;
@@ -96,6 +99,8 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
     for (const key in petData) {
       const pet = petData[key];
+      const petStatMax: any = {};
+      const petStatMin: any = {};
       const parsedPet: any = {
         active: pet.active,
         candyUsed: pet.candyUsed,
@@ -120,161 +125,270 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'GHOUL':
           parsedPet['name'] = `Ghoul`;
+          petStatMax.ferocity = 5;
+          petStatMin.ferocity = 0;
+          petStatMax.intelligence = 75;
+          petStatMin.intelligence = 0;
+          petStatMax.health = 100;
+          petStatMin.health = 1;
           break;
 
         case 'WITHER_SKELETON':
           parsedPet['name'] = `Wither Skeleton`;
-
+          petStatMax.critDamage = 0.25;
+          petStatMin.critDamage = 0;
+          petStatMax.critChance = 0.05;
+          petStatMin.critChance = 0;
+          petStatMax.defense = 25;
+          petStatMin.defense = 0;
+          petStatMax.strength = 25;
+          petStatMin.strength = 0;
+          petStatMax.intelligence = 25;
+          petStatMin.intelligence = 0;
           break;
 
         case 'TIGER':
           parsedPet['name'] = 'Tiger';
-
+          petStatMax.critDamage = 0.5;
+          petStatMin.critDamage = 0;
+          petStatMax.critChance = 0.05;
+          petStatMin.critChance = 0;
+          petStatMax.ferocity = 25;
+          petStatMin.ferocity = 0;
+          petStatMax.strength = 15;
+          petStatMin.strength = 5;
           break;
 
         case 'WOLF':
           parsedPet['name'] = 'Wolf';
-
+          petStatMax.critDamage = 0.1;
+          petStatMin.critDamage = 0;
+          petStatMax.health = 20;
+          petStatMin.health = 0;
+          petStatMax.speed = 20;
+          petStatMin.speed = 0;
+          petStatMax.trueDefense = 10;
+          petStatMin.trueDefense = 0;
           break;
 
         case 'MEGALODON':
           parsedPet['name'] = 'Megalodon';
-
+          petStatMax.ferocity = 5;
+          petStatMin.ferocity = 0;
+          petStatMax.strength = 50;
+          petStatMin.strength = 0;
+          petStatMax.magicFind = 10;
+          petStatMin.magicFind = 0;
           break;
 
         case 'MONKEY':
           parsedPet['name'] = 'Monkey';
-
+          petStatMax.intelligence = 50;
+          petStatMin.intelligence = 0;
+          petStatMax.speed = 20;
+          petStatMin.speed = 0;
           break;
 
         case 'MOOSHROOM_COW':
           parsedPet['name'] = 'Mooshroom Cow';
-
+          petStatMax.health = 100;
+          petStatMin.health = 1;
+          petStatMax.farmingFortune = 110;
+          petStatMin.farmingFortune = 11;
           break;
 
         case 'OCELOT':
           parsedPet['name'] = 'Ocelot';
-
+          petStatMax.ferocity = 10;
+          petStatMin.ferocity = 0;
+          petStatMax.speed = 50;
+          petStatMin.speed = 0;
           break;
 
         case 'PARROT':
           parsedPet['name'] = 'Parrot';
-
+          petStatMax.intelligence = 100;
+          petStatMin.intelligence = 1;
+          petStatMax.critDamage = 0.1;
+          petStatMin.critDamage = 0;
           break;
 
         case 'PHOENIX':
           parsedPet['name'] = 'Phoenix';
-
+          petStatMax.intelligence = 150;
+          petStatMin.intelligence = 51;
+          petStatMax.strength = 60;
+          petStatMin.strength = 10;
           break;
 
         case 'PIG':
           parsedPet['name'] = 'Pig';
-
+          petStatMax.speed = 25;
+          petStatMin.speed = 0;
           break;
 
         case 'RABBIT':
           parsedPet['name'] = 'Rabbit';
-
+          petStatMax.health = 100;
+          petStatMin.health = 1;
+          petStatMax.speed = 20;
+          petStatMin.speed = 0;
           break;
 
         case 'ROCK':
           parsedPet['name'] = 'Rock';
-
+          petStatMax.defense = 200;
+          petStatMin.defense = 2;
+          petStatMax.trueDefense = 10;
+          petStatMin.trueDefense = 0;
           break;
 
         case 'KUUDRA':
           parsedPet['name'] = 'Kuudra';
-
+          petStatMax.strength = 40;
+          petStatMin.strength = 0;
+          petStatMax.health = 400;
+          petStatMin.health = 0;
           break;
 
         case 'REINDEER':
           parsedPet['name'] = 'Reindeer';
-
+          petStatMax.health = 100;
+          petStatMin.health = 1;
+          petStatMax.seaCreatureChance = 0.5;
+          petStatMin.seaCreatureChance = 0.0005;
+          petStatMax.fishingSpeed = 25;
+          petStatMin.fishingSpeed = 0.25;
           break;
 
         case 'SKELETON':
           parsedPet['name'] = 'Skeleton';
-
+          petStatMax.critChance = 0.15;
+          petStatMin.critChance = 0;
+          petStatMax.critDamage = 0.3;
+          petStatMin.critDamage = 0;
           break;
 
         case 'SILVERFISH':
           parsedPet['name'] = 'Silverfish';
-
+          petStatMax.defense = 100;
+          petStatMin.defense = 1;
+          petStatMax.heatlh = 20;
+          petStatMin.heatlh = 0;
           break;
 
         case 'SCATHA':
           parsedPet['name'] = 'Scatha';
-
+          petStatMax.defense = 100;
+          petStatMin.defense = 0;
+          petStatMax.miningSpeed = 100;
+          petStatMin.miningSpeed = 0;
           break;
 
         case 'SQUID':
           parsedPet['name'] = 'Squid';
-
+          petStatMax.intelligence = 50;
+          petStatMin.intelligence = 0;
+          petStatMax.health = 50;
+          petStatMin.health = 0;
           break;
 
         case 'SNAIL':
           parsedPet['name'] = 'Snail';
-
+          petStatMax.intelligence = 100;
+          petStatMin.intelligence = 1;
           break;
 
         case 'GRANDMA_WOLF':
           parsedPet['name'] = 'Grandma Wolf';
-
+          petStatMax.strength = 25;
+          petStatMin.strength = 0;
+          petStatMax.health = 100;
+          petStatMin.health = 1;
           break;
 
         case 'DOLPHIN':
           parsedPet['name'] = 'Dolphin';
-
+          petStatMax.seaCreatureChance = 0.05;
+          petStatMin.seaCreatureChance = 0;
+          petStatMax.intelligence = 100;
+          petStatMin.intelligence = 1;
           break;
 
         case 'ELEPHANT':
           parsedPet['name'] = 'Elephant';
-
+          petStatMax.intelligence = 75;
+          petStatMin.intelligence = 0;
+          petStatMax.health = 100;
+          petStatMin.health = 1;
           break;
 
         case 'BAL':
           parsedPet['name'] = 'Bal';
-
+          petStatMax.ferocity = 10;
+          petStatMin.ferocity = 0;
+          petStatMax.strength = 25;
+          petStatMin.strength = 0;
           break;
 
         case 'GRIFFIN':
           parsedPet['name'] = 'Griffin';
-
+          petStatMax.magicFind = 10;
+          petStatMin.magicFind = 0.1;
+          petStatMax.critDamage = 0.5;
+          petStatMin.critDamage = 0.005;
+          petStatMax.critChance = 0.1;
+          petStatMin.critChance = 0.001;
           break;
 
         case 'CHICKEN':
           parsedPet['name'] = 'Chicken';
-
+          petStatMax.health = 200;
+          petStatMin.health = 2;
           break;
 
         case 'BLAZE':
           parsedPet['name'] = 'Blaze';
-
+          petStatMax.intelligence = 100;
+          petStatMin.intelligence = 1;
+          petStatMax.defense = 30;
+          petStatMin.defense = 10;
           break;
 
         case 'BABY_YETI':
           parsedPet['name'] = 'Baby Yeti';
-
+          petStatMax.strength = 40;
+          petStatMin.strength = 0;
+          petStatMax.intelligence = 75;
+          petStatMin.intelligence = 0;
           break;
 
         case 'SKELETON_HORSE':
           parsedPet['name'] = 'Skeleton Horse';
-
+          petStatMax.intelligence = 100;
+          petStatMin.intelligence = 1;
+          petStatMax.speed = 50;
+          petStatMin.speed = 0;
           break;
 
         case 'BLUE_WHALE':
           parsedPet['name'] = 'Blue Whale';
-
+          petStatMax.health = 200;
+          petStatMin.health = 2;
           break;
 
         case 'GIRAFFE':
           parsedPet['name'] = 'Giraffe';
-
+          petStatMax.health = 100;
+          petStatMin.health = 1;
+          petStatMax.critChance = 0.05;
+          petStatMin.critChance = 0;
           break;
 
         case 'AMMONITE':
           parsedPet['name'] = 'Ammonite';
-
+          petStatMax.seaCreatureChance = 0.12;
+          petStatMin.seaCreatureChance = 0.0012;
           break;
 
         case 'LION':
