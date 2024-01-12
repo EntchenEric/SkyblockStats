@@ -65,22 +65,34 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
         for (let i = 0; i < parsedInv.length; i++) {
             const element = parsedInv[i];
-            if (!element.tag) newInventory.push({})
-            else {
+            if (!element.tag) {
+                newInventory.push({});
+            } else {
                 const itemID = element.tag.value.ExtraAttributes.value.id.value;
-                const correspondingItem = itemData.find((item: { itemID: any; }) => item.itemID === itemID);
+                const correspondingItem = itemData.find((item: any) => item.itemID === itemID);
+
                 if (correspondingItem) {
-                    correspondingItem["lore"] = element.tag.value.display.value.Lore.value.value;
-                    if (!correspondingItem["lore"][correspondingItem["lore"].length - 1].includes(correspondingItem.tier)) {
-                        const rarityIndex = raritys.indexOf(correspondingItem.tier);
-                        correspondingItem.tier = raritys[rarityIndex + 1];
+                    const newItem = { ...correspondingItem }; // Create a new object for each item
+
+                    newItem["lore"] = element.tag.value.display.value.Lore.value.value;
+
+                    if (!newItem["lore"][newItem["lore"].length - 1].includes(newItem.tier)) {
+                        const rarityIndex = raritys.indexOf(newItem.tier);
+                        newItem.tier = raritys[rarityIndex + 1];
                     }
-                    correspondingItem['color'] = element.tag.value.ExtraAttributes.value.color ? getRGBtoHex(element.tag.value.ExtraAttributes.value.color.value) : undefined;
-                    if (correspondingItem) correspondingItem["texture"] = await getItemTexture(correspondingItem.itemID, correspondingItem.skin, correspondingItem["color"])
-                    newInventory.push(correspondingItem);
+
+                    newItem['color'] = element.tag.value.ExtraAttributes.value.color
+                        ? getRGBtoHex(element.tag.value.ExtraAttributes.value.color.value)
+                        : undefined;
+
+                    if (newItem) newItem["texture"] = await getItemTexture(newItem.itemID, newItem.skin, newItem["color"]);
+
+                    newInventory.push(newItem);
                 }
             }
         }
+
+
         console.log(newInventory)
         setInventory(newInventory)
     }
