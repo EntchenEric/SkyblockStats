@@ -29,9 +29,9 @@ def colorizeItem():
 
     try:
         decodedTextureBytes = base64.b64decode(codedTexture)
-    except:
-        return jsonify({"success": False, "message": "Decoding Failed", "data": None, "error": "BAD_TEXTURE",
-                        "extra": "Make sure you are sending a base64 encoded Texture String."})
+    except Exception as e:
+        return jsonify({"success": False, "message": "Decoding Failed. Make sure you are sending a base64 encoded Texture String.", "data": None, "error": "BAD_TEXTURE",
+                        "extra": f"{e}"})
 
     if not decodedTextureBytes:
         return jsonify({"success": False, "message": "Decoding Failed", "data": None, "error": "BAD_TEXTURE",
@@ -46,8 +46,8 @@ def colorizeItem():
         color = invert_hex_color(color)
         color = tuple(int(color.lstrip('#')[i:i+2], 16) for i in (0, 2, 4))
     except Exception as e:
-        return jsonify({"success": False, "message": "Bad Color", "data": None, "error": "BAD_COLOR",
-                        "extra": "Make sure you are sending a hex color string starting with a #. containing 6 hex digits. e.g. NOT #fff"})
+        return jsonify({"success": False, "message": "Bad Color. Make sure you are sending a hex color string starting with a #. containing 6 hex digits. e.g. NOT #fff", "data": None, "error": "BAD_COLOR",
+                        "extra": f"{e}"})
         
     
 
