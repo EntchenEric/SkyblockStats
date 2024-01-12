@@ -18,8 +18,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
     const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
-        // //console.log(getHexColorfromDecimalColor(16711680))
-        // //console.log(getHexColorfromDecimalColor(16719671))
         inventoryContents()
     }, []);
 
@@ -69,7 +67,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
             const element = parsedInv[i];
             if (!element.tag) newInventory.push({})
             else {
-                // //console.log(element)
                 const itemID = element.tag.value.ExtraAttributes.value.id.value;
                 const correspondingItem = itemData.find((item: { itemID: any; }) => item.itemID === itemID);
                 if (correspondingItem) {
@@ -114,7 +111,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         let itemLore: any
                         if (item && item.itemID != undefined) {
 
-                            // //console.log(item.lore)
                             itemName = item.name
                             itemLore = <Group>
                                 {
