@@ -43,12 +43,13 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
   }
 
   function calcPetLevel(exp: number, rarity: string, lvl200: boolean = false) {
-    let level = 1;
+    let level = 0;
     let maxLevel = lvl200 ? 200 : 100;
     let tempRarity = rarity === 'Mythic' ? 'Legendary' : rarity;
 
+
     // Assuming xpData is an object with levels as keys and rarity experience as values
-    while (xpData[level] && exp > xpData[level + 1][tempRarity] && level < maxLevel) {
+    while (xpData[level + 1] && exp >= xpData[level + 1][tempRarity] && level < maxLevel) {
       level++;
     }
 
