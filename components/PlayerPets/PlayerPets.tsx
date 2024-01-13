@@ -74,9 +74,13 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     }
   }
 
+  const petStatsMax: Array<petStats> = [];
+  const petStatsMin: Array<petStats> = [];
+
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
-    const petStats: Array<petStats> = [];
+    const petStatMax: any = {};
+    const petStatMin: any = {};
     let rarityUpgraded = false;
     const itemIds = [];
     const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
@@ -100,8 +104,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
     for (const key in petData) {
       const pet = petData[key];
-      const petStatMax: any = {};
-      const petStatMin: any = {};
       const parsedPet: any = {
         active: pet.active,
         candyUsed: pet.candyUsed,
