@@ -5,8 +5,8 @@ import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
-import { xpData } from '@/helper/RequiredPetExp';
 import { petStats } from '@/types/lore';
+import { xpData } from '@/helper/requiredPetExp';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
