@@ -73,9 +73,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     }
   }
 
-  const petStatsMax: Array<petStats> = [];
-  const petStatsMin: Array<petStats> = [];
-
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
     const petStatMax: any = {};

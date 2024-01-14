@@ -21,59 +21,75 @@ export function getPetLore(
 
   const extraPetStatsMinMax: any = {
     'GOLDEN_DRAGON': {
-      LegendaryTreasure: [0.0012625, 0.0025]
-    },
-    'BLACK_CAT': {
-      Looting: [0.0015, 0.15]
-    },
-    'BAT': {
-      CandyLover: {
-        COMMON: [0.001, 0.1],
-        UNCOMMON: [0.0015, 0.15],
-        RARE: [0.0015, 0.15],
-        EPIC: [0.002, 0.2],
-        LEGENDARY: [0.01, 1],
-        MYTHIC: [0.01, 1],
+      LegendaryTreasure: {
+        'LEGENDARY': [0.0012625, 0.0025],
       },
-      Nightmare: {
-        RARE: { 'Intelligence': [0.2, 20], 'Speed': [0.4, 40] },
-        EPIC: { 'Intelligence': [0.3, 30], 'Speed': [0.5, 50] },
-        LEGENDARY: { 'Intelligence': [0.4, 40], 'Speed': [0.6, 60] },
-        MYTHIC: { 'Intelligence': [0.4, 40], 'Speed': [0.6, 60] },
-      },
-      WingsOfSteel: {
-        LEGENDARY: [0.001, 0.1],
-        MYTHIC: [0.001, 0.1],
-      },
-      Sonar: {
-        MYTHIC: [0.001, 0.1],
-      }
-    },
-    'ENDERMITE': {
-      MoreStonks: {
-        'COMMON': [0.005, 0.5],
-        'UNCOMMON': [0.008, 0.8],
-        'RARE': [0.008, 0.8],
-        'EPIC': [0.01, 1],
-        'LEGENDARY': [0.01, 1],
-        'MYTHIC': [0.01, 1],
-      },
-      DailyComuter: {
-        'RARE': [0.003, 0.3],
-        'EPIC': [0.004, 0.4],
-        'LEGENDARY': [0.004, 0.4],
-        'MYTHIC': [0.004, 0.4],
-      },
-      MiteBait: {
-        'LEGENDARY': [0, 0.03],
-        'MYTHIC': [0, 0.03],
-      },
-      Sacrificer: {
-        'MYTHIC': [0.001, 0.1],
-      }
-    },
-  }
+      'BLACK_CAT': {
+        Hunter: {
+          'LEGENDARY': [0.001, 0.1],
+          'MYTHIC': [0.001, 0.1],
+        },
+        Omen: {
+          'LEGENDARY': [0.001, 0.1],
+          'MYTHIC': [0.001, 0.1],
+        },
+        Supernatural: {
+          'LEGENDARY': [0.001, 0.1],
+          'MYTHIC': [0.001, 0.1],
+        },
+        Looting: {
+          'MYTHIC': [0.0015, 0.15],
 
+        }
+      },
+      'BAT': {
+        CandyLover: {
+          'COMMON': [0.001, 0.1],
+          'UNCOMMON': [0.0015, 0.15],
+          'RARE': [0.0015, 0.15],
+          'EPIC': [0.002, 0.2],
+          'LEGENDARY': [0.01, 1],
+          'MYTHIC': [0.01, 1],
+        },
+        Nightmare: {
+          'RARE': { 'Intelligence': [0.2, 20], 'Speed': [0.4, 40] },
+          'EPIC': { 'Intelligence': [0.3, 30], 'Speed': [0.5, 50] },
+          'LEGENDARY': { 'Intelligence': [0.4, 40], 'Speed': [0.6, 60] },
+          'MYTHIC': { 'Intelligence': [0.4, 40], 'Speed': [0.6, 60] },
+        },
+        WingsOfSteel: {
+          'LEGENDARY': [0.001, 0.1],
+          'MYTHIC': [0.001, 0.1],
+        },
+        Sonar: {
+          'MYTHIC': [0.001, 0.1],
+        }
+      },
+      'ENDERMITE': {
+        MoreStonks: {
+          'COMMON': [0.005, 0.5],
+          'UNCOMMON': [0.008, 0.8],
+          'RARE': [0.008, 0.8],
+          'EPIC': [0.01, 1],
+          'LEGENDARY': [0.01, 1],
+          'MYTHIC': [0.01, 1],
+        },
+        DailyComuter: {
+          'RARE': [0.003, 0.3],
+          'EPIC': [0.004, 0.4],
+          'LEGENDARY': [0.004, 0.4],
+          'MYTHIC': [0.004, 0.4],
+        },
+        MiteBait: {
+          'LEGENDARY': [0, 0.03],
+          'MYTHIC': [0, 0.03],
+        },
+        Sacrificer: {
+          'MYTHIC': [0.001, 0.1],
+        }
+      },
+    }
+  }
 
 
 
@@ -130,7 +146,11 @@ export function getPetLore(
 
   }
 
-  const petLores: { [key: string]: { category: any | undefined, stats: any | undefined, firstAbility: any | undefined, secondAbility: any | undefined, thirdAbility: any | undefined, fourthAbility: any | undefined } } = {
+  const petLores: {
+    [key: string]: {
+      category: any | undefined, stats: any | undefined, firstAbility: any | undefined, secondAbility: any | undefined, thirdAbility: any | undefined, fourthAbility: any | undefined
+    }
+  } = {
     'GOLDEN_DRAGON': {
       category: minecraftColoredStringToText(`§8Combat Pet, ${skin ? skin : ''}`),
       stats: (level >= 100) ?
