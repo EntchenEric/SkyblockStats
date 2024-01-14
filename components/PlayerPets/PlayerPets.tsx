@@ -49,10 +49,9 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
 
     // Assuming xpData is an object with levels as keys and rarity experience as values
-    while (xpData[level + 1] && exp >= xpData[level + 1][tempRarity] && level < maxLevel) {
+    while (level < maxLevel && xpData[level + 1] && exp >= xpData[level + 1][tempRarity]) {
       level++;
     }
-
     return level;
   }
 

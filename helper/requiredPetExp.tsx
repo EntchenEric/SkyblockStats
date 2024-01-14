@@ -996,4 +996,7 @@ export const xpData: any = {
     199: {
         Legendary: 208369285,
     },
+    200: {
+        Legendary: 210255985,
+    },
 };
