@@ -7,6 +7,7 @@ import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
 import { petStats } from '@/types/lore';
 import { xpData } from '@/helper/requiredPetExp';
+import { getPetLore } from '@/helper/getPetLore';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -17,6 +18,9 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     if (pets.length === 0) petContent();
   }, []);
 
+  const petStatMax: any = {};
+  const petStatMin: any = {};
+  let hasRelic = false;
   const rarityValues: any = {
     'Common': 1,
     'Uncommon': 2,
@@ -75,8 +79,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
   const petContent = async () => {
     const parsedPets: Array<PetDataInterface> = [];
-    const petStatMax: any = {};
-    const petStatMin: any = {};
     let rarityUpgraded = false;
     const itemIds = [];
     const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
@@ -101,6 +103,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     for (const key in petData) {
       const pet = petData[key];
       const parsedPet: any = {
+        type: pet.type,
         active: pet.active,
         candyUsed: pet.candyUsed,
         exp: pet.exp,
@@ -570,7 +573,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
           break;
       }
-
       switch (pet.heldItem) {
         default:
           parsedPet['heldItem'] = 'No Pet Item';
@@ -588,6 +590,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'MINOS_RELIC':
           parsedPet['heldItem'] = 'Minos Relic';
+          hasRelic = true;
           break;
 
         case 'CROCHET_TIGER_PLUSHIE':
@@ -810,9 +813,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                   <br />
                   <div><Text>Level: {calcPetLevel(pet.exp, pet.tier, pet.lvl_200)}</Text></div>
 
-                  <div><Text>Exp: {Math.floor(pet.exp).toLocaleString('en-US')}</Text></div>
-                  <br />
-                  <div><Text>Held Item: {pet.heldItem}</Text></div>
+                  <div>{getPetLore(pet.type, pet.tier, hasRelic, calcPetLevel(pet.exp, pet.tier, pet.lvl_200), petStatMax, petStatMin, pet.skin ?? '')}</div>
 
                 </Group>}
               imageurl={pet.skin ?? ''}

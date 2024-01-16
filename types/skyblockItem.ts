@@ -3,14 +3,14 @@ export interface SkyblockItem {
   name: string;
   category: string;
   tier:
-    | 'COMMON'
-    | 'UNCOMMON'
-    | 'RARE'
-    | 'EPIC'
-    | 'LEGENDARY'
-    | 'MYTHIC'
-    | 'SPECIAL'
-    | 'VERY_SPECIAL';
+  | 'COMMON'
+  | 'UNCOMMON'
+  | 'RARE'
+  | 'EPIC'
+  | 'LEGENDARY'
+  | 'MYTHIC'
+  | 'SPECIAL'
+  | 'VERY_SPECIAL';
   requirements: SkyblockItemRequirement | undefined;
   id: string;
   durability: number | undefined;
@@ -27,14 +27,14 @@ export type SkyblockItemRequirement =
 export interface SkyblockItemRequirementSkill {
   type: 'SKILL';
   skill:
-    | 'COMBAT'
-    | 'MINING'
-    | 'FORAGING'
-    | 'FARMING'
-    | 'FISHING'
-    | 'ENCHANTING'
-    | 'ALCHEMY'
-    | 'TAMING';
+  | 'COMBAT'
+  | 'MINING'
+  | 'FORAGING'
+  | 'FARMING'
+  | 'FISHING'
+  | 'ENCHANTING'
+  | 'ALCHEMY'
+  | 'TAMING';
   level: number;
 }
 
@@ -45,6 +45,7 @@ export interface SkyblockItemRequirementTrophyFishing {
 
 export interface PetDataInterface {
   name: string;
+  type: string;
   active: boolean;
   candyUsed: number;
   exp: number;
