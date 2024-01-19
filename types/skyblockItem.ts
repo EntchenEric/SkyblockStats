@@ -52,6 +52,7 @@ export interface PetDataInterface {
   level: number;
   heldItem: string;
   skin: string | null;
+  skin_name: string | null;
   tier: 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
   tier_upgraded: boolean;
   lvl_200: boolean;

@@ -9,6 +9,7 @@ import { petStats } from '@/types/lore';
 import { xpData } from '@/helper/requiredPetExp';
 import { getPetLore } from '@/helper/getPetLore';
 import { minecraftColoredStringToText } from '@/helper/minecraftColoredStringToText';
+import React from 'react';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
   const [petData, setPetData] = useState(
@@ -107,6 +108,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         active: pet.active,
         candyUsed: pet.candyUsed,
         exp: pet.exp,
+        skin_name: pet.skin,
         tier: formatPetData(pet.tier),
         tier_upgraded: false,
         lvl_200: false,
@@ -127,6 +129,10 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
 
         case 'GHOUL':
           parsedPet['name'] = `Ghoul`;
+          switch (pet.skin_name) {
+            default:
+              break;
+          }
           break;
 
         case 'WITHER_SKELETON':
@@ -674,18 +680,20 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                 name={pet.name}
                 description={
                   <Group display={Flex} align='center' justify='space-between'>
-                    <div><Text>Name: {pet.name}</Text></div>
-                    <Divider />
-                    <div><Text>Level: {pet.level}</Text></div>
+                    <Container><Text>Name: {pet.name}</Text></Container>
+                    <Divider size={'xs'} />
+                    <Container><Text>Level: {pet.level}</Text></Container>
                     {keys && petLore ? (
-                      keys.map((key: string) => {
-                        console.log(petLore[key])
-                        return (
-                          <>
-                            <Divider />
-                            <div><Text>{petLore[key]}</Text></div>
-                          </>
-                        )
+                      keys.map((key: string, index: number) => {
+                        console.log(pet.skin_name)
+                        if (petLore[key] != "")
+                          return (
+                            <Container w={'100%'} p={0} m={0} key={index}>
+                              <Divider my={10} size={'xs'} />
+                              <Container><Text>{petLore[key]}</Text></Container>
+                            </Container>
+                          )
+                        return (<></>)
                       })
                     ) : null}
                   </Group>}
@@ -701,6 +709,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     </>
   );
 }
-// function petContent() {
-//   throw new Error('Function not implemented.');
-// }
+function petContent() {
+  throw new Error('Function not implemented.');
+}
