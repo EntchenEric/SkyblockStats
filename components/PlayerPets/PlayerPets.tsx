@@ -82,7 +82,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
-      console.log(pet)
       if (pet.tier === 'MYTHIC' && mythicPets.includes(pet.type)) {
         itemIds.push(pet.type + "_PET_1");
         continue;

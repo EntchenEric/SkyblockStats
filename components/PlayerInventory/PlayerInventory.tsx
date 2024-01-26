@@ -7,6 +7,10 @@ import { ItemCard } from "../ItemCard/ItemCard";
 import { minecraftColoredStringToText } from "../../helper/minecraftColoredStringToText";
 import { getItemTexture } from "@/helper/getItemTexture";
 import { getRGBtoHex } from "@/helper/getRGBtoHex";
+import { getBookTypeFromEnchantedBookLore } from "@/helper/getBookTypeFromEnchantedBookLore";
+import { changeNthCharacter } from "@/helper/changeNthCharacter";
+import { getItemWorth } from "@/helper/getItemWorth";
+import { makeid } from "@/helper/makeId";
 
 
 export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
@@ -78,6 +82,8 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                 if (correspondingItem) {
                     const newItem = { ...correspondingItem }; // Create a new object for each item
 
+                    getItemWorth(element)
+
                     newItem["lore"] = element.tag.value.display.value.Lore.value.value;
 
                     if (!newItem["lore"][newItem["lore"].length - 1].includes(newItem.tier)) {
@@ -89,7 +95,18 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
                         ? getRGBtoHex(element.tag.value.ExtraAttributes.value.color.value)
                         : undefined;
 
-                    if (newItem) newItem["texture"] = await getItemTexture(newItem.itemID, newItem.skin, newItem["color"]);
+                    if (newItem) {
+                        if(itemID != "ENCHANTED_BOOK")
+                        {
+                            newItem["texture"] = await getItemTexture(newItem.itemID, newItem.skin, newItem["color"]);
+                        } else {
+                            let bookType = replaceSpacesExceptLast(newItem.lore[0].slice(2));
+                            const bookID = getBookTypeFromEnchantedBookLore(bookType)
+                            newItem["texture"] = await getItemTexture(bookID, newItem.skin, newItem["color"]);
+
+                        }
+                    }
+
 
                     newInventory.push(newItem);
                 }
@@ -97,8 +114,19 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
         }
 
 
-        console.log(newInventory)
         setInventory(newInventory)
+    }
+
+
+
+    function replaceSpacesExceptLast(inputString: string) {
+        // Split the string into an array of words
+        const words = inputString.split(' ');
+    
+        // Replace spaces with underscores for all words except the last one
+        const result = words.slice(0, -1).join('_') + ' ' + words.slice(-1);
+    
+        return result;
     }
 
     return (
@@ -112,14 +140,14 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
 
                             itemName = item.name
                             itemLore = <div>
-                                <Text fw={700} size="xl">{item.name}</Text>
+                                <Text fw={700} size="xl" key={makeid(12)}>{item.name}</Text>
                                 <Divider my={15} />
                                 {
                                     item.lore.map((lore: string) => {
-                                        return <Container p={0}>
+                                        return <Container p={0} key={makeid(12)}>
                                             {
                                                 lore != "" ? <Container p={0} m={0}>{minecraftColoredStringToText(lore)}</Container>
-                                                    : <Divider my={10}/>
+                                                    : <Divider my={10} />
 
                                             }
                                         </Container>

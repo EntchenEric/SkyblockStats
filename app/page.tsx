@@ -3,6 +3,7 @@ import { PlayerCardGrid } from '@/components/PlayerCardGrid/PlayerCardGrid';
 import { Welcome } from '../components/Welcome/Welcome';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { Container } from '@mantine/core';
+import Link from 'next/link';
 
 export default function HomePage() {
   const players = [
@@ -13,6 +14,10 @@ export default function HomePage() {
     {
       name: 'EntchenEric',
       badge: 'Developer',
+    },
+    {
+      name: 'Ivylagia',
+      badge: 'Supporter',
     },
   ];
   return (

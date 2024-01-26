@@ -89,7 +89,7 @@ export function ItemCard({
                             withBorder
                             display="flex"
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -110,7 +110,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -131,7 +131,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Uncommon'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -152,7 +152,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Rare'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -173,7 +173,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Epic'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -194,7 +194,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Legendary'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -215,7 +215,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Mythic'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -236,7 +236,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Divine'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -257,7 +257,7 @@ export function ItemCard({
                             withBorder
                             style={{ borderColor: rarityUpgraded ? rarityValues['Special'] : 'grey' }}
                         >
-                            <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         </StyledPaper>
                     </HoverCard.Target>
                     <HoverCard.Dropdown>
@@ -272,7 +272,7 @@ export function ItemCard({
                 <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
                     <HoverCard.Target>
                         {/* <StyledPaper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder> */}
-                        <PixelImage radius="md" h={95} w={95} fit="contain" src={imageurl} alt={name} />
+                        <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
                         {/* </StyledPaper> */}
                     </HoverCard.Target>
                     <HoverCard.Dropdown>

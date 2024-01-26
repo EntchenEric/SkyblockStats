@@ -25,7 +25,7 @@ export function PlayerCard({ name, badge }: { name: string, badge: string }) {
           </Group>
           {
             badge
-              ? <Group><Badge color="pink">{badge}</Badge></Group>
+              ? <Group><Badge color={badge == "Developer"? "Red": "Green"}>{badge}</Badge></Group>
               : null  // Using null is cleaner than <></>
           }
         </StyledTextContainer>
