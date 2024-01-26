@@ -85,7 +85,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
     const mythicPets = ["SNOWMAN", "FLYING_FISH", "RAT"]
     for (let i = 0; i < petData.length; i++) {
       const pet = petData[i];
-      console.log(pet)
+      // console.log(pet)
       if (pet.tier === 'MYTHIC' && mythicPets.includes(pet.type)) {
         itemIds.push(pet.type + "_PET_1");
         continue;
@@ -685,7 +685,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                     <Container><Text>Level: {pet.level}</Text></Container>
                     {keys && petLore ? (
                       keys.map((key: string, index: number) => {
-                        console.log(pet.skin_name)
+                        // console.log(pet.skin_name)
                         if (petLore[key] != "")
                           return (
                             <Container w={'100%'} p={0} m={0} key={index}>

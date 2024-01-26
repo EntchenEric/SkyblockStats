@@ -31,7 +31,7 @@ export function getItemTexture(id: string, skin: string, color: string) {
     };
     let idlower = id.toLowerCase();
     if (itemIDs.hasOwnProperty(idlower)) {
-      console.log(`I FOUND A ${idlower} with color: ${color}`);
+      // console.log(`I FOUND A ${idlower} with color: ${color}`);
       // console.log(itemIDs[idlower][0]);
       return fetch('api/getItemTexture', {
         method: 'POST',

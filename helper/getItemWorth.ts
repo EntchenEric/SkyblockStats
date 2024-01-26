@@ -6,6 +6,181 @@ const getWorthFromBazaarItem = async (productId: string) => {
   }
 };
 
+const cleanUpItemName = (name: string) => {
+  //remove Stars and color
+  let newName = name
+    .replace(/§[0-9a-fk-or]/g, '')
+    .replaceAll('✪', '')
+    .replace('➎', '')
+    .replace('➍', '')
+    .replace('➌', '')
+    .replace('➋', '')
+    .replace('➊', '');
+
+  newName = newName.replace('Very ', '');
+  newName = newName.replace('Highly ', '');
+  newName = newName.replace('Extremely ', '');
+  newName = newName.replace('Not So ', '');
+  newName = newName.replace('Thicc ', '');
+  newName = newName.replace('Absolutely ', '');
+  newName = newName.replace('Even More ', '');
+  newName = newName.replace('Greater ', '');
+
+  //remove reforges
+  //Sword Reforges
+  newName = newName.replace('Epic ', '');
+  newName = newName.replace('Fair ', '');
+  newName = newName.replace('Fast ', '');
+  newName = newName.replace('Gentle ', '');
+  newName = newName.replace('Heroic ', '');
+  newName = newName.replace('Hurtful ', '');
+  newName = newName.replace('Legendary ', '');
+  newName = newName.replace('Odd ', '');
+  newName = newName.replace('Sharp ', '');
+  newName = newName.replace('Spicy ', '');
+  newName = newName.replace('Coldfused ', '');
+  newName = newName.replace('Dirty ', '');
+  newName = newName.replace('Fabled ', '');
+  newName = newName.replace('Gilded ', '');
+  newName = newName.replace('Suspicious ', '');
+  newName = newName.replace('Warped ', '');
+  newName = newName.replace('Withered ', '');
+  newName = newName.replace('Withered ', '');
+  newName = newName.replace("Jerry's ", '');
+  newName = newName.replace('Fanged ', '');
+
+  //Bow Reforges
+  newName = newName.replace('Awkward ', '');
+  newName = newName.replace('Deadly ', '');
+  newName = newName.replace('Fine ', '');
+  newName = newName.replace('Grand ', '');
+  newName = newName.replace('Hasty ', '');
+  newName = newName.replace('Neat ', '');
+  newName = newName.replace('Rapid ', '');
+  newName = newName.replace('Rich ', '');
+  newName = newName.replace('Unreal ', '');
+  newName = newName.replace('Precise ', '');
+  newName = newName.replace('Spiritual ', '');
+  newName = newName.replace('Headstrong ', '');
+
+  //Armor Reforges
+  newName = newName.replace('Clean ', '');
+  newName = newName.replace('Fierce ', '');
+  newName = newName.replace('Heavy ', '');
+  newName = newName.replace('Light ', '');
+  newName = newName.replace('Mythic ', '');
+  newName = newName.replace('Pure ', '');
+  newName = newName.replace('Titanic ', '');
+  newName = newName.replace('Smart ', '');
+  newName = newName.replace('Wise ', '');
+  newName = newName.replace('Candied ', '');
+  newName = newName.replace('Submerged ', '');
+  newName = newName.replace('Perfect ', '');
+  newName = newName.replace('Reinforced ', '');
+  newName = newName.replace('Renowned ', '');
+  newName = newName.replace('Spiked ', '');
+  newName = newName.replace('Hyper ', '');
+  newName = newName.replace('Giant ', '');
+  newName = newName.replace('Jaded ', '');
+  newName = newName.replace('Cubic ', '');
+  newName = newName.replace('Necrotic ', '');
+  newName = newName.replace('Empowered ', '');
+  newName = newName.replace('Ancient ', '');
+  newName = newName.replace('Undead ', '');
+  newName = newName.replace('Loving ', '');
+  newName = newName.replace('Ridiculous ', '');
+  newName = newName.replace('Bustling ', '');
+  newName = newName.replace('Mossy ', '');
+  newName = newName.replace('Festive ', '');
+  newName = newName.replace('Greater Spook ', '');
+
+  //Equipment Reforges
+  newName = newName.replace('Stained ', '');
+  newName = newName.replace('Menacing ', '');
+  newName = newName.replace('Hefty ', '');
+  newName = newName.replace('Soft ', '');
+  newName = newName.replace('Honored ', '');
+  newName = newName.replace('Blended ', '');
+  newName = newName.replace('Astute ', '');
+  newName = newName.replace('Colossal ', '');
+  newName = newName.replace('Brilliant ', '');
+  newName = newName.replace('Blood-Soaked ', '');
+  newName = newName.replace('Waxed ', '');
+  newName = newName.replace('Rooted ', '');
+  newName = newName.replace('Blooming ', '');
+  newName = newName.replace('Fortified ', '');
+  newName = newName.replace('Strengthened ', '');
+  newName = newName.replace('Glistening ', '');
+  newName = newName.replace('Snowy ', '');
+  newName = newName.replace('Greater Spook ', '');
+
+  //Fishingrod Reforges
+  newName = newName.replace('Salty ', '');
+  newName = newName.replace('Treacherous ', '');
+  newName = newName.replace('Lucky ', '');
+  newName = newName.replace('Stiff ', '');
+  newName = newName.replace('Dirty ', '');
+  newName = newName.replace('Chomp ', '');
+  newName = newName.replace("Pitchin' ", '');
+
+  //Pickaxe Reforges
+  newName = newName.replace('Unyielding ', '');
+  newName = newName.replace("Prospector's ", '');
+  newName = newName.replace('Excellent ', '');
+  newName = newName.replace('Sturdy ', '');
+  newName = newName.replace('Fortunate ', '');
+  newName = newName.replace('Ambered ', '');
+  newName = newName.replace('Auspicious ', '');
+  newName = newName.replace('Fleet ', '');
+  newName = newName.replace('Heated ', '');
+  newName = newName.replace('Magnetic ', '');
+  newName = newName.replace('Mithraic ', '');
+  newName = newName.replace('Refined ', '');
+  newName = newName.replace('Stellar ', '');
+  newName = newName.replace('Fruitful ', '');
+
+  //Axe Reforges
+  newName = newName.replace('Great ', '');
+  newName = newName.replace('Rugged ', '');
+  newName = newName.replace('Lush ', '');
+  newName = newName.replace("Lumberjack's ", '');
+  newName = newName.replace('Double-Bit ', '');
+  newName = newName.replace('Moil ', '');
+  newName = newName.replace('Toil ', '');
+  newName = newName.replace('Blessed ', '');
+  newName = newName.replace('Earthy ', '');
+
+  //Hoe Reforges
+  newName = newName.replace('Robust ', '');
+  newName = newName.replace('Zooming ', '');
+  newName = newName.replace("Peasant's ", '');
+  newName = newName.replace('Green Thumb ', '');
+  newName = newName.replace('Blessed ', '');
+  newName = newName.replace('Bountiful ', '');
+
+  //Vacuum Reforges
+  newName = newName.replace('Beady ', '');
+  newName = newName.replace('Buzzing ', '');
+
+  //remove dye
+  newName = newName.replace('✿ ', '');
+
+  //remove star at end
+  newName = newName.replace('✦ ', '');
+
+  //remove spaces at the start
+  while (newName[0] == ' ') {
+    newName = newName.slice(1);
+  }
+
+  //removes space at the end
+  while (newName[newName.length - 1] == ' ') {
+    newName = newName.slice(0, newName.length - 1);
+  }
+
+  return newName;
+};
+
 export async function getItemWorth(item: any) {
   if (!item.tag) {
     return { buyOrderWorth: 0, instaBuyWorth: 0, instaBuyCalculation: [], buyOrderCalculation: [] };
@@ -14,8 +189,8 @@ export async function getItemWorth(item: any) {
   let cheapestPrice = 999999999999999;
   const cleanedName = cleanUpItemName(item.tag.value.display.value.Name.value).replace(' ', '_');
   if (cleanedName == 'Terminator') {
-    console.log(item);
-    console.log('starts: ', item.tag.value.ExtraAttributes.value.dungeon_item_level.value);
+    // console.log(item);
+    // console.log('starts: ', item.tag.value.ExtraAttributes.value.dungeon_item_level.value);
   }
   const hyperionReplacers = ['scylla', 'valkyre', 'Astrea'];
   const respo = await fetch(
@@ -2153,7 +2328,7 @@ export async function getItemWorth(item: any) {
 
   const skyblockItem = (await skyblockItemResponse.json()).data[0];
 
-  console.log(skyblockItem);
+  // console.log(skyblockItem);
 
   if (item.tag.value.ExtraAttributes.value.gems) {
     const tmpCalculations: { instaBuyCalculation: string[]; buyOrderCalculation: string[] } = {
@@ -2193,9 +2368,9 @@ export async function getItemWorth(item: any) {
       }
       for (let j = 0; j < skyblockItem.gemstone_slots.length; j++) {
         const gemstoneSlot = skyblockItem.gemstone_slots[j];
-        console.log(gemstoneSlot);
+        // console.log(gemstoneSlot);
         if (gemstoneSlot.slot_type == key.split('_')[0]) {
-          console.log(gemstoneSlot.costs);
+          // console.log(gemstoneSlot.costs);
           gemstoneSlot.costs.forEach(async (cost: any) => {
             if (cost.type == 'COINS') {
               itemWorth.buyOrderWorth += cost.coins;
@@ -2287,7 +2462,7 @@ export async function getItemWorth(item: any) {
         }
       } else {
         skyblockItem.upgrade_costs[i].forEach(async (cost: any) => {
-          console.log(cost);
+          // console.log(cost);
 
           if (cost.type == 'ESSENCE') {
             const price = await getWorthFromBazaarItem('ESSENCE_' + cost.essence_type);
@@ -2343,234 +2518,13 @@ export async function getItemWorth(item: any) {
     }
   }
 
-  if (item.tag.value.ExtraAttributes.value.modifier) {
-    const normyReforges = [
-      'epic',
-      'fair',
-      'fast',
-      'gentle',
-      'heroic',
-      'legendary',
-      'odd',
-      'sharp',
-      'spicy',
-      'awkward',
-      'deadly',
-      'fine',
-      'grand',
-      'hasty',
-      'neat',
-      'rapid',
-      'rich',
-      'unreal',
-      'clean',
-      'fierce',
-      'heavy',
-      'light',
-      'mythic',
-      'pure',
-      'titanic',
-      'smart',
-      'wise',
-      'stained',
-      'menacing',
-      'hefty',
-      'soft',
-      'honored',
-      'blended',
-      'astute',
-      'colossal',
-      'brilliant',
-      'unyielding',
-      "prospector's",
-      'excellent',
-      'sturdy',
-      'fortunate',
-      'great',
-      'rugged',
-      'lush',
-      "luberjack's",
-      'double-bit',
-      'robust',
-      'zooming',
-      "peasant's",
-      'green thumb',
-    ];
-    if (!(item.tag.value.ExtraAttributes.value.modifier.value in normyReforges)) {
-      switch (item.tag.value.ExtraAttributes.value.modifier.value) {
-        default:
-          itemWorth.buyOrderCalculation.push('Unknown Reforge');
-          itemWorth.instaBuyCalculation.push('Unknown Reforge');
-        
-      }
-    }
+  if (item.tag.value.ExtraAttributes.value.rarity_upgrades) {
+    const price = await getWorthFromBazaarItem('RECOMBOBULATOR_3000');
+    itemWorth.buyOrderWorth += parseInt(price?.buyorder);
+    itemWorth.instaBuyWorth += parseInt(price?.instabuy);
+    itemWorth.buyOrderCalculation.push('Recombobulated: ' + parseInt(price?.buyorder));
+    itemWorth.instaBuyCalculation.push('Recombobulated: ' + parseInt(price?.instabuy));
   }
 
   console.log('The worth of ' + cleanedName + ' is ', itemWorth);
 }
-
-const cleanUpItemName = (name: string) => {
-  //remove Stars and color
-  let newName = name
-    .replace(/§[0-9a-fk-or]/g, '')
-    .replaceAll('✪', '')
-    .replace('➎', '')
-    .replace('➍', '')
-    .replace('➌', '')
-    .replace('➋', '')
-    .replace('➊', '');
-
-  //remove reforges
-  //Sword Reforges
-  newName = newName.replace('Epic ', '');
-  newName = newName.replace('Fair ', '');
-  newName = newName.replace('Fast ', '');
-  newName = newName.replace('Gentle ', '');
-  newName = newName.replace('Heroic ', '');
-  newName = newName.replace('Hurtful ', '');
-  newName = newName.replace('Legendary ', '');
-  newName = newName.replace('Odd ', '');
-  newName = newName.replace('Sharp ', '');
-  newName = newName.replace('Spicy ', '');
-  newName = newName.replace('Coldfused ', '');
-  newName = newName.replace('Dirty ', '');
-  newName = newName.replace('Fabled ', '');
-  newName = newName.replace('Gilded ', '');
-  newName = newName.replace('Suspicious ', '');
-  newName = newName.replace('Warped ', '');
-  newName = newName.replace('Withered ', '');
-  newName = newName.replace('Withered ', '');
-  newName = newName.replace("Jerry's ", '');
-  newName = newName.replace('Fanged ', '');
-
-  //Bow Reforges
-  newName = newName.replace('Awkward ', '');
-  newName = newName.replace('Deadly ', '');
-  newName = newName.replace('Fine ', '');
-  newName = newName.replace('Grand ', '');
-  newName = newName.replace('Hasty ', '');
-  newName = newName.replace('Neat ', '');
-  newName = newName.replace('Rapid ', '');
-  newName = newName.replace('Rich ', '');
-  newName = newName.replace('Unreal ', '');
-  newName = newName.replace('Precise ', '');
-  newName = newName.replace('Spiritual ', '');
-  newName = newName.replace('Headstrong ', '');
-
-  //Armor Reforges
-  newName = newName.replace('Clean ', '');
-  newName = newName.replace('Fierce ', '');
-  newName = newName.replace('Heavy ', '');
-  newName = newName.replace('Light ', '');
-  newName = newName.replace('Mythic ', '');
-  newName = newName.replace('Pure ', '');
-  newName = newName.replace('Titanic ', '');
-  newName = newName.replace('Smart ', '');
-  newName = newName.replace('Wise ', '');
-  newName = newName.replace('Candied ', '');
-  newName = newName.replace('Submerged ', '');
-  newName = newName.replace('Perfect ', '');
-  newName = newName.replace('Reinforced ', '');
-  newName = newName.replace('Renowned ', '');
-  newName = newName.replace('Spiked ', '');
-  newName = newName.replace('Hyper ', '');
-  newName = newName.replace('Giant ', '');
-  newName = newName.replace('Jaded ', '');
-  newName = newName.replace('Cubic ', '');
-  newName = newName.replace('Necrotic ', '');
-  newName = newName.replace('Empowered ', '');
-  newName = newName.replace('Ancient ', '');
-  newName = newName.replace('Undead ', '');
-  newName = newName.replace('Loving ', '');
-  newName = newName.replace('Ridiculous ', '');
-  newName = newName.replace('Bustling ', '');
-  newName = newName.replace('Mossy ', '');
-  newName = newName.replace('Festive ', '');
-  newName = newName.replace('Greater Spook ', '');
-
-  //Equipment Reforges
-  newName = newName.replace('Stained ', '');
-  newName = newName.replace('Menacing ', '');
-  newName = newName.replace('Hefty ', '');
-  newName = newName.replace('Soft ', '');
-  newName = newName.replace('Honored ', '');
-  newName = newName.replace('Blended ', '');
-  newName = newName.replace('Astute ', '');
-  newName = newName.replace('Colossal ', '');
-  newName = newName.replace('Brilliant ', '');
-  newName = newName.replace('Blood-Soaked ', '');
-  newName = newName.replace('Waxed ', '');
-  newName = newName.replace('Rooted ', '');
-  newName = newName.replace('Blooming ', '');
-  newName = newName.replace('Fortified ', '');
-  newName = newName.replace('Strengthened ', '');
-  newName = newName.replace('Glistening ', '');
-  newName = newName.replace('Snowy ', '');
-  newName = newName.replace('Greater Spook ', '');
-
-  //Fishingrod Reforges
-  newName = newName.replace('Salty ', '');
-  newName = newName.replace('Treacherous ', '');
-  newName = newName.replace('Lucky ', '');
-  newName = newName.replace('Stiff ', '');
-  newName = newName.replace('Dirty ', '');
-  newName = newName.replace('Chomp ', '');
-  newName = newName.replace("Pitchin' ", '');
-
-  //Pickaxe Reforges
-  newName = newName.replace('Unyielding ', '');
-  newName = newName.replace("Prospector's ", '');
-  newName = newName.replace('Excellent ', '');
-  newName = newName.replace('Sturdy ', '');
-  newName = newName.replace('Fortunate ', '');
-  newName = newName.replace('Ambered ', '');
-  newName = newName.replace('Auspicious ', '');
-  newName = newName.replace('Fleet ', '');
-  newName = newName.replace('Heated ', '');
-  newName = newName.replace('Magnetic ', '');
-  newName = newName.replace('Mithraic ', '');
-  newName = newName.replace('Refined ', '');
-  newName = newName.replace('Stellar ', '');
-  newName = newName.replace('Fruitful ', '');
-
-  //Axe Reforges
-  newName = newName.replace('Great ', '');
-  newName = newName.replace('Rugged ', '');
-  newName = newName.replace('Lush ', '');
-  newName = newName.replace("Lumberjack's ", '');
-  newName = newName.replace('Double-Bit ', '');
-  newName = newName.replace('Moil ', '');
-  newName = newName.replace('Toil ', '');
-  newName = newName.replace('Blessed ', '');
-  newName = newName.replace('Earthy ', '');
-
-  //Hoe Reforges
-  newName = newName.replace('Robust ', '');
-  newName = newName.replace('Zooming ', '');
-  newName = newName.replace("Peasant's ", '');
-  newName = newName.replace('Green Thumb ', '');
-  newName = newName.replace('Blessed ', '');
-  newName = newName.replace('Bountiful ', '');
-
-  //Vacuum Reforges
-  newName = newName.replace('Beady ', '');
-  newName = newName.replace('Buzzing ', '');
-
-  //remove dye
-  newName = newName.replace('✿ ', '');
-
-  //remove star at end
-  newName = newName.replace('✦ ', '');
-
-  //remove spaces at the start
-  while (newName[0] == ' ') {
-    newName = newName.slice(1);
-  }
-
-  //removes space at the end
-  while (newName[newName.length - 1] == ' ') {
-    newName = newName.slice(0, newName.length - 1);
-  }
-
-  return newName;
-};

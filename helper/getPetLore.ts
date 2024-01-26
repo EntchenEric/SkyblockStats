@@ -952,7 +952,7 @@ export function getPetLore(
       thirdAbility: minecraftColoredStringToText(`§6Ride Into BattleZEILENUMBRUCH§7While riding your horse, gain +§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['RideIntoBattle'][rarity][0], maxStat: extraPetStatsMinMax[id]['RideIntoBattle'][rarity][1] })}% §a§7bow damage.`),
     });
     case 'RAT':
-      console.log(extraPetStatsMinMax[id]['RatsBlessing'][rarity]['MagicFind'][1])
+      // console.log(extraPetStatsMinMax[id]['RatsBlessing'][rarity]['MagicFind'][1])
       return ({
         category: minecraftColoredStringToText(`§8Combat Morph, ${skin ? skin : ''}`),
         stats: minecraftColoredStringToText(`
