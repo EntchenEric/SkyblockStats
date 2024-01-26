@@ -52,7 +52,16 @@ export function minecraftColoredStringToText(text: string) {
           fontStyle: italic ? "italic" : "",
         }}
       >
-        {textWithoutCurrentText}
+        {textWithoutCurrentText.includes('ZEILENUMBRUCH')
+          ? (textWithoutCurrentText.split('ZEILENUMBRUCH').map((text, index) => {
+            return (
+              <React.Fragment key={index}>
+                {text}
+                <div style={{ lineHeight: '1px' }}><br /></div> {/* Adjust the lineHeight value as needed */}
+              </React.Fragment>
+            );
+          })) : textWithoutCurrentText
+        }
       </span>
     );
 
