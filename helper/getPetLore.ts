@@ -258,9 +258,35 @@ export function getPetLore(
     },
     'MEGALODON': {
       'BaseStats': { 'Strength': [0, 50], 'Ferocity': [0, 5], 'MagicFind': [0, 10] },
+      'BloodScent': {
+        'EPIC': [0, 25],
+        'LEGENDARY': [0, 25],
+      },
+      'EnhancedScales': {
+        'EPIC': [0, 20],
+        'LEGENDARY': [0, 20],
+      },
+      'FeedingFrenzy': {
+        'LEGENDARY': [0, 50],
+      },
     },
     'MONKEY': {
       'BaseStats': { 'Speed': [0, 20], 'Intelligence': [0, 50] },
+      'Treeborn': {
+        'COMMON': [0, 40],
+        'UNCOMMON': [0, 50],
+        'RARE': [0, 50],
+        'EPIC': [0, 60],
+        'LEGENDARY': [0, 60],
+      },
+      'VineSwing': {
+        'RARE': [0, 75],
+        'EPIC': [0, 100],
+        'LEGENDARY': [0, 100],
+      },
+      'EvolvedAxes': {
+        'LEGENDARY': [0, 50],
+      },
     },
     'MOOSHROOM_COW': {
       'BaseStats': { 'Health': [1, 100], 'FarmingFortune': [11, 110] },
@@ -528,6 +554,17 @@ export function getPetLore(
     },
     'BABY_YETI': {
       'BaseStats': { 'Strength': [0, 40], 'Intelligence': [0, 75] },
+      'ColdBreeze': {
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
+      'IceShields': {
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
+      'YetiFury': {
+        'LEGENDARY': [0, 100],
+      },
     },
     'SKELETON_HORSE': {
       'BaseStats': { 'Speed': [0, 50], 'Intelligence': [0, 100] },
@@ -536,12 +573,20 @@ export function getPetLore(
     },
     'BLUE_WHALE': {
       'BaseStats': { 'Health': [0, 200] },
-      'Ingest ': {
+      'Ingest': {
         'COMMON': [0, 50],
         'UNCOMMON': [0, 100],
-        'RARE': [0, 40],
-        'EPIC': [0, 50],
-        'LEGENDARY': [0, 50],
+        'RARE': [0, 150],
+        'EPIC': [0, 200],
+        'LEGENDARY': [0, 250],
+      },
+      'Bulk': {
+        'RARE': { 'Health': [0, 1], 'Defense': [30] },
+        'EPIC': { 'Health': [0, 1], 'Defense': [25] },
+        'LEGENDARY': { 'Health': [0, 1], 'Defense': [20] },
+      },
+      'Archimedes': {
+        'LEGENDARY': [0, 20],
       },
     },
     'GIRAFFE': {
@@ -549,9 +594,33 @@ export function getPetLore(
     },
     'AMMONITE': {
       'BaseStats': { 'SeaCreatureChance': [0, 5] }, // maxed is 12 but only with the Heart of the Sea perk
+      'HeartoftheSea': {
+        'LEGENDARY': [0, 1],
+      },
+      'ExpertCaveFisher': {
+        'LEGENDARY': [1, 100],
+      },
+      'GiftoftheAmmonite': {
+        'LEGENDARY': { 'FishingSpeed': [0.01, 0.5], 'Speed': [0.02, 2], 'Defense': [0.02, 2] },
+      },
     },
     'LION': {
       'BaseStats': { 'Strength': [0, 50], 'Speed': [0, 25], 'Ferocity': [0, 5] },
+      'PrimalForce': {
+        'COMMON': { 'Damage': [0, 3], 'Strength': [0, 3] },
+        'UNCOMMON': { 'Damage': [0, 5], 'Strength': [0, 5] },
+        'RARE': { 'Damage': [0, 10], 'Strength': [0, 10] },
+        'EPIC': { 'Damage': [0, 15], 'Strength': [0, 15] },
+        'LEGENDARY': { 'Damage': [0, 20], 'Strength': [0, 20] },
+      },
+      'FirstPounce': {
+        'RARE': [0, 75],
+        'EPIC': [0, 100],
+        'LEGENDARY': [0, 100],
+      },
+      'KingoftheJungle': {
+        'LEGENDARY': [0, 150],
+      },
     },
     'JELLYFISH': {
       'BaseStats': { 'Health': [0, 200], 'HealthRegeneration': [0, 100] },
@@ -1342,7 +1411,60 @@ export function getPetLore(
       stats: minecraftColoredStringToText(`
       §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}
       `),
-      firstAbility: minecraftColoredStringToText(``),
+      firstAbility: minecraftColoredStringToText(`§6IngestZEILENUMBRUCH§7§7All potions heal §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Ingest'][rarity][0], maxStat: extraPetStatsMinMax[id]['Ingest'][rarity][1] })}❤§7.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6BulkZEILENUMBRUCH§7§7Gain §a${extraPetStatsMinMax[id]['Bulk'][rarity]['Defense'][0]}§a❈ DefenseZEILENUMBRUCH§7per §c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Bulk'][rarity]['Health'][0], maxStat: extraPetStatsMinMax[id]['Bulk'][rarity]['Health'][1] })} Max §c❤ §cHealth§7.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6ArchimedesZEILENUMBRUCH§7§7Gain §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Archimedes'][rarity][0], maxStat: extraPetStatsMinMax[id]['Archimedes'][rarity][1] })}% Max §c❤ Health§7.`) : '',
+    });
+    case 'BABY_YETI': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Strength: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][1] })}ZEILENUMBRUCH
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Cold BreezeZEILENUMBRUCH§7§7Gives §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['ColdBreeze'][rarity][0], maxStat: extraPetStatsMinMax[id]['ColdBreeze'][rarity][1] })} §c❁ Strength §7andZEILENUMBRUCH§9☠ Crit §9Damage §7when near snow.`),
+      secondAbility: minecraftColoredStringToText(`§6Ice ShieldsZEILENUMBRUCH§7§7Gain §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['IceShields'][rarity][0], maxStat: extraPetStatsMinMax[id]['IceShields'][rarity][1] })}% §7of your §c❁ StrengthZEILENUMBRUCH§7as §a❈ Defense§7.`),
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Yeti FuryZEILENUMBRUCH§7§7Buffs the §6Yeti Sword §7byZEILENUMBRUCH§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['YetiFury'][rarity][0], maxStat: extraPetStatsMinMax[id]['YetiFury'][rarity][1] })} §c❁ Damage §7and §b✎ Intelligence§7.`) : '',
+    });
+    case 'AMMONITE': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Sea Creature Chance: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][1] })}%
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Heart of the SeaZEILENUMBRUCH§7§7Grants §3+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['HeartoftheSea'][rarity][0], maxStat: extraPetStatsMinMax[id]['HeartoftheSea'][rarity][1] })}α Sea Creature Chance §7to your pet for each §5Heart of the Mountain §7level.`),
+      secondAbility: minecraftColoredStringToText(`§6Expert Cave FisherZEILENUMBRUCH§7§7The fishing speed reduction from being underground is attenuated by §7§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['ExpertCaveFisher'][rarity][0], maxStat: extraPetStatsMinMax[id]['ExpertCaveFisher'][rarity][1] })}%§7.`),
+      thirdAbility: minecraftColoredStringToText(`§6Gift of the AmmoniteZEILENUMBRUCH§7§7Each Mining and Fishing level grants §7§b+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['FishingSpeed'][0], maxStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['FishingSpeed'][1] })}☂ Fishing Speed§7, §f+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['Speed'][0], maxStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['Speed'][1] })}✦ Speed §7and §7§a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['Defense'][0], maxStat: extraPetStatsMinMax[id]['GiftoftheAmmonite'][rarity]['Defense'][1] })}❈ Defense§7.`),
+    });
+    case 'MEGALODON': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Strength: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][1] })}ZEILENUMBRUCH
+      §7Magic Find: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['MagicFind'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['MagicFind'][1] })}ZEILENUMBRUCH
+      §7Ferocity: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Ferocity'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Ferocity'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Blood ScentZEILENUMBRUCH§7§7Deal up to §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BloodScent'][rarity][0], maxStat: extraPetStatsMinMax[id]['BloodScent'][rarity][1] })}% §c❁ Damage §7based on the enemy's missing health.`),
+      secondAbility: minecraftColoredStringToText(`§6Enhanced ScalesZEILENUMBRUCH§7§7Increases the stats of §aShark Scale Armor §7by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['EnhancedScales'][rarity][0], maxStat: extraPetStatsMinMax[id]['EnhancedScales'][rarity][1] })}%§7.`),
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Feeding FrenzyZEILENUMBRUCH§7§7On kill gain §c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['FeedingFrenzy'][rarity][0], maxStat: extraPetStatsMinMax[id]['FeedingFrenzy'][rarity][1] })}❁ Damage §7and §f✦ Speed §7for §a5s§7.`) : '',
+    });
+    case 'MONKEY': return ({
+      category: minecraftColoredStringToText(`§8Foraging Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][1] })}ZEILENUMBRUCH
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6TreebornZEILENUMBRUCH§7§7Grants §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Treeborn'][rarity][0], maxStat: extraPetStatsMinMax[id]['Treeborn'][rarity][1] })} §6☘ Foraging Fortune§7, which increases your chance at double logs.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6Vine SwingZEILENUMBRUCH§7§7Gain +§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['VineSwing'][rarity][0], maxStat: extraPetStatsMinMax[id]['VineSwing'][rarity][1] })} §f✦ Speed §7while in The Park.`) : '',
+      thirdability: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Evolved AxesZEILENUMBRUCH§7§7Reduce the cooldown of §aJungle Axe §a§7and §5Treecapitator §7by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['EvolvedAxes'][rarity][0], maxStat: extraPetStatsMinMax[id]['EvolvedAxes'][rarity][1] })}%§7.`) : '',
+    });
+    case 'LION': return ({
+      category: minecraftColoredStringToText(`§8Foraging Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][1] })}ZEILENUMBRUCH
+      §7Strength: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][1] })}ZEILENUMBRUCH
+      §7Ferocity: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Ferocity'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Ferocity'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Primal ForceZEILENUMBRUCH§7§7Adds §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['PrimalForce'][rarity]['Damage'][0], maxStat: extraPetStatsMinMax[id]['PrimalForce'][rarity]['Damage'][1] })} §c❁ Damage §7and §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['PrimalForce'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['PrimalForce'][rarity]['Strength'][1] })} §c❁ §cStrength §7to your weapons.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6First PounceZEILENUMBRUCH§7§7First Strike§7, Triple-Strike§7, and §dCombo §7are §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['FirstPounce'][rarity][0], maxStat: extraPetStatsMinMax[id]['FirstPounce'][rarity][1] })}% §7more effective.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6King of the JungleZEILENUMBRUCH§7§7Deal §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['KingoftheJungle'][rarity][0], maxStat: extraPetStatsMinMax[id]['KingoftheJungle'][rarity][1] })}% §c❁ Damage §7against mobs that have attacked you.`) : '',
     });
   }
 
