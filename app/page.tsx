@@ -15,10 +15,6 @@ export default function HomePage() {
       name: 'EntchenEric',
       badge: 'Developer',
     },
-    {
-      name: 'Ivylagia',
-      badge: 'Supporter',
-    },
   ];
   return (
     <>
