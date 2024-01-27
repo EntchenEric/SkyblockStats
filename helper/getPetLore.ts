@@ -102,12 +102,12 @@ export function getPetLore(
         'MYTHIC': [0, 80],
       },
       'WaterBender': {
-        'RARE': [0, 80],
-        'EPIC': [0, 100],
-        'LEGENDARY': [0, 100]
+        'RARE': { 'Strength': [0, 80], 'Defense': [0, 80] },
+        'EPIC': { 'Strength': [0, 100], 'Defense': [0, 100] },
+        'LEGENDARY': { 'Strength': [0, 100], 'Defense': [0, 100] },
       },
       'LavaBender': {
-        'MYTHIC': [0, 100],
+        'MYTHIC': { 'Strength': [0, 100], 'Defense': [0, 100] },
       },
       'DeepSeaDiver': {
         'LEGENDARY': [0, 20],
@@ -264,6 +264,21 @@ export function getPetLore(
     },
     'MOOSHROOM_COW': {
       'BaseStats': { 'Health': [1, 100], 'FarmingFortune': [11, 110] },
+      'EfficientMushrooms': {
+        'COMMON': [0, 20],
+        'UNCOMMON': [0, 20],
+        'RARE': [0, 30],
+        'EPIC': [0, 30],
+        'LEGENDARY': [0, 30],
+      },
+      'MushroomEater': {
+        'RARE': [0, 100],
+        'EPIC': [0, 100],
+        'LEGENDARY': [0, 100],
+      },
+      'FarmingStrength': {
+        'LEGENDARY': [40, 20],
+      },
     },
     'OCELOT': {
       'BaseStats': { 'Speed': [0, 50], 'Ferocity': [0, 10] },
@@ -284,9 +299,36 @@ export function getPetLore(
     },
     'PIG': {
       'BaseStats': { 'Speed': [0, 25] },
+      'Run': {
+        'COMMON': [0, 30],
+        'UNCOMMON': [0, 40],
+        'RARE': [0, 40],
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
+      'Sprint': {
+        'RARE': [0, 40],
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
     },
     'RABBIT': {
       'BaseStats': { 'Speed': [0, 20], 'Health': [0, 100] },
+      'HappyFeet': {
+        'COMMON': [0, 30],
+        'UNCOMMON': [0, 40],
+        'RARE': [0, 40],
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
+      'FarmingWisdomBoost': {
+        'RARE': [0, 25],
+        'EPIC': [0, 30],
+        'LEGENDARY': [0, 30],
+      },
+      'EfficientFarming': {
+        'LEGENDARY': [0, 30],
+      },
     },
     'ROCK': {
       'BaseStats': { 'Defense': [0, 200], 'TrueDefense': [0, 10] },
@@ -304,6 +346,9 @@ export function getPetLore(
     },
     'REINDEER': {
       'BaseStats': { 'Health': [0, 100], 'SeaCreatureChance': [0, 5], 'FishingSpeed': [0, 25] },
+      'Infused': { 'LEGENDARY': [0, 75] },
+      'SnowPower': { 'LEGENDARY': [0, 10] },
+      'IcyWind': { 'LEGENDARY': [0, 20] },
     },
     'SKELETON': {
       'BaseStats': { 'CritChance': [0, 15], 'CritDamage': [0, 30] },
@@ -357,6 +402,21 @@ export function getPetLore(
     },
     'SQUID': {
       'BaseStats': { 'Intelligence': [0, 50], 'Health': [0, 50] },
+      'MoreInk': {
+        'COMMON': [0, 50],
+        'UNCOMMON': [0, 75],
+        'RARE': [0, 75],
+        'EPIC': [0, 100],
+        'LEGENDARY': [0, 100],
+      },
+      'InkSpecialty': {
+        'RARE': { 'Damage': [0, 30], 'Strength': [0, 10] },
+        'EPIC': { 'Damage': [0, 40], 'Strength': [0, 20] },
+        'LEGENDARY': { 'Damage': [0, 40], 'Strength': [0, 20] },
+      },
+      'FishingWisdomBoost': {
+        'LEGENDARY': [0, 30],
+      },
     },
     'SNAIL': {
       'BaseStats': { 'Intelligence': [0, 100] },
@@ -388,9 +448,36 @@ export function getPetLore(
     },
     'DOLPHIN': {
       'BaseStats': { 'Intelligence': [0, 100], 'SeaCreatureChance': [0, 5] },
+      'PodTactics': {
+        'COMMON': [0, 7],
+        'UNCOMMON': [0, 8],
+        'RARE': [0, 8],
+        'EPIC': [0, 10],
+        'LEGENDARY': [0, 10],
+      },
+      'Echolocation': {
+        'RARE': [0, 7],
+        'EPIC': [0, 10],
+        'LEGENDARY': [0, 10],
+      },
     },
     'ELEPHANT': {
       'BaseStats': { 'Intelligence': [0, 75], 'Health': [0, 100] },
+      'Stomp': {
+        'COMMON': [0, 15],
+        'UNCOMMON': [0, 15],
+        'RARE': [0, 15],
+        'EPIC': [0, 20],
+        'LEGENDARY': [0, 20],
+      },
+      'WalkingFortress': {
+        'RARE': [0, 1],
+        'EPIC': [0, 1],
+        'LEGENDARY': [0, 1],
+      },
+      'TrunkEfficiency': {
+        'LEGENDARY': [0, 150],
+      },
     },
     'BAL': {
       'BaseStats': { 'Strength': [0, 25], 'Ferocity': [0, 10] },
@@ -420,6 +507,21 @@ export function getPetLore(
     },
     'CHICKEN': {
       'BaseStats': { 'Health': [0, 200] },
+      'LightFeet': {
+        'COMMON': [0, 30],
+        'UNCOMMON': [0, 40],
+        'RARE': [0, 40],
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
+      'Eggstra': {
+        'RARE': [0, 80],
+        'EPIC': [0, 100],
+        'LEGENDARY': [0, 100],
+      },
+      'MightyChickens': {
+        'LEGENDARY': [0, 30],
+      },
     },
     'BLAZE': {
       'BaseStats': { 'Intelligence': [0, 100], 'Defense': [10, 30] },
@@ -434,6 +536,13 @@ export function getPetLore(
     },
     'BLUE_WHALE': {
       'BaseStats': { 'Health': [0, 200] },
+      'Ingest ': {
+        'COMMON': [0, 50],
+        'UNCOMMON': [0, 100],
+        'RARE': [0, 40],
+        'EPIC': [0, 50],
+        'LEGENDARY': [0, 50],
+      },
     },
     'GIRAFFE': {
       'BaseStats': { 'CritChance': [0, 5], 'Health': [0, 100] },
@@ -650,6 +759,21 @@ export function getPetLore(
     },
     'BEE': {
       'BaseStats': { 'Strength': [5, 30], 'Speed': [0, 10], 'Intelligence': [0, 50] },
+      'Hive': {
+        'COMMON': { 'Intelligence': [1, 3], 'Strength': [1, 3], 'Defense': [1, 2] },
+        'UNCOMMON': { 'Intelligence': [1, 3], 'Strength': [1, 3], 'Defense': [1, 2] },
+        'RARE': { 'Intelligence': [1, 6], 'Strength': [1, 5], 'Defense': [1, 3] },
+        'EPIC': { 'Intelligence': [1, 10], 'Strength': [1, 8], 'Defense': [1, 5] },
+        'LEGENDARY': { 'Intelligence': [1, 10], 'Strength': [1, 8], 'Defense': [1, 5] },
+      },
+      'BusyBuzzBuzz': {
+        'RARE': [0, 20],
+        'EPIC': [0, 30],
+        'LEGENDARY': [0, 30],
+      },
+      'WeaponizedHoney': {
+        'LEGENDARY': [5, 25],
+      },
     },
     'OWL': {
       'BaseStats': {},
@@ -1112,6 +1236,113 @@ export function getPetLore(
       §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
       §7Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][1] })}
       `),
+      firstAbility: minecraftColoredStringToText(`§6Happy FeetZEILENUMBRUCH§7§7Jump potions also give §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['HappyFeet'][rarity][0], maxStat: extraPetStatsMinMax[id]['HappyFeet'][rarity][1] })} §7speed.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6Farming Wisdom BoostZEILENUMBRUCH§7§7§7Grants §3+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['FarmingWisdomBoost'][rarity][0], maxStat: extraPetStatsMinMax[id]['FarmingWisdomBoost'][rarity][1] })}☯ Farming Wisdom§7.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Efficient FarmingZEILENUMBRUCH§7§7Farming minions work §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['EfficientFarming'][rarity][0], maxStat: extraPetStatsMinMax[id]['EfficientFarming'][rarity][1] })}% §7faster while on your island.`) : '',
+    });
+    case 'MOOSHROOM_COW': return ({
+      category: minecraftColoredStringToText(`§8Farming Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+      §7Farming Fortune: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['FarmingFortune'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['FarmingFortune'][1] })}☘ZEILENUMBRUCH
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Efficient MushroomsZEILENUMBRUCH§7§7Mushroom§7 and Mycelium minions work §7§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['EfficientMushrooms'][rarity][0], maxStat: extraPetStatsMinMax[id]['EfficientMushrooms'][rarity][1] })}% §7faster while on your island.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6Mushroom EaterZEILENUMBRUCH§7§7When breaking mature crops, there is a §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MushroomEater'][rarity][0], maxStat: extraPetStatsMinMax[id]['MushroomEater'][rarity][1] })}% §7chance that a mushroom will drop.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Farming StrengthZEILENUMBRUCH§7§7Gain §6+0.7☘ Farming Fortune §7per every §c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['FarmingStrength'][rarity][0], maxStat: extraPetStatsMinMax[id]['FarmingStrength'][rarity][1] })} §c❁ Strength§7.`) : '',
+    });
+    case 'PIG': return ({
+      category: minecraftColoredStringToText(`§8Farming Mount, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6RidableZEILENUMBRUCH§7§7Right-click your summoned pet to ride it!`),
+      secondAbility: minecraftColoredStringToText(`§6RunZEILENUMBRUCH§7§7Increases the speed of your mount by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Run'][rarity][0], maxStat: extraPetStatsMinMax[id]['Run'][rarity][1] })}%§7.`),
+      thirdAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6SprintZEILENUMBRUCH§7§7While holding an §aEnchanted Carrot on §aa Stick§7, increases the speed of your mount by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Sprint'][rarity][0], maxStat: extraPetStatsMinMax[id]['Sprint'][rarity][1] })}%§7.`) : '',
+      fourthAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6TrampleZEILENUMBRUCH§7§7Your pig will break all crops that it walks over while on your private island or Garden. While riding, §6☘Farming Fortune §7and §aFarming Exp §a§7gain is reduced by §a75%§7.`) : '',
+    });
+    case 'ELEPHANT': return ({
+      category: minecraftColoredStringToText(`§8Farming Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}ZEILENUMBRUCH
+      `), // TODO: Implement Pet Items which can add / change stats
+      firstAbility: minecraftColoredStringToText(`§6StompZEILENUMBRUCH§7§7Gain §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Stomp'][rarity][0], maxStat: extraPetStatsMinMax[id]['Stomp'][rarity][1] })}❈ Defense §7for every 100 §f✦§fSpeed§7.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6Walking FortressZEILENUMBRUCH§7§7Gain §c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['WalkingFortress'][rarity][0], maxStat: extraPetStatsMinMax[id]['WalkingFortress'][rarity][1] })}❤ Health §7for every 10 §a❈ §aDefense§7.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Trunk EfficiencyZEILENUMBRUCH§7§7Grants §6+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['TrunkEfficiency'][rarity][0], maxStat: extraPetStatsMinMax[id]['TrunkEfficiency'][rarity][1] })}☘ Farming Fortune§7, §7which increases your chance for multiple drops.`) : '',
+    });
+    case 'CHICKEN': return ({
+      category: minecraftColoredStringToText(`§8Farming Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Light FeetZEILENUMBRUCH§7§7§7Reduces fall damage by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['LightFeet'][rarity][0], maxStat: extraPetStatsMinMax[id]['LightFeet'][rarity][1] })}%§7.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6EggstraZEILENUMBRUCH§7§7Killing chickens has a §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Eggstra'][rarity][0], maxStat: extraPetStatsMinMax[id]['Eggstra'][rarity][1] })}% §7chance to drop an egg.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Mighty ChickensZEILENUMBRUCH§7§7Chicken minions work §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MightyChickens'][rarity][0], maxStat: extraPetStatsMinMax[id]['MightyChickens'][rarity][1] })}% §7faster while on your island.`) : '',
+    });
+    case 'BEE': return ({
+      category: minecraftColoredStringToText(`§8Farming Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Speed'][1] })}ZEILENUMBRUCH
+      §7Strength: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][1] })}ZEILENUMBRUCH
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}ZEILENUMBRUCH
+      `),
+      firstAbility: minecraftColoredStringToText(`§6HiveZEILENUMBRUCH§7For each player within §a25 §7blocks:ZEILENUMBRUCH§b+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Hive'][rarity]['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['Hive'][rarity]['Intelligence'][1] })}✎ IntelligenceZEILENUMBRUCH§c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Hive'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['Hive'][rarity]['Strength'][1] })}❁ StrengthZEILENUMBRUCH§a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Hive'][rarity]['Defense'][0], maxStat: extraPetStatsMinMax[id]['Hive'][rarity]['Defense'][1] })}❈ DefenseZEILENUMBRUCH§8Max 15 players"`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`"§6Busy Buzz BuzzZEILENUMBRUCH§7Grants §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BusyBuzzBuzz'][rarity][0], maxStat: extraPetStatsMinMax[id]['BusyBuzzBuzz'][rarity][1] })} §7of each to your pet:ZEILENUMBRUCH§6☘ Farming FortuneZEILENUMBRUCH§6☘ Foraging FortuneZEILENUMBRUCH§6☘ Mining Fortune`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Weaponized HoneyZEILENUMBRUCH§7§7Gain §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['WeaponizedHoney'][rarity][0], maxStat: extraPetStatsMinMax[id]['WeaponizedHoney'][rarity][1] })}% §7of received damage as §6❤ §6Absorption§7.`) : '',
+    });
+    case 'REINDEER': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+      §7Sea Creature Chance: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][1] })}%ZEILENUMBRUCH
+      §7Fishing Speed: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['FishingSpeed'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['FishingSpeed'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Winter SprintZEILENUMBRUCH§7§7Gain §ddouble §7pet §aEXP§7.`),
+      secondAbility: minecraftColoredStringToText(`§6InfusedZEILENUMBRUCH§7§7Gives §b+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Infused'][rarity][0], maxStat: extraPetStatsMinMax[id]['Infused'][rarity][1] })}☂ Fishing Speed §7and §3+10α §3Sea Creature Chance §7while on §7§cJerry's Workshop§7.`),
+      thirdAbility: minecraftColoredStringToText(`§6Snow PowerZEILENUMBRUCH§7§7Grants §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['SnowPower'][rarity][0], maxStat: extraPetStatsMinMax[id]['SnowPower'][rarity][1] })}% §7bonus gift chance during the §cGift Attack §7event.`),
+      fourthAbility: minecraftColoredStringToText(`§6Icy WindZEILENUMBRUCH§7§7Grants §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['IcyWind'][rarity][0], maxStat: extraPetStatsMinMax[id]['IcyWind'][rarity][1] })}% §7chance of getting double §bIce Essence§7.`)
+    });
+    case 'SQUID': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(`§6More InkZEILENUMBRUCH§7§7Gain a §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MoreInk'][rarity][0], maxStat: extraPetStatsMinMax[id]['MoreInk'][rarity][1] })}% §7chance to get double drops from squids.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6Ink SpecialtyZEILENUMBRUCH§7§7Buffs the §5Ink Wand §7by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['InkSpecialty'][rarity]['Damage'][0], maxStat: extraPetStatsMinMax[id]['InkSpecialty'][rarity]['Damage'][1] })} §c❁ Damage §c§7and §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['InkSpecialty'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['InkSpecialty'][rarity]['Strength'][1] })} §c❁ Strength§7.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Fishing Wisdom BoostZEILENUMBRUCH§7§7§7Grants §3+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['FishingWisdomBoost'][rarity][0], maxStat: extraPetStatsMinMax[id]['FishingWisdomBoost'][rarity][1] })}☯ Fishing Wisdom§7.`) : '',
+    });
+    case 'FLYING_FISH': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Defense: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Defense'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Defense'][1] })}ZEILENUMBRUCH
+      §7Strength: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Strength'][1] })}ZEILENUMBRUCH
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Quick ReelZEILENUMBRUCH§7§7Grants §b+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['QuickReel'][rarity][0], maxStat: extraPetStatsMinMax[id]['QuickReel'][rarity][1] })}☂ Fishing Speed§7.`),
+      secondAbility: (rarityNumber >= 3 && rarityNumber <= 5) ?
+        minecraftColoredStringToText(`§6Water BenderZEILENUMBRUCH§7§7Gives §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['WaterBender'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['WaterBender'][rarity]['Strength'][1] })} §c❁ Strength §7andZEILENUMBRUCH§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['WaterBender'][rarity]['Defense'][0], maxStat: extraPetStatsMinMax[id]['WaterBender'][rarity]['Defense'][1] })}❈ Defense §a§7when near water.`)
+        : minecraftColoredStringToText(`§6Lava BenderZEILENUMBRUCH§7§7Gives §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Strength'][1] })} §c❁ Strength §7andZEILENUMBRUCH§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Defense'][0], maxStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Defense'][1] })}❈ §aDefense §7when near water or lava.`),
+      thirdAbility: (rarityNumber >= 5 && rarityNumber !== 6) ?
+        minecraftColoredStringToText(`§6Deep Sea DiverZEILENUMBRUCH§7§7Increases the stats of Diver's Armor by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['DeepSeaDiver'][rarity][0], maxStat: extraPetStatsMinMax[id]['DeepSeaDiver'][rarity][1] })}%§7.`)
+        : minecraftColoredStringToText(`§6Magmatic DiverZEILENUMBRUCH§7§7Increases the stats of Magma Lord Armor by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][0], maxStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][1] })}%§7.`),
+      fourthAbility: (rarityNumber >= 6) ? minecraftColoredStringToText(`§6Rapid DecayZEILENUMBRUCH§7§7Increases the chance to activate the §d§lFlash Enchantment §7by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['RapidDecay'][rarity][0], maxStat: extraPetStatsMinMax[id]['RapidDecay'][rarity][1] })}%§7.`) : '',
+    });
+    case 'DOLPHIN': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}ZEILENUMBRUCH
+      §7Sea Creature Chance: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['SeaCreatureChance'][1] })}%
+      `),
+      firstAbility: minecraftColoredStringToText(`§6Pod TacticsZEILENUMBRUCH§7§7Grants §b+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['PodTactics'][rarity][0], maxStat: extraPetStatsMinMax[id]['PodTactics'][rarity][1] })}☂ Fishing Speed §7for each player within §a30 §7blocks, up to §a5 §a§7players.`),
+      secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(`§6EcholocationZEILENUMBRUCH§7§7Grants §3+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Echolocation'][rarity][0], maxStat: extraPetStatsMinMax[id]['Echolocation'][rarity][1] })}α Sea Creature Chance§7.`) : '',
+      thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Splash SurpriseZEILENUMBRUCH§7§7Stun sea creatures for §a5s §7after fishing them up.`) : '',
+    });
+    case 'BLUE_WHALE': return ({
+      category: minecraftColoredStringToText(`§8Fishing Pet, ${skin ? skin : ''}`),
+      stats: minecraftColoredStringToText(`
+      §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}
+      `),
+      firstAbility: minecraftColoredStringToText(``),
     });
   }
 
