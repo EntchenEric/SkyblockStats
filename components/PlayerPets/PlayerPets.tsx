@@ -5,10 +5,8 @@ import { Paper, Group, Text } from '@mantine/core';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { getUUIDFromBase64String } from '@/helper/getUUIDFromBase64String';
 import { getSkullFromSkin } from '@/helper/getSkullFromSkin';
-import { petStats } from '@/types/lore';
 import { xpData } from '@/helper/requiredPetExp';
 import { getPetLore } from '@/helper/getPetLore';
-import { minecraftColoredStringToText } from '@/helper/minecraftColoredStringToText';
 import React from 'react';
 
 export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: string }) {
@@ -327,7 +325,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
         case 'SUBZERO_WISP':
           parsedPet['name'] = 'Subzero Wisp';
           parsedPet['tier'] = 'LEGENDARY';
-
           break;
 
         case 'GLACIAL_WISP':
@@ -673,7 +670,7 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
       ) : (
         <SimpleGrid cols={{ base: 1, sm: 4, lg: 7 }}>
           {pets.map((pet) => {
-            const petLore: any = getPetLore(pet.type, pet.tier, hasRelic, pet.level, pet.skin ?? '')
+            const petLore: any = getPetLore(pet.type, pet.tier, hasRelic, pet.level, pet.skin ?? '', petData, pet.uuid)
             const keys = Object.keys(petLore ?? {});
             return (
               <ItemCard
