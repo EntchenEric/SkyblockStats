@@ -5,6 +5,39 @@ const Icons: { [key: string]: string } = {
   "Strength": '❁',
 };
 
+const BulkwarkStats = {
+  '100': { 'Defense': 30, 'TrueDefense': 3 },
+  '200': { 'Defense': 60, 'TrueDefense': 6 },
+  '300': { 'Defense': 90, 'TrueDefense': 9 },
+  '500': { 'Defense': 135, 'TrueDefense': 14 },
+  '800': { 'Defense': 180, 'TrueDefense': 18 },
+  '1200': { 'Defense': 225, 'TrueDefense': 23 },
+  '1750': { 'Defense': 270, 'TrueDefense': 27 },
+  '2500': { 'Defense': 315, 'TrueDefense': 32 },
+  '3500': { 'Defense': 360, 'TrueDefense': 36 },
+  '5000': { 'Defense': 405, 'TrueDefense': 41 },
+  '10000': { 'Defense': 465, 'TrueDefense': 47 },
+  '25000': { 'Defense': 500, 'TrueDefense': 50 },
+  '75000': { 'Defense': 535, 'TrueDefense': 53 },
+  '100000': { 'Defense': 570, 'TrueDefense': 57 },
+  '125000': { 'Defense': 585, 'TrueDefense': 58 },
+  '150000': { 'Defense': 595, 'TrueDefense': 59 },
+  '200000': { 'Defense': 600, 'TrueDefense': 60 },
+}
+
+function getWispBulkwarkStats(kills: number) {
+  let lastkey: string = '100';
+  for (const [key, value] of Object.entries(BulkwarkStats)) {
+    if (kills >= parseInt(key)) {
+      if (kills > 200000) {
+        return ['§a§lMAXED OUT! NICE!', value.Defense, value.TrueDefense];
+      }
+      return [parseInt(key), parseInt(lastkey), value.Defense, value.TrueDefense];
+    }
+    lastkey = key;
+  }
+}
+
 export function getPetLore(
   id: string,
   rarity: 'COMMON' | 'UNCOMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC',
@@ -22,7 +55,7 @@ export function getPetLore(
         blazekills = profileData[i]['extra']['blaze_kills'];
       }
     };
-    if (blazekills != undefined) console.log(blazekills);
+    // if (blazekills != undefined) console.log(blazekills);
 
     const extraPetStatsMinMax: any = {
       'GOLDEN_DRAGON': {
@@ -780,16 +813,22 @@ export function getPetLore(
       'SUBZERO_WISP': {
         'BaseStats': { 'Damage': [0, 25], 'Intelligence': [0, 250], 'Health': [0, 600], 'TrueDefense': [0, 35] },
         'BlazeSlayer': [1, 1.5],
+        'Extinguish': { 'Health': [0, 25], 'HealthRegeneration': [0, 10] },
         'EphemeralStability': [0, 40],
       },
       'GLACIAL_WISP': {
         'BaseStats': { 'Damage': [0, 20], 'Intelligence': [0, 125], 'Health': [0, 400], 'TrueDefense': [0, 30] },
+        'BlazeSlayer': [1, 1.45],
+        'Extinguish': { 'Health': [0, 20], 'HealthRegeneration': [0, 7] },
       },
       'FROST_WISP': {
         'BaseStats': { 'Damage': [0, 15], 'Intelligence': [0, 50], 'Health': [0, 250], 'TrueDefense': [0, 15] },
+        'BlazeSlayer': [1, 1.4],
+        'Extinguish': { 'Health': [0, 15], 'HealthRegeneration': [0, 4] },
       },
       'DROPLET_WISP': {
         'BaseStats': { 'Damage': [0, 10], 'Health': [0, 100] },
+        'BlazeSlayer': [1, 1.3],
       },
       'SPIDER': {
         'BaseStats': { 'Strength': [0, 10], 'CritChance': [0, 10] },
@@ -960,16 +999,6 @@ export function getPetLore(
     }
 
 
-    const BulkwarkStats = {
-      '100': { 'Defense': 30, 'TrueDefense': 3 },
-      '200': { 'Defense': 60, 'TrueDefense': 6 },
-      '300': { 'Defense': 90, 'TrueDefense': 9 },
-      '500': { 'Defense': 135, 'TrueDefense': 14 },
-      '800': { 'Defense': 180, 'TrueDefense': 18 },
-    }
-
-
-
 
     let maxLevel;
     if (id === 'GOLDEN_DRAGON') {
@@ -983,10 +1012,19 @@ export function getPetLore(
     rarity = rarity.toUpperCase() as any;
 
     let rarityNumber = getNumericRepresentation(rarity); // 6 = mythic, 5 = legendary, 4 = epic, 3 = rare, 2 = uncommon, 1 = common
+
+
+
+
+
+    let BulkwarkValues: any = 0;
+    if (id.includes('WISP')) {
+      BulkwarkValues = getWispBulkwarkStats(blazekills);
+    }
     /*
     category: minecraftColoredStringToText(`'', ${skin ? skin : ''}`),
     stats: minecraftColoredStringToText(`
-  
+   
     `),
     firstAbility: minecraftColoredStringToText(``),
     secondAbility: (rarityNumber >= 3) ? minecraftColoredStringToText(``) : '',
@@ -1625,10 +1663,29 @@ export function getPetLore(
         secondAbility: minecraftColoredStringToText(`§6Stored EnergyZEILENUMBRUCH§7§7While in dungeons, for every §c2,000 HP §7you heal teammates the cooldown of §aWish §7is reduced by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['StoredEnergy'][rarity][0], maxStat: extraPetStatsMinMax[id]['StoredEnergy'][rarity][1] })}s§7, up to §a30s§7.`),
         thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Powerful PotionsZEILENUMBRUCH§7§7While in dungeons, increase the effectiveness of Dungeon Potions by §7§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['PowerfulPotions'][rarity][0], maxStat: extraPetStatsMinMax[id]['PowerfulPotions'][rarity][1] })}%§7.`) : '',
       });
+      case 'DROPLET_WISP': return ({
+        category: minecraftColoredStringToText(`§8Gabagool Pet, feed to gain, ${skin ? skin : ''}`),
+        stats: minecraftColoredStringToText(`
+        §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+        §7Damage: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Damage'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Damage'][1] })}
+        `),
+        firstAbility: minecraftColoredStringToText(`§6DrophammerZEILENUMBRUCH§7§7Lets you break fire pillars, which heals you for §c15% §7of your max §c❤ §c§7over §a3s§7.`),
+        secondAbility: minecraftColoredStringToText(`§6BulwarkZEILENUMBRUCH§7Kill Blazes to gain defense against them and demons.ZEILENUMBRUCH§7Bonus: §a+${(BulkwarkValues != undefined) ? BulkwarkValues[1] : 0}❈ §7 & §f + ${(BulkwarkValues != undefined) ? BulkwarkValues[2] : 0}❂ZEILENUMBRUCH§7Next Upgrade: §a + 30❈ §7 & §f + 3❂ §8(§a0§7 /§c100§8)`),
+      });
+      case 'FROST_WISP': return ({
+        category: minecraftColoredStringToText(`§8Gabagool Pet, feed to gain, ${skin ? skin : ''}`),
+        stats: minecraftColoredStringToText(`
+          §7Health: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Health'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Health'][1] })}ZEILENUMBRUCH
+          §7Damage: §c+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Damage'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Damage'][1] })}ZEILENUMBRUCH
+          §7Intelligence: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['Intelligence'][1] })}ZEILENUMBRUCH
+          §7True Defense: §a+${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BaseStats']['TrueDefense'][0], maxStat: extraPetStatsMinMax[id]['BaseStats']['TrueDefense'][1] })}
+          `),
+        firstAbility: minecraftColoredStringToText(`§6IcehammerZEILENUMBRUCH§7§7Lets you break fire pillars, which heals you for §c25% §7of your max §c❤ §c§7over §a3s§7.`),
+        secondAbility: minecraftColoredStringToText(`§6BulwarkZEILENUMBRUCH§7Kill Blazes to gain defense against them and demons.ZEILENUMBRUCH§7Bonus: §a+${(BulkwarkValues != undefined) ? BulkwarkValues[1] : 0}❈ §7 & §f + ${(BulkwarkValues != undefined) ? BulkwarkValues[2] : 0}❂ZEILENUMBRUCH§7Next Upgrade: §a + 30❈ §7 & §f + 3❂ §8(§a0§7 /§c100§8)`),
+
+      })
       default:
         console.log('Pet not found', id);
-        console.log()
-        return null;
     }
   }
 
@@ -1636,7 +1693,6 @@ export function getPetLore(
     let levelneedOneUp = [188, 164, 140]
     let levelneedOneDown = [196]
     let truncated = parseFloat(Math.floor(num.toString() * 10000).toString()) / 10000;
-    // console.log('\nNUM', truncated);
 
     if (levelneedOneUp.includes(level)) {
       truncated += 0.001
