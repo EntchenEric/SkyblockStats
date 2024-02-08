@@ -1518,7 +1518,8 @@ export function getPetLore(
         : minecraftColoredStringToText(`§6Lava BenderZEILENUMBRUCH§7§7Gives §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Strength'][0], maxStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Strength'][1] })} §c❁ Strength §7andZEILENUMBRUCH§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Defense'][0], maxStat: extraPetStatsMinMax[id]['LavaBender'][rarity]['Defense'][1] })}❈ §aDefense §7when near water or lava.`),
       thirdAbility: (rarityNumber >= 5 && rarityNumber !== 6) ?
         minecraftColoredStringToText(`§6Deep Sea DiverZEILENUMBRUCH§7§7Increases the stats of Diver's Armor by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['DeepSeaDiver'][rarity][0], maxStat: extraPetStatsMinMax[id]['DeepSeaDiver'][rarity][1] })}%§7.`)
-        : minecraftColoredStringToText(`§6Magmatic DiverZEILENUMBRUCH§7§7Increases the stats of Magma Lord Armor by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][0], maxStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][1] })}%§7.`),
+        : (rarityNumber === 6) ? minecraftColoredStringToText(`§6Magmatic DiverZEILENUMBRUCH§7§7Increases the stats of Magma Lord Armor by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][0], maxStat: extraPetStatsMinMax[id]['MagmaticDiver'][rarity][1] })}%§7.`)
+          : "",
       fourthAbility: (rarityNumber >= 6) ? minecraftColoredStringToText(`§6Rapid DecayZEILENUMBRUCH§7§7Increases the chance to activate the §d§lFlash Enchantment §7by §a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['RapidDecay'][rarity][0], maxStat: extraPetStatsMinMax[id]['RapidDecay'][rarity][1] })}%§7.`) : '',
     });
     case 'DOLPHIN': return ({
@@ -1673,7 +1674,8 @@ export function getPetLore(
           `),
       firstAbility: minecraftColoredStringToText(`§6IcehammerZEILENUMBRUCH§7§7Lets you break fire pillars, which heals you for §c25% §7of your max §c❤ §c§7over §a3s§7.`),
       secondAbility: minecraftColoredStringToText(`§6BulwarkZEILENUMBRUCH§7Kill Blazes to gain defense against them and demons.ZEILENUMBRUCH§7Bonus: §a+${(BulkwarkValues != undefined) ? BulkwarkValues[2] : 0}❈ §7 & §f + ${(BulkwarkValues != undefined) ? BulkwarkValues[3] : 0}❂ZEILENUMBRUCH§7Next Upgrade: §a + 30❈ §7 & §f + 3❂ §8(§a${(BulkwarkValues[1] >= 200000) ? "" : BulkwarkValues[1]}§7/§c${BulkwarkValues[0]}§8)ZEILENUMBRUCH§7Kills: §c${BulkwarkValues[1]}`),
-      //thirdAbility: minecraftColoredStringToText(`§6Blaze SlayerZEILENUMBRUCH§7§7Gain §b${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BlazeSlayer'][0], maxStat: extraPetStatsMinMax[id]['BlazeSlayer'][1] })}x §7Combat XP §7against §aBlazes§7.`),
+      thirdAbility: minecraftColoredStringToText(`§6Blaze SlayerZEILENUMBRUCH§7§7Gain §b${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['BlazeSlayer'][0], maxStat: extraPetStatsMinMax[id]['BlazeSlayer'][1] })}x §7Combat XP §7against §aBlazes§7.`),
+      fourthAbility: minecraftColoredStringToText(`§6ExtinguishZEILENUMBRUCH§7While in combat on the Crimson Isle,ZEILENUMBRUCH§7spawn a pool every §a8s§7.ZEILENUMBRUCH§7Bathing in it heals §c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Extinguish']['Health'][0], maxStat: extraPetStatsMinMax[id]['Extinguish']['Health'][1] })}%❤ §7now andZEILENUMBRUCH§7§c${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['Extinguish']['HealthRegeneration'][0], maxStat: extraPetStatsMinMax[id]['Extinguish']['HealthRegeneration'][1] })}%❤§7/s for §a8s§7.`),
     });
     default:
 

@@ -93,7 +93,7 @@ export function ItemCard({
     };
 
     const renderHoverCard = (HoverCardComponent: React.ComponentType<any>) => (
-        <HoverCardComponent width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+        <HoverCardComponent width={360} shadow="md" withArrow openDelay={200} closeDelay={400}>
             <HoverCard.Target>
                 <StyledPaper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', position: 'relative' }}>
