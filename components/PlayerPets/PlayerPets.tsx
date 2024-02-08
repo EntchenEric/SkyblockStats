@@ -696,7 +696,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                   </Group>}
                 imageurl={pet.skin ?? ''}
                 rarity={pet.tier}
-                rarityUpgraded={pet.tier_upgraded}
                 key={pet.uuid}
               />
             )

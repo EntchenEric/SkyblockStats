@@ -1,7 +1,7 @@
 import { getSkullFromSkin } from './getSkullFromSkin';
 import { getUUIDFromBase64String } from './getUUIDFromBase64String';
 
-export function getItemTexture(id: string, skin: string, color: string) {
+export async function getItemTexture(id: string, skin: string, color: string, activeTexturePacks: {furfSky: boolean}) {
   if (skin) {
     return fetch('api/checkSkyFurfItemTexture', {
       method: 'POST',
@@ -31,8 +31,6 @@ export function getItemTexture(id: string, skin: string, color: string) {
     };
     let idlower = id.toLowerCase();
     if (itemIDs.hasOwnProperty(idlower)) {
-      // console.log(`I FOUND A ${idlower} with color: ${color}`);
-      // console.log(itemIDs[idlower][0]);
       return fetch('api/getItemTexture', {
         method: 'POST',
         body: JSON.stringify({ material: itemIDs[idlower][0] }),
@@ -72,12 +70,11 @@ export function getItemTexture(id: string, skin: string, color: string) {
         .then((combinedSeymourArmor) => combinedSeymourArmor.json())
         .then((combinedSeymourArmor) => 'data:image/png;base64,' + combinedSeymourArmor.data);
     }
-
-    return fetch('api/getItemTexture', {
+    const response = await fetch('api/getItemTexture', {
       method: 'POST',
-      body: JSON.stringify({ material: id }),
+      body: JSON.stringify({ material: id, activeTexturePacks }),
     })
-      .then((response) => response.json())
-      .then((data) => data.url);
+    const data = await response.json();
+    return data.url;
   }
 }

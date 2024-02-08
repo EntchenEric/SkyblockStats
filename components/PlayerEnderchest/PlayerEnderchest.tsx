@@ -15,9 +15,9 @@ import { useDisclosure } from "@mantine/hooks";
 import { formatNumberAbbreviated } from "@/helper/formatNumberAbbreviated"
 
 
-export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid: string }) {
+export function PlayerEnderchest({ profileData, uuid }: { profileData: any, uuid: string }) {
     const [inventoryData, setInventoryData] = useState(
-        decodeSkyblockData(profileData.members[uuid.replaceAll("-", "")].inventory.inv_contents.data)
+        decodeSkyblockData(profileData.members[uuid.replaceAll("-", "")].inventory.ender_chest_contents.data)
     );
     const [inventory, setInventory] = useState([]);
 
@@ -45,11 +45,6 @@ export function PlayerInventory({ profileData, uuid }: { profileData: any, uuid:
     const inventoryContents = async () => {
         const inv = await inventoryData;
         let parsedInv = inv.parsed.value.i.value.value
-        let firstNineSlots = parsedInv.slice(0, 9);
-
-        parsedInv = parsedInv.slice(9);
-
-        parsedInv = parsedInv.concat(firstNineSlots);
 
         const inventoryItems: Array<SkyblockItem> = [];
 

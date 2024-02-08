@@ -1626,8 +1626,6 @@ export function getPetLore(
         thirdAbility: (rarityNumber >= 5) ? minecraftColoredStringToText(`§6Powerful PotionsZEILENUMBRUCH§7§7While in dungeons, increase the effectiveness of Dungeon Potions by §7§a${calculatePetStats({ maxLevel, level, minStat: extraPetStatsMinMax[id]['PowerfulPotions'][rarity][0], maxStat: extraPetStatsMinMax[id]['PowerfulPotions'][rarity][1] })}%§7.`) : '',
       });
       default:
-        console.log('Pet not found', id);
-        console.log()
         return null;
     }
   }

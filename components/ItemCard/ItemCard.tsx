@@ -14,6 +14,16 @@ const PixelImage = styled(Image)`
     -ms-interpolation-mode: nearest-neighbor;  /* IE8+ */
   `;
 
+const CountText = styled(Text)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+`;
+
+
 const HoverCardCommon = styled(HoverCard)`
   background-color: #aaaaaa;
 `;
@@ -42,12 +52,14 @@ const HoverCardVerySpecial = styled(HoverCard)`
   background-color: #aa0000;
 `;
 
+
+
 export function ItemCard({
     name,
     imageurl,
     description,
     rarity,
-    rarityUpgraded,
+    count
 }: {
     name: string;
     imageurl: string;
@@ -62,7 +74,7 @@ export function ItemCard({
     | 'DIVINE'
     | 'SPECIAL'
     | 'VERY_SPECIAL';
-    rarityUpgraded: boolean;
+    count: number;
 }) {
     const rarityValues = {
         'Common': '#aaaaaa',
@@ -76,209 +88,57 @@ export function ItemCard({
         'Very Special': '#aa0000',
     };
 
+    const getCountDisplay = () => {
+        return count > 1 ? `${count}` : '';
+    };
+
+    const renderHoverCard = (HoverCardComponent: React.ComponentType<any>) => (
+        <HoverCardComponent width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
+            <HoverCard.Target>
+                <StyledPaper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', position: 'relative' }}>
+                        <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
+                        <CountText size="sm">{getCountDisplay()}</CountText>
+                    </div>
+                </StyledPaper>
+            </HoverCard.Target>
+            <HoverCard.Dropdown>
+                <Container p={0}>{description}</Container>
+            </HoverCard.Dropdown>
+        </HoverCardComponent>
+    );
+
+
     switch (rarity.toUpperCase()) {
         case 'COMMON':
-            return (
-                <HoverCardCommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            display="flex"
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardCommon>
-            );
+            return renderHoverCard(HoverCardCommon);
 
         case 'UNCOMMON':
-            return (
-                <HoverCardUncommon width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardUncommon>
-            );
+            return renderHoverCard(HoverCardUncommon);
 
         case 'RARE':
-            return (
-                <HoverCardRare width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Uncommon'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardRare>
-            );
+            return renderHoverCard(HoverCardRare);
 
         case 'EPIC':
-            return (
-                <HoverCardEpic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Rare'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardEpic>
-            );
+            return renderHoverCard(HoverCardEpic);
 
         case 'LEGENDARY':
-            return (
-                <HoverCardLegendary width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Epic'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardLegendary>
-            );
+            return renderHoverCard(HoverCardLegendary);
 
         case 'MYTHIC':
-            return (
-                <HoverCardMythic width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Legendary'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardMythic>
-            );
+            return renderHoverCard(HoverCardMythic);
 
         case 'DIVINE':
-            return (
-                <HoverCardDivine width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Mythic'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardDivine>
-            );
+            return renderHoverCard(HoverCardDivine);
 
         case 'SPECIAL':
-            return (
-                <HoverCardSpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Divine'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardSpecial>
-            );
+            return renderHoverCard(HoverCardSpecial);
 
         case 'VERY_SPECIAL':
-            return (
-                <HoverCardVerySpecial width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        <StyledPaper
-                            w={{ base: 50, lg: 100, sm: 75 }}
-                            h={{ base: 50, lg: 100, sm: 75 }}
-                            shadow="xs"
-                            radius="md"
-                            withBorder
-                            style={{ borderColor: rarityUpgraded ? rarityValues['Special'] : 'grey' }}
-                        >
-                            <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        </StyledPaper>
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCardVerySpecial>
-            );
+            return renderHoverCard(HoverCardVerySpecial);
 
         default:
             //console.log(`Item Rarity ${rarity} not found`);
-            return (
-                <HoverCard width={320} shadow="md" withArrow openDelay={200} closeDelay={400}>
-                    <HoverCard.Target>
-                        {/* <StyledPaper w={{ base: 50, lg: 100, sm: 75 }} h={{ base: 50, lg: 100, sm: 75 }} shadow="xs" radius="md" withBorder> */}
-                        <PixelImage radius="md" h={80} w={80} fit="contain" src={imageurl} alt={name} />
-                        {/* </StyledPaper> */}
-                    </HoverCard.Target>
-                    <HoverCard.Dropdown>
-                        <Container p={0}>{description}</Container>
-                    </HoverCard.Dropdown>
-                </HoverCard>
-            );
+            return renderHoverCard(HoverCardCommon);
     }
 }

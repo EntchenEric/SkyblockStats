@@ -5,6 +5,7 @@ import { useState, useEffect, SetStateAction } from 'react';
 import { getSkyblockProfileData } from '../../api/getSkyblockProfileData';
 import { getUUIDFromName } from '../../api/getUUIDFromName';
 import { PlayerInventory } from '../../components/PlayerInventory/PlayerInventory';
+import { PlayerEnderchest } from '@/components/PlayerEnderchest/PlayerEnderchest';
 import { PlayerPets } from '../../components/PlayerPets/PlayerPets';
 import { minecraftColoredStringToText } from '@/helper/minecraftColoredStringToText';
 
@@ -54,6 +55,14 @@ export default function player({ params }: any) {
           'Loading...'
         )}
       </Container>
+      
+      {/* <Container size={'lg'} bg={'grey'}>
+        {uuid && selectedProfile ? (
+          <PlayerEnderchest profileData={selectedProfile} uuid={uuid} />
+        ) : (
+          'Loading...'
+        )}
+      </Container> */}
 
       <Container size={'lg'} mt={20} bg={'grey'}>
         {uuid && selectedProfile ? (
