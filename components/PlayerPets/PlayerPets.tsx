@@ -672,8 +672,10 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
           {pets.map((pet) => {
             const petLore: any = getPetLore(pet.type, pet.tier, hasRelic, pet.level, pet.skin ?? '', petData, pet.uuid)
             const keys = Object.keys(petLore ?? {});
+            //console.log(petLore)
             return (
               <ItemCard
+                count={1}
                 name={pet.name}
                 description={
                   <Group display={Flex} align='center' justify='space-between'>
@@ -682,7 +684,6 @@ export function PlayerPets({ profileData, uuid }: { profileData: any; uuid: stri
                     <Container><Text>Level: {pet.level}</Text></Container>
                     {keys && petLore ? (
                       keys.map((key: string, index: number) => {
-                        // console.log(pet.skin_name)
                         if (petLore[key] != "")
                           return (
                             <Container w={'100%'} p={0} m={0} key={index}>
